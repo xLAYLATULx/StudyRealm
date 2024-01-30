@@ -2,6 +2,6 @@
 
 @section('content')
 
-<h1>Tasks</h1>
+<h1>Report</h1>
 
 @endsection

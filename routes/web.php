@@ -16,3 +16,27 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/goals', function () {
+    return view('goals');
+});
+
+Route::get('/taskmanager', function () {
+    return view('taskmanager');
+});
+
+Route::get('/schedule', function () {
+    return view('schedule');
+});
+
+Route::get('/report', function () {
+    return view('report');
+});
+
+Route::get('/pomodoro', function () {
+    return view('pomodoro');
+});
+
+Route::get('/userprofile', function () {
+    return view('userprofile');
+});
