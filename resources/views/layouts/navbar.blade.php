@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     @yield('title')
+    <link rel="icon" href="{{ asset('assets/images/Study Realm Light Logo.png') }}" type="image/png" sizes="16x16">
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -107,7 +108,7 @@ box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
     </div>
 
     <!-- Page content -->
-    <div class="content">
+    <div class="content px-5">
         @yield('content')
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

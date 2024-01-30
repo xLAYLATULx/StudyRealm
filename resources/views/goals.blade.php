@@ -1,5 +1,7 @@
 @extends('layouts.navbar')
-
+@section('title')
+<title>Goals</title>
+@endsection
 @section('content')
 
 <h1>Goals</h1>
