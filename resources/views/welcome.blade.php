@@ -3,29 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Login/Register</title>
-    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <style>
-        .pink-colour{
-            background-color: #FF6060;
-        }
-        .pink-text{
-            color: #FF6060;
-        }
-        .blue-colour{
-            background-color: #314559;
-        }
-        #login{
-            background-color: #314559;
-        }
-        .navbar-logo img {
-            max-width: 80px; /* Set a maximum width for the logo */
-            height: auto; /* Maintain aspect ratio */
-            margin-right: 10px; /* Add some spacing between the logo and the text */
-            margin-bottom: 30px;
-        }
-    </style>
 </head>
 <body>
     <div class="row">
@@ -42,7 +21,7 @@
                 <div class="col-md-6">
                     <div class="card-body p-md-5 mx-md-4">
                         <div class="login-title">
-                            <h4 class="mt-1 mb-5 pb-1">Login</h4>
+                            <h4 class="mt-1 mb-5 pb-1 ">Login</h4>
                         </div>
                 
                         <form>
@@ -61,37 +40,37 @@
                                 <label class="form-check-label" for="remembermecheckbox">Remember Me</label>
                             </div>
                 
-                            <div class="text-center mt-auto">
-                                <button class="btn mt-5 pink-colour py-2 px-5" type="submit"><a class="text-decoration-none text-white" href="{{ url('/goals') }}">Log In</a></button>
+                            <div class="text-center mt-auto ">
+                                <button class="mt-5 pink-colour py-2 px-5" type="submit"><a class="text-decoration-none text-white" href="{{ url('/goals') }}">Log In</a></button>
                             </div>
                 
                         </form>
                     </div>
                 </div>
               <div class="col-md-6 d-flex bg-white">
-                <div class="card-body p-md-5 mx-md-4 pink-text">
-                        <h4 class="mt-1 mb-5 pb-1">Register</h4>
+                <div class="card-body p-md-5 mx-md-4 ">
+                        <h4 class="mt-1 mb-5 pb-1 pink-text">Register</h4>
       
                       
           <form>
             <div class="form-outline mb-4">
-              <label class="form-label" for="name">Name</label>
+              <label class="form-label pink-text" for="name">Name</label>
               <input type="name" id="name" class="form-control" placeholder="Enter Your Name" />
             </div>
 
             <div class="form-outline mb-4">
-              <label class="form-label" for="email">Email</label>
+              <label class="form-label pink-text" for="email">Email</label>
               <input type="email" id="email" class="form-control" placeholder="Enter Email Address" />
             </div>
 
             <div class="form-outline mb-4">
-              <label class="form-label" for="password">Password</label>
+              <label class="form-label pink-text" for="password">Password</label>
               <input type="password" id="password" class="form-control" placeholder="Enter Password" />
             </div>
 
             <!-- Button fixed at the bottom of the card -->
             <div class="text-center">
-              <button class="btn mt-5 blue-colour text-white py-2 px-5" type="button">Register</button>
+              <button class="mt-5 blue-colour text-white py-2 px-5" type="button">Register</button>
             </div>
           </form>
                 </div>

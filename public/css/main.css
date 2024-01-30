@@ -1,0 +1,107 @@
+* {
+    box-sizing: border-box;
+}
+.container {
+    display: flex;
+}
+.pink-colour{
+    background-color: #FF6060;
+}
+/* Set the width of the sidebar */
+.sidebar {
+    height: 100%;
+    width: 16%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #314559;
+    padding-top: 20px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style the sidebar links */
+.sidebar a {
+    padding: 8px 0; /* Adjust vertical padding */
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center; /* Align icon and text vertically */
+    margin-bottom: 10px;
+}
+
+/* Change color on hover */
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+/* Make the active link pink */
+.sidebar .active {
+border-radius: 5px;
+box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+
+/* Main content */
+.content {
+    margin-left: 3%;
+    margin-top: 2%;
+    /* other styles remain unchanged */
+}
+
+/* Navbar Logo styling */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10%;
+}
+
+/* Adjust logo size */
+.navbar-logo img {
+    max-width: 35%; /* Set a maximum width for the logo */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 5%; /* Add some spacing between the logo and the text */
+    margin-bottom: 15%;
+}
+
+/* Navbar Logo text styling */
+.navbar-logo p {
+    margin: 0;
+    font-size: 124%; /* Adjust the font size as needed */
+    color: white;
+}
+
+/* Adjust icon size */
+#nav-items img {
+    max-width: 12%; /* Set a maximum width for the icons */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 5%; /* Add some spacing between the icon and the text */
+}
+
+.pink-text{
+    color: #FF6060;
+}
+.blue-colour{
+    background-color: #314559;
+}
+#login{
+    background-color: #314559;
+}
+
+/* Hide navbar links by default on smaller screens */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+    }
+
+    .navbar-links {
+        display: none;
+    }
+
+    .navbar-toggle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
