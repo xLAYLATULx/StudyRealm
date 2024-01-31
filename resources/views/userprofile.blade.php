@@ -3,7 +3,7 @@
 <title>Profile</title>
 @endsection
 @section('content')
-    <div class=" px-5 profile">
+    <div class="profile">
         <h1>Profile</h1>
             <table class="table border border-grey border-rounded">
                 <thead>
