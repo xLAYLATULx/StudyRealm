@@ -3,8 +3,12 @@
 <title>Profile</title>
 @endsection
 @section('content')
+
     <div class="profile">
         <h1>Profile</h1>
+        @auth
+        {{auth()->user()->name}}
+        @endauth
             <table class="table border border-grey border-rounded">
                 <thead>
                   <tr>

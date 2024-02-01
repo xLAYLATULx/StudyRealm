@@ -10,12 +10,11 @@
 </head>
 
 <body>
-  
+    @auth
     <div class="container">
         
         <div class="sidebar" id="sidebar">
             <span onclick="toggleNav()" id="toggleButton">&#9776;</span>
-
             <div class="navbar-logo">
                 <img src="{{ asset('assets/images/StudyRealm Dark Logo.png') }}" alt="Logo">
                 <p>StudyRealm</p>
@@ -27,9 +26,10 @@
                 <a href="{{ url('/pomodoro') }}" class="text-white"><img src="{{ asset('assets/images/pomodoro-icon.png') }}" alt="Logo"><label>Pomodoro</label></a>
                 <a href="{{ url('/report') }}" class="text-white"><img src="{{ asset('assets/images/report-icon.png') }}" alt="Logo"><label>Reports</label></a>
             </div>
+            
             <div class="row-md-3 mt-auto" id="nav-items">
-                <a href="{{ url('/userprofile') }}" class="text-white"><img src="{{ asset('assets/images/profile-icon.png') }}" alt="Logo"><label>Profile</label></a>
-                <a href="{{ url('/') }}" class="text-white"><img src="{{ asset('assets/images/signout-icon.png') }}" alt="Logo"><label>Sign Out</label></a>
+                <a href="{{ url('/userprofile') }}" class="text-white"><img src="{{ asset('assets/images/profile-icon.png') }}" alt="Logo"><label>{{auth()->user()->name}}</label></a>
+                <a href="{{ route('logout') }}" class="text-white"><img src="{{ asset('assets/images/signout-icon.png') }}" alt="Logo"><label>Sign Out</label></a>
             </div>
         </div>
     <!-- Page content -->
@@ -37,6 +37,12 @@
         @yield('content')
     </div>
     </div>
+    @else
+    <h2>User Not Logged in. Please Login or Regiser an account.</h2>
+    <a href="{{ route('login') }}" class="btn btn-primary">Login</a> 
+    <a href="{{ route('register') }}" class="btn btn-primary">Register</a>
+    @endauth
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
