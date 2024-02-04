@@ -35,22 +35,25 @@ class AuthManager extends Controller
         if (Auth::check()) {
             return redirect('/profile');
         } else {
-            return view('register');
+            return view('login');
         }
     }
 
-    function registerPost(Request $request){
+    public function registerPost(Request $request)
+    {
         $request->validate([
-            'name' => 'required|regex:/^\S+$/',
-            'email' => 'required|email|unique:users',
-            'password' => 'required'
+            'registerName' => 'required|regex:/^\S+$/',
+            'registerEmail' => 'required|email|unique:users,email',
+            'registerPassword' => 'required'
         ]);
 
-        $data['name'] = $request->name;
-        $data['email'] = $request->email;
-        $data['password'] = Hash::make($request->password);
+        $user = new User();
+        $user->name = $request->input('registerName');
+        $user->email = $request->input('registerEmail');
+        $user->password = Hash::make($request->input('registerPassword'));
 
-        $user = User::create($data);
+        $user->save();
+
         if(!$user){
             return redirect(route('register'))->with("error", "Registration Failed. Please Try Again.");
         }
