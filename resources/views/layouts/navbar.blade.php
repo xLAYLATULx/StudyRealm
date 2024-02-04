@@ -11,25 +11,20 @@
 
 <body>
     @auth
-    <div class="container">
-        
-        <div class="sidebar" id="sidebar">
-            <span onclick="toggleNav()" id="toggleButton">&#9776;</span>
-            <div class="navbar-logo">
-                <img src="{{ asset('assets/images/StudyRealm Dark Logo.png') }}" alt="Logo">
-                <p>StudyRealm</p>
+        <div class="sidebar w-2 h-100 blue-colour text-white p-2">
+        <div class="col-md-3 sidebar-logo">
+            <img src="{{ asset('assets/images/StudyRealm Dark Logo.png') }}" alt="Logo"><label><h5 class="fw-bold pt-3 pl-2">StudyRealm</h5></label>
+          </div>
+        <div class="row-md-9 mt-3 nav-items">
+                <a href="{{ url('/goals') }}" class="{{ Request::is('goals') ? 'active' : '' }} rounded"><img src="{{ asset('assets/images/goal-icon.png') }}" alt="Logo"><label>Goals</label></a>
+                <a href="{{ url('/taskmanager') }}" class="{{ Request::is('taskmanager') ? 'active' : '' }} rounded"><img src="{{ asset('assets/images/task-icon.png') }}" alt="Logo"><label>Task Manager</label></a>
+                <a href="{{ url('/schedule') }}" class="{{ Request::is('schedule') ? 'active' : '' }} rounded"><img src="{{ asset('assets/images/schedule-icon.png') }}" alt="Logo"><label>Schedule</label></a>
+                <a href="{{ url('/pomodoro') }}" class="{{ Request::is('pomodoro') ? 'active' : '' }} rounded"><img src="{{ asset('assets/images/pomodoro-icon.png') }}" alt="Logo"><label>Pomodoro</label></a>
+                <a href="{{ url('/report') }}" class="{{ Request::is('report') ? 'active' : '' }} rounded"><img src="{{ asset('assets/images/report-icon.png') }}" alt="Logo"><label>Reports</label></a>
             </div>
-            <div class="row-md-9" id="nav-items">
-                <a href="{{ url('/goals') }}" class="text-white"><img src="{{ asset('assets/images/goal-icon.png') }}" alt="Logo"> <label>Goals</label></a>
-                <a href="{{ url('/taskmanager') }}" class="text-white"><img src="{{ asset('assets/images/task-icon.png') }}" alt="Logo"> <label>Task Manager</label></a>
-                <a href="{{ url('/schedule') }}" class="text-white"><img src="{{ asset('assets/images/schedule-icon.png') }}" alt="Logo"><label>Schedule</label></a>
-                <a href="{{ url('/pomodoro') }}" class="text-white"><img src="{{ asset('assets/images/pomodoro-icon.png') }}" alt="Logo"><label>Pomodoro</label></a>
-                <a href="{{ url('/report') }}" class="text-white"><img src="{{ asset('assets/images/report-icon.png') }}" alt="Logo"><label>Reports</label></a>
-            </div>
-            
-            <div class="row-md-3 mt-auto" id="nav-items">
-                <a href="{{ url('/userprofile') }}" class="text-white"><img src="{{ asset('assets/images/profile-icon.png') }}" alt="Logo"><label>{{auth()->user()->name}}</label></a>
-                <a href="{{ route('logout') }}" class="text-white"><img src="{{ asset('assets/images/signout-icon.png') }}" alt="Logo"><label>Sign Out</label></a>
+            <div class="row-md-3 nav-items">
+                <a href="{{ url('/profile') }}" class="{{ Request::is('profile') ? 'active' : '' }} rounded"><img src="{{ asset('assets/images/profile-icon.png') }}" alt="Logo"><label>{{auth()->user()->name}}</label></a>
+                <a href="{{ route('logout') }}" class="{{ Request::is('logout') ? 'active' : '' }} rounded"><img src="{{ asset('assets/images/signout-icon.png') }}" alt="Logo"><label>Sign Out</label></a>
             </div>
         </div>
     <!-- Page content -->

@@ -26,80 +26,73 @@
 }
 /* End of Login */
 
-
-
-/* Start of Navbar */
-.sidebar {
-    height: 100%;
-    width: 16%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #314559;
-    padding-top: 20px;
-    padding-left: 10px;
-    display: flex;
-    flex-direction: column;
-}
-
-.sidebar a {
-    padding: 8px 0;
-    text-decoration: none;
-    font-size: 18px;
+/* Start of Sidebar */
+.sidebar-logo {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
 }
 
-.sidebar a:hover {
-    color: #f1f1f1;
+.sidebar-logo img {
+    width: 150%;
+    height: auto;
+    margin-right: 10%;
 }
 
-.sidebar .active {
-border-radius: 5px;
-box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 20%;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}  
+  .sidebar a {
+    display: block;
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+  }
+   
+  .sidebar a.active {
+    background-color: #FF6060;
+    color: white;
+    width: 75%;
+    height: 75%;
 }
-
-
-.sidebar .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
+  
+  .sidebar a:hover:not(.active) {
+    text-decoration: none;
+    color: inherit;
   }
   
-  @media screen and (max-height: 450px) {
-    .sidebar {padding-top: 15px;}
-    .sidebar a {font-size: 18px;}
+  div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+  }
+  
+  @media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    .sidebar a {float: left;}
+    div.content {margin-left: 0;}
+  }
+  
+  @media screen and (max-width: 400px) {
+    .sidebar a {
+      text-align: center;
+      float: none;
+    }
   }
 
-.sidebar.minimized #nav-items label {
-    display: none;
-}
-.sidebar.minimized .navbar-logo p{
-    display: none;
-}
-.sidebar.minimized .sidebar a span {
-    display: none;
-}
-
-.sidebar.minimized .navbar-logo img,
-.sidebar.minimized #nav-items img {
-    max-width: 40%;
+  .nav-items img{
+    max-width: 12%; /* Set a maximum width for the icons */
     height: auto;
-    margin-right: 5%;
-    margin-bottom: 0; /* Remove margin bottom for icons */
-}
-
-#toggleButton {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    cursor: pointer;
-    color: white;
-}
+    margin-right: 5%; /* Add some spacing between the icon and the text */
+  }
+  /* End of Sidebar */
 
 
