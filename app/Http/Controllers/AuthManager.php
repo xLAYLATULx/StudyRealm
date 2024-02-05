@@ -12,7 +12,7 @@ class AuthManager extends Controller
 {
     function login(){
         if (Auth::check()) {
-            return redirect('/profile');
+            return redirect('/profile/{id}/update');
         } else {
             return view('login');
         }
@@ -60,6 +60,59 @@ class AuthManager extends Controller
         return redirect(route('register.post'))->with("success", "Registration Successful. Please Login.");
         
     }
+
+    // public function updateDetails(Request $request)
+    // {
+    //     $request->validate([
+    //         'updateName' => 'required|regex:/^\S+$/',
+    //         'updateEmail' => 'required|email|unique:users,email',
+    //         'updatePassword' => 'required'
+    //     ]);
+
+    //     $user = auth()->user();
+    //     $user->update([
+    //         'updateName' => $request->input('name'),
+    //         'updateEmail' => $request->input('email'),
+    //         'updatePassword' => Hash::make($request->input('password'))
+    //     ]);
+
+    //     return redirect()->route('profile')->with('success', 'Profile updated successfully!');
+    // }
+
+    public function profile($id)
+    {
+        $user = User::find($id);
+        return view('userprofile', compact('user'));
+    }
+    
+
+
+    public function updateDetails(Request $request, $id)
+    {
+        $user = User::find($id);
+    
+        $request->validate([
+            'updateName' => 'required|regex:/^\S+$/',
+            'newEmail' => 'required|email|unique:users,email',
+            'newPassword' => 'required'
+        ]);
+        if (!Hash::check($request->input('currentPassword'), $user->password)) {
+            return redirect()->back()->with('error', 'Current password is incorrect.');
+        }
+    
+        $user->name = $request->input('updateName');
+        $user->email = $request->input('newEmail');
+
+        if ($request->filled('newPassword')) {
+            $user->password = Hash::make($request->input('newPassword'));
+        }
+    
+        $user->save();
+        return view('profile', compact('user'))->with('success', 'Profile updated successfully');
+    }
+    
+ 
+
 
     function logout(){
         Session::flush();

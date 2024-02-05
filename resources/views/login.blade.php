@@ -93,8 +93,7 @@
                   <input type="password" name="registerPassword" class="form-control" id="registerPassword"
                     placeholder="Enter Password...">
                 </div>
-                <button type="submit" class="btn text-white" id="blue-colour"
-                  onclick="window.location='{{ route('register') }}'">Register</button>
+                <button type="submit" class="btn text-white" id="blue-colour">Register</button>
               </form>
             </div>
           </div>

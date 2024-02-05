@@ -38,7 +38,7 @@
             </a>
         </div>
         <div class="bottom-nav-items nav-items">
-            <a href="{{ url('/profile') }}" class="{{ Request::is('profile') ? 'active' : '' }} rounded">
+            <a href="{{ route('profile', ['id' => auth()->user()->id]) }}" class="{{ Request::is('profile*') ? 'active' : '' }} rounded">
                 <i class="fa fa-user"></i><label>{{auth()->user()->name}}</label>
             </a>
             <a href="{{ route('logout') }}" class="{{ Request::is('logout') ? 'active' : '' }} rounded">

@@ -24,6 +24,10 @@ Route::post('/register', [AuthManager::class, 'registerPost'])->name('register.p
 
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
 
+Route::get('/profile/{id}', [AuthManager::class, 'profile'])->name('profile' )->middleware(['auth']);
+
+Route::put('/profile/{id}', [AuthManager::class, 'updateDetails'])->name('profile.update');
+
 Route::group(['middleware' => 'auth'], function(){
 
 Route::get('/goals', function () {
@@ -44,10 +48,6 @@ Route::get('/report', function () {
 
 Route::get('/pomodoro', function () {
     return view('pomodoro');
-});
-
-Route::get('/profile', function () {
-    return view('userprofile');
 });
 
 });
