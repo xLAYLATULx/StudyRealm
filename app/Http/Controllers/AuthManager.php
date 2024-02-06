@@ -26,7 +26,7 @@ class AuthManager extends Controller
 
         $credentials = $request->only('email', 'password');
         if(Auth::attempt($credentials)){
-            return redirect()->intended(route('login.post'));
+            return redirect(route('profile', ['id' => auth()->user()->id]));
         }
         return redirect(route('login'))->with("error", "Login details are not valid");
     }
@@ -61,24 +61,6 @@ class AuthManager extends Controller
         
     }
 
-    // public function updateDetails(Request $request)
-    // {
-    //     $request->validate([
-    //         'updateName' => 'required|regex:/^\S+$/',
-    //         'updateEmail' => 'required|email|unique:users,email',
-    //         'updatePassword' => 'required'
-    //     ]);
-
-    //     $user = auth()->user();
-    //     $user->update([
-    //         'updateName' => $request->input('name'),
-    //         'updateEmail' => $request->input('email'),
-    //         'updatePassword' => Hash::make($request->input('password'))
-    //     ]);
-
-    //     return redirect()->route('profile')->with('success', 'Profile updated successfully!');
-    // }
-
     public function profile($id)
     {
         $user = User::find($id);
@@ -111,9 +93,6 @@ class AuthManager extends Controller
         return view('profile', compact('user'))->with('success', 'Profile updated successfully');
     }
     
- 
-
-
     function logout(){
         Session::flush();
         Auth::logout();
