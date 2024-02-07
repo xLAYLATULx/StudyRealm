@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('goal', function (Blueprint $table) {
             $table->id();
-            $table->integer('userID')->references('id')->on('users'); // Foreign key
+            $table->foreignId('userID')->references('id')->on('users'); // Foreign keyphp artisan migrate:status
             $table->string('goalName');
             $table->date('deadline');
-            $table->boolean('completed');
+            $table->boolean('completed')->default(false);
             $table->timestamps();
         });
     }

@@ -105,6 +105,17 @@
   /* End of All */
 
 /* Start of Goal */
+.opacity{
+  display: none;
+  background-color: rgba(0,0,0,0.4);
+  width: 100%;
+  height: 100%; 
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  padding-top: 100px; /* Location of the box */
+}
 .goaldueDate p{
   top: 0;
   right: 0;
@@ -117,6 +128,26 @@
   text-align: right;
 }
 
+.form-popup {
+  display: none;
+  position: fixed;
+}
+
+.addGoalForm{
+    position: fixed;
+    top: 40%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: 45%;
+    background-color: #F99192;
+}
+
+.cancel{
+  bottom: 0;
+  right: 0;
+  align-items: right;
+}
 /* End of Goal */
 
 /* Start of Task */

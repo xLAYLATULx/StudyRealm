@@ -21,16 +21,16 @@
             </label>
         </div>
         <div class="top-nav-items nav-items">
-            <a href="{{ url('/goals') }}" class="{{ Request::is('goals') ? 'active' : '' }} rounded">
+            <a href="{{ route('goal') }}" class="{{ Request::is('goals') ? 'active' : '' }} rounded">
                 <i class="fa fa-bullseye"></i><label>Goals</label>
             </a>
-            <a href="{{ url('/taskmanager') }}" class="{{ Request::is('taskmanager') ? 'active' : '' }} rounded">
+            <a href="{{ route('tasks') }}" class="{{ Request::is('tasks') ? 'active' : '' }} rounded">
                 <i class="fa fa-check"></i><label>Task Manager</label>
             </a>
-            <a href="{{ url('/schedule') }}" class="{{ Request::is('schedule') ? 'active' : '' }} rounded">
+            <a href="{{ route('schedule') }}" class="{{ Request::is('schedule') ? 'active' : '' }} rounded">
                 <i class="fa fa-calendar"></i><label>Schedule</label>
             </a>
-            <a href="{{ url('/pomodoro') }}" class="{{ Request::is('pomodoro') ? 'active' : '' }} rounded">
+            <a href="{{ route('pomodoro') }}" class="{{ Request::is('pomodoro') ? 'active' : '' }} rounded">
                 <i class="fa fa-hourglass-start"></i><label>Pomodoro</label>
             </a>
             <a href="{{ url('/report') }}" class="{{ Request::is('report') ? 'active' : '' }} rounded">
