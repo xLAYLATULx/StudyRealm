@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,7 @@ class TaskController extends Controller
         return view('editCategory', ['category' => $category]);
     }
 
-    function createTask(Request $request, $id){
+    function createTask(Request $request){
         $request->validate([
             'taskName' => 'required',
             'progress' => 'required',
@@ -38,7 +39,7 @@ class TaskController extends Controller
         ]);
         $task = new Task();
         $task->userID = auth()->user()->id;
-        $task->categoryID = $id;
+        $task->categoryID = $request->input('categoryID');
         $task->taskName = $request->input('taskName');
         $task->progress = $request->input('progress');
         $task->priority = $request->input('priority');

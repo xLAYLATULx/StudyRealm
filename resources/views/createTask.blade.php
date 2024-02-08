@@ -8,7 +8,7 @@
     <div class="addGoal">
         <div class="row-md-12">
             <div class="form-popup" id="createTaskForm">
-                <form action="{{ route('createTask') }}" method="POST" class="createTaskForm p-4 border border-2 rounded">
+                <form class="createTaskForm p-4 border border-2 rounded">
                     @csrf
                     <h2 class="text-white">Create Task</h2>
                     <div class="mb-3">

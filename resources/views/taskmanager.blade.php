@@ -6,13 +6,11 @@
 <h1>Tasks</h1>
 <div class="row">
     <div class="col-md-3">
-        @isset($categories)
-        @foreach($categories as $category)
         <div class="card border border-2">
             <div class="card-header" id="pink-colour">
                 <div class="row">
                     <div class="col-md-9">
-                        <h5 class="text-white fw-bold text-center">{{ $category->categoryName }}</h5>
+                        <h5 class="text-white fw-bold text-center">CS3SPM</h5>
                     </div>
     
                     <div class="col-md-3">
@@ -26,8 +24,6 @@
                     </div>
                 </div>
             </div>
-            @endforeach
-            @endisset
 
 
             <div class="card-body">
@@ -35,7 +31,7 @@
                     <div class="card-body border border-2 rounded pb-0">
                         <div class="row">
                             <div class="col-md-6">
-                                <h6 class="card-title">tutorial 8</h6>
+                                <h6 class="card-title">Tutorial 8</h6>
                             </div>
                             <div class="col-md-6 d-flex justify-content-end align-items-right">
                                 <div class="dropdown">
