@@ -11,7 +11,7 @@
                     <div class="card-body border border-2">
                         <div class="row">
                             <div class="col-md-6 text-secondary">
-                                <input type="checkbox" id="goalCompleted" name="goalCompleted">
+                                <input type="checkbox" id="goalCompleted" name="goalCompleted" onchange="markCompleted(this)" data-card-id="{{ $goal->id }}">
                                 <label>Mark as Completed</label>
                             </div>
                             <div class="col-md-6 goaldueDate text-secondary">
@@ -35,6 +35,10 @@
         @endisset
         <div class="addGoal">
             <a class="btn text-white mt-5" id="blue-colour" href="{{ route('goalCreate') }}"><i class="fa fa-plus"></i> Create Goal</a>
+        </div>
+        <div class="completedList">
+            <h2 class="done" aria-hidden="true">Done</h2>
+            
         </div>
     </div>
 @endsection
