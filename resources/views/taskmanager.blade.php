@@ -3,16 +3,18 @@
 <title>Task Manager</title>
 @endsection
 @section('content')
-
 <h1>Tasks</h1>
 <div class="row">
     <div class="col-md-3">
+        @isset($categories)
+        @foreach($categories as $category)
         <div class="card border border-2">
             <div class="card-header" id="pink-colour">
                 <div class="row">
                     <div class="col-md-9">
-                        <h5 class="text-white fw-bold text-center">CS3SPM</h5>
+                        <h5 class="text-white fw-bold text-center">{{ $category->categoryName }}</h5>
                     </div>
+    
                     <div class="col-md-3">
                         <div class="dropdown">
                             <button class="dropbtn text-white"><i class="fa fa-ellipsis-v"></i></button>
@@ -24,13 +26,16 @@
                     </div>
                 </div>
             </div>
+            @endforeach
+            @endisset
+
 
             <div class="card-body">
                 <div class="card">
                     <div class="card-body border border-2 rounded pb-0">
                         <div class="row">
                             <div class="col-md-6">
-                                <h6 class="card-title">Tutorial 8</h6>
+                                <h6 class="card-title">tutorial 8</h6>
                             </div>
                             <div class="col-md-6 d-flex justify-content-end align-items-right">
                                 <div class="dropdown">
@@ -54,13 +59,13 @@
                 </div>
             </div>
             <div class="addTask">
-                <a href="#" class="btn text-white mx-4 mb-2" id="blue-colour"><i class="fa fa-plus"></i> Add Task</a>
+                <a href="{{ route('taskCreate') }}" class="btn text-white mx-4 mb-2" id="blue-colour"><i class="fa fa-plus"></i> Add Task</a>
             </div>
         </div>
     </div>
     <div class="col-md-3">
         <div class="addCategory">
-            <a href="#" class="btn text-white mx-4 mb-2" id="blue-colour"><i class="fa fa-plus"></i> Add Category</a>
+            <a href="{{ route('categoryCreate') }}" class="btn text-white mx-4 mb-2" id="blue-colour"><i class="fa fa-plus"></i> Add Category</a>
         </div>
     </div>
 

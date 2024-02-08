@@ -159,18 +159,16 @@
   opacity: 0.5;
 }
 
-input.checked::before {
-  content: '';
-  position: absolute;
-  border-color: #fff;
-  border-style: solid;
-  border-width: 0 2px 2px 0;
-  top: 10px;
-  left: 16px;
-  transform: rotate(45deg);
-  height: 15px;
-  width: 7px;
+.createTaskForm{
+  position: fixed;
+  top: 55%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  height: 70%;
+  background-color: #F99192;
 }
+
 /* End of Goal */
 
 /* Start of Task */
