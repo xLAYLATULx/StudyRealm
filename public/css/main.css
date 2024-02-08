@@ -139,11 +139,6 @@
   text-align: right;
 }
 
-.form-popup {
-  display: none;
-  position: fixed;
-}
-
 .addGoalForm{
     position: fixed;
     top: 40%;

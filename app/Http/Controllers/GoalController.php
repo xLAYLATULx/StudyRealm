@@ -13,6 +13,10 @@ class GoalController extends Controller
         return view('goals', ['goals' => $goals]);
     }
 
+    function goalCreate(){
+        return view('createGoal');
+    }
+
     function goalEdit($id){
         $goal = Goal::findOrFail($id);
         return view('editGoal', ['goal' => $goal]);
