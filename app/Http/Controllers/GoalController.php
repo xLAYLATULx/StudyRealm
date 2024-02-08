@@ -18,6 +18,12 @@ class GoalController extends Controller
         return view('editGoal', ['goal' => $goal]);
     }
 
+    function goalDelete($id){
+        $goal = Goal::findOrFail($id);
+        $goal->delete();
+        return redirect(route('goal'))->with('success', 'Goal Deleted Successfully');
+    }
+
 
     function createGoal(Request $request){
         $request->validate([

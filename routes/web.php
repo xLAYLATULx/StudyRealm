@@ -40,6 +40,10 @@ Route::put('/goalEdit/{id}', [GoalController::class, 'editGoal'])->name('editGoa
 
 Route::get('/goals', [GoalController::class, 'showGoals'])->name('goal')->middleware('auth');
 
+Route::get('/goalDelete/{id}', [GoalController::class, 'goalDelete'])->name('goalDelete');
+
+Route::delete('/goalDelete/{id}', [GoalController::class, 'goalDelete'])->name('goalDelete');
+
 Route::group(['middleware' => 'auth'], function(){
 
 Route::get('/tasks', [TaskController::class, 'tasks'])->name('tasks');

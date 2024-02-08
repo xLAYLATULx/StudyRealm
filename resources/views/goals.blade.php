@@ -24,7 +24,7 @@
                                 <a href="{{ route('editGoal', ['id' => $goal->id]) }}" class="btn text-white" id="pink-colour"><i class="fa fa-pencil"></i> Edit</a>
                             </div>
                             <div class="col-md-6 delete">
-                                <a href="#" class="btn text-white" id="pink-colour"><i class="fa fa-trash"></i> Delete</a>
+                                <a href="{{ route('goalDelete', ['id' => $goal->id]) }}" class="btn text-white" id="pink-colour"><i class="fa fa-trash"></i> Delete</a>
                             </div>
                         </div>
                     </div>
