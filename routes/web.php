@@ -34,6 +34,10 @@ Route::put('/profile/{id}', [AuthManager::class, 'updateDetails'])->name('profil
 
 Route::post('/goals', [GoalController::class, 'createGoal'])->name('createGoal');
 
+Route::get('/goalEdit/{id}', [GoalController::class, 'goalEdit'])->name('goalEdit')->middleware('auth');
+
+Route::put('/goalEdit/{id}', [GoalController::class, 'editGoal'])->name('editGoal');
+
 Route::get('/goals', [GoalController::class, 'showGoals'])->name('goal')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function(){

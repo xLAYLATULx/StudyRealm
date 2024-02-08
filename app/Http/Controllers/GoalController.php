@@ -13,6 +13,12 @@ class GoalController extends Controller
         return view('goals', ['goals' => $goals]);
     }
 
+    function goalEdit($id){
+        $goal = Goal::findOrFail($id);
+        return view('editGoal', ['goal' => $goal]);
+    }
+
+
     function createGoal(Request $request){
         $request->validate([
             'goalName' => 'required',
@@ -30,5 +36,19 @@ class GoalController extends Controller
         }
         return redirect(route('createGoal'));
         
+    }
+
+    function editGoal(Request $request, $id){
+        $request->validate([
+            'newGoalName' => 'required',
+            'newGoalDeadline' => 'required|date'
+        ]);
+        
+        $goal = Goal::find($id);
+        $goal->goalName = $request->newGoalName;
+        $goal->deadline = $request->newGoalDeadline;
+        $goal->save();
+        
+        return redirect(route('goal'))->with('success', 'Goal Updated Successfully');
     }
 }

@@ -21,7 +21,7 @@
                         <h5 class="card-title text-center">{{ $goal->goalName }}</h5>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="#" class="btn text-white" id="pink-colour"><i class="fa fa-pencil"></i> Edit</a>
+                                <a href="{{ route('editGoal', ['id' => $goal->id]) }}" class="btn text-white" id="pink-colour"><i class="fa fa-pencil"></i> Edit</a>
                             </div>
                             <div class="col-md-6 delete">
                                 <a href="#" class="btn text-white" id="pink-colour"><i class="fa fa-trash"></i> Delete</a>
@@ -34,9 +34,9 @@
             <p>No goals found.</p>
         @endisset
         <div class="addGoal">
-            <button class="btn text-white mt-5" id="blue-colour" onclick="openForm()"><i class="fa fa-plus"></i> Create Goal</button>
+            <button class="btn text-white mt-5" id="blue-colour" onclick="openCreateGoalForm()"><i class="fa fa-plus"></i> Create Goal</button>
             <div class="opacity" id="opacity">
-                <div class="form-popup" id="myForm">
+                <div class="form-popup" id="createGoalForm">
                     <form action="{{ route('createGoal') }}" method="POST" class="addGoalForm p-4 border border-2 rounded">
                         @csrf
                         <h2 class="text-white">Create Goal</h2>

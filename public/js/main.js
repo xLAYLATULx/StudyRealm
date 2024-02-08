@@ -10,12 +10,18 @@ function toggleNav() {
     sidebar.classList.toggle("minimized");
 }
 
-function openForm() {
-    document.getElementById("myForm").style.display = "block";
+function openCreateGoalForm() {
+    document.getElementById("createGoalForm").style.display = "block";
     document.getElementById("opacity").style.display = "block";
-  }
-  
-  function closeForm() {
-    document.getElementById("myForm").style.display = "none";
+}
+
+function openEditGoalForm() {
+    document.getElementById("editGoalForm").style.display = "block";
+    document.getElementById("opacity").style.display = "block";
+}
+
+function closeForm() {
+    document.getElementById("createGoalForm").style.display = "none";
+    document.getElementById("editGoalForm").style.display = "none";
     document.getElementById("opacity").style.display = "none";
-  }
+}
