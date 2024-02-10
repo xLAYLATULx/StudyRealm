@@ -45,6 +45,7 @@
     position: fixed;
     height: 100%;
     overflow: auto;
+    font-family: Arial, Helvetica, sans-serif;
 }  
   .sidebar a {
     display: block;
@@ -101,6 +102,9 @@
   .content {
     margin-left: 15%;
     padding: 2%;
+    background-color: #f6f2f2;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
   }
   /* End of All */
 
@@ -217,4 +221,66 @@ ul {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+/* Start of Pomodoro */
+.sessionTime{
+  border-radius: 10px;
+  background-color: #F99192;
+  padding: 2%;
+  color: white;
+}
+
+.breakTime{
+  border-radius: 10px;
+  background-color: #F99192;
+  padding: 2%;
+  color: white;
+}
+
+.sessionTime input{
+  border: none;
+  outline: none;
+  background: none;
+  display: inline;
+  font-size: 300%;
+  font-family: 'Orbitron', sans-serif;
+  margin-left: 5%;
+  color: white;
+}
+
+.breakTime input{
+  border: none;
+  outline: none;
+  background: none;
+  display: inline;
+  font-size: 300%;
+  font-family: 'Orbitron', sans-serif;
+  margin-left: 5%;
+  color: white;
+}
+
+.sessionTime p {
+  display: inline;
+  font-size: 300%;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.breakTime p {
+  display: inline;
+  font-size: 300%;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.timer button{
+  margin-top: 50%;
+  background-color: #314559;
+  color: white;
+  margin: auto;
+  width: 80%;
+}
+
+.timer button:hover{
+  background-color: #5e7388;
+  color: white;
 }

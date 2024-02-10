@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    // function tasks(){
-    //     return view('taskmanager');
-    // }
+    function tasks(){
+        return view('taskmanager');
+    }
 
     // function taskCreate(){
     //     return view('createTask');

@@ -14,7 +14,7 @@
             <th scope="col" class="pink-colour text-white">My Details</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="bg-white">
           <tr>
             <td scope="row">Name: {{auth()->user()->name}}</td>
           </tr>
@@ -24,8 +24,8 @@
         </tbody>
       </table>
       @endauth
-      <div class="updateDetails">
-        <form action="{{ route('profile.update', ['id' => $user->id]) }}" method="POST" class="border rounded">
+      <div class="updateDetails border rounded">
+        <form action="{{ route('profile.update', ['id' => $user->id]) }}" method="POST" class="border rounded bg-white">
           @csrf
           @method('PUT')
           <div class="pink-colour pl-2 py-3 text-white ">
