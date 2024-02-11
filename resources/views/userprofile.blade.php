@@ -11,7 +11,7 @@
       <table class="table border border-grey border-rounded">
         <thead>
           <tr>
-            <th scope="col" class="pink-colour text-white">My Details</th>
+            <th scope="col" class="text-white" id="pink-colour">My Details</th>
           </tr>
         </thead>
         <tbody class="bg-white">
