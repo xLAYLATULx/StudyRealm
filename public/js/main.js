@@ -21,6 +21,7 @@ function timer() {
         }
     }
     if (sHours.value == 0 && sMinutes.value == 0 && sSeconds.value == 0) {
+        alert("Session time is over!");
         if (bSeconds.value != 0) {
             bSeconds.value--;
         } else if (bMinutes.value != 0 && bSeconds.value == 0) {

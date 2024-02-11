@@ -11,7 +11,7 @@
         <div class="col-md-6">
             <h3 class="pomodoroTitle">Session</h3>
             <div class="sessionTime mt-3">
-                <input type="number" id="sessionHours" min="0" max="1" value="0"><p class="semicolon">:</p><input type="number" id="sessionMinutes" min="0" max="59" value="25"><p class="semicolon">:</p><input type="number" id="sessionSeconds" min="00" max="59" value="0">
+                <input type="number" id="sessionHours" min="0" max="1" value="0"><p class="semicolon">:</p><input type="number" id="sessionMinutes" min="0" max="59" value="25"><p class="semicolon">:</p><input type="number" id="sessionSeconds" min="0" max="59" value="0">
             </div>
         </div>
         <div class="col-md-6">
