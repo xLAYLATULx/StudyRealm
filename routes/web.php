@@ -32,19 +32,19 @@ Route::get('/profile/{id}', [AuthManager::class, 'profile'])->name('profile' )->
 
 Route::put('/profile/{id}', [AuthManager::class, 'updateDetails'])->name('profile.update');
 
-Route::post('/goals', [GoalController::class, 'createGoal'])->name('createGoal');
+// Route::post('/goals', [GoalController::class, 'createGoal'])->name('createGoal');
 
-Route::get('/createGoal',[GoalController::class, 'goalCreate'])->name('goalCreate')->middleware('auth');
+// Route::get('/createGoal',[GoalController::class, 'goalCreate'])->name('goalCreate')->middleware('auth');
 
-Route::get('/goalEdit/{id}', [GoalController::class, 'goalEdit'])->name('goalEdit')->middleware('auth');
+// Route::get('/goalEdit/{id}', [GoalController::class, 'goalEdit'])->name('goalEdit')->middleware('auth');
 
-Route::put('/goalEdit/{id}', [GoalController::class, 'editGoal'])->name('editGoal');
+// Route::put('/goalEdit/{id}', [GoalController::class, 'editGoal'])->name('editGoal');
 
-Route::get('/goals', [GoalController::class, 'showGoals'])->name('goal')->middleware('auth');
+// Route::get('/goals', [GoalController::class, 'showGoals'])->name('goal')->middleware('auth');
 
-Route::get('/goalDelete/{id}', [GoalController::class, 'goalDelete'])->name('goalDelete');
+// Route::get('/goalDelete/{id}', [GoalController::class, 'goalDelete'])->name('goalDelete');
 
-Route::delete('/goalDelete/{id}', [GoalController::class, 'goalDelete'])->name('goalDelete');
+// Route::delete('/goalDelete/{id}', [GoalController::class, 'goalDelete'])->name('goalDelete');
 
 Route::get('/taskCreate', [TaskController::class, 'taskCreate'])->name('taskCreate');
 
@@ -79,3 +79,7 @@ Route::get('/report', function () {
 });
 
 });
+
+Route::get ('/goals', App\Livewire\Goal\Index::class)->name('goal.index');
+
+

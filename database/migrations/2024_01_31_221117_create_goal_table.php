@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('userID')->references('id')->on('users'); // Foreign keyphp artisan migrate:status
             $table->string('goalName');
+            $table->string('description');
+            $table->float('progress', 8, 2)->default(0.00);
             $table->date('deadline');
             $table->boolean('completed')->default(false);
             $table->timestamps();
