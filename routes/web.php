@@ -32,43 +32,29 @@ Route::get('/profile/{id}', [AuthManager::class, 'profile'])->name('profile' )->
 
 Route::put('/profile/{id}', [AuthManager::class, 'updateDetails'])->name('profile.update');
 
-// Route::post('/goals', [GoalController::class, 'createGoal'])->name('createGoal');
 
-// Route::get('/createGoal',[GoalController::class, 'goalCreate'])->name('goalCreate')->middleware('auth');
 
-// Route::get('/goalEdit/{id}', [GoalController::class, 'goalEdit'])->name('goalEdit')->middleware('auth');
+// Route::get('/taskCreate', [TaskController::class, 'taskCreate'])->name('taskCreate');
 
-// Route::put('/goalEdit/{id}', [GoalController::class, 'editGoal'])->name('editGoal');
+// Route::post('/tasks', [TaskController::class, 'createTask'])->name('createTask');
 
-// Route::get('/goals', [GoalController::class, 'showGoals'])->name('goal')->middleware('auth');
+// Route::get('/taskEdit/{id}', [TaskController::class, 'taskEdit'])->name('taskEdit');
 
-// Route::get('/goalDelete/{id}', [GoalController::class, 'goalDelete'])->name('goalDelete');
+// Route::put('/taskEdit/{id}', [TaskController::class, 'editTask'])->name('editTask');
 
-// Route::delete('/goalDelete/{id}', [GoalController::class, 'goalDelete'])->name('goalDelete');
+// Route::delete('/taskDelete/{id}', [TaskController::class, 'deleteTask'])->name('deleteTask');
 
-Route::get('/taskCreate', [TaskController::class, 'taskCreate'])->name('taskCreate');
+// Route::get('/categoryCreate', [TaskController::class, 'categoryCreate'])->name('categoryCreate');
 
-Route::post('/tasks', [TaskController::class, 'createTask'])->name('createTask');
+// Route::post('/tasks', [TaskController::class, 'createCategory'])->name('createCategory');
 
-Route::get('/taskEdit/{id}', [TaskController::class, 'taskEdit'])->name('taskEdit');
+// Route::get('/categoryEdit/{id}', [TaskController::class, 'categoryEdit'])->name('categoryEdit');
 
-Route::put('/taskEdit/{id}', [TaskController::class, 'editTask'])->name('editTask');
+// Route::put('/categoryEdit/{id}', [TaskController::class, 'editCategory'])->name('editCategory');
 
-Route::delete('/taskDelete/{id}', [TaskController::class, 'deleteTask'])->name('deleteTask');
-
-Route::get('/categoryCreate', [TaskController::class, 'categoryCreate'])->name('categoryCreate');
-
-Route::post('/tasks', [TaskController::class, 'createCategory'])->name('createCategory');
-
-Route::get('/categoryEdit/{id}', [TaskController::class, 'categoryEdit'])->name('categoryEdit');
-
-Route::put('/categoryEdit/{id}', [TaskController::class, 'editCategory'])->name('editCategory');
-
-Route::delete('/tasks', [TaskController::class, 'deleteCategory'])->name('deleteCategory');
+// Route::delete('/tasks', [TaskController::class, 'deleteCategory'])->name('deleteCategory');
 
 Route::group(['middleware' => 'auth'], function(){
-
-Route::get('/tasks', [TaskController::class, 'tasks'])->name('tasks');
 
 Route::get('/schedule', [ScheduleController::class, 'schedule'])->name('schedule');
 
@@ -81,5 +67,4 @@ Route::get('/report', function () {
 });
 
 Route::get ('/goals', App\Livewire\Goal\Index::class)->name('goal.index');
-
-
+Route::get ('/tasks', App\Livewire\TaskManager\Index::class)->name('tasks');

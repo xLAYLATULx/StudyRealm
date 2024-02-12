@@ -13,6 +13,8 @@ class Goal extends Model
     protected $fillable = [
         'userID',
         'goalName',
+        'description',
+        'progress',
         'deadline',
         'completed',
     ];

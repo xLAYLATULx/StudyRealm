@@ -1,3 +1,7 @@
+body{
+  font-family: Inconsolata, sans-serif;
+}
+
 /* Start of Colours */
 .pink-text{
     color: #FF6060;
@@ -13,6 +17,11 @@
 }
 #pink-colour{
     background-color: #FF6060;
+}
+
+#lightBlue-colour{
+  background-color: #588ec5;
+  color: white;
 }
 /*End of Colours*/
 
@@ -139,18 +148,23 @@ input[type="checkbox"] {
 
 .goalDeadline{
   text-align: center;
-  color: white;
+  color: black;
   font-size: 14px;
   font-weight: bold;
-  border: 1px solid #ccc;
+  border: 1px solid black;
   border-radius: 16px;
-  background-color: #f6bbbc;
+  background-color: white;
 }
 
 .goal .actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.addGoalButton{
+  color: white;
+  background-color: #5e7388;
 }
 
 .actions {
@@ -170,16 +184,6 @@ input[type="checkbox"] {
   color: #314559;
 }
 
-.modal-dialog input{
-  background-color: #f6bbbc;
-  color: white;
-  
-}
-
-.modal-dialog input::placeholder{
-  color: white;
-  
-}
 
 /* End of Goal */
 

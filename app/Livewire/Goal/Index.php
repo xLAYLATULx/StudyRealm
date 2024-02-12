@@ -10,7 +10,7 @@ class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $goalName, $description, $deadline, $goal_id;
+    public $goalName, $description, $progress, $deadline, $goal_id;
     public $showGoals = false;
 
     public function rules(){
@@ -26,7 +26,7 @@ class Index extends Component
             'userID' => auth()->user()->id,
             'goalName' => $this->goalName,
             'description' => $this->description,
-            'progress' => 0.00,
+            'progress' => $this->progress,
             'deadline' => $this->deadline,
             'completed' => false,
         ]);
@@ -40,6 +40,7 @@ class Index extends Component
         $goal = Goal::findOrFail($goal_id);
         $this->goalName = $goal->goalName;
         $this->description = $goal->description;
+        $this->progress = $goal->progress;
         $this->deadline = $goal->deadline;
     }
 
@@ -48,7 +49,7 @@ class Index extends Component
             'userID' => auth()->user()->id,
             'goalName' => $this->goalName,
             'description' => $this->description,
-            'progress' => 0.00,
+            'progress' => $this->progress,
             'deadline' => $this->deadline,
             'completed' => false,
         ]);
@@ -86,6 +87,7 @@ class Index extends Component
     public function resetInputs(){
         $this->goalName = NULL;
         $this->description = NULL;
+        $this->progress = NULL;
         $this->deadline = NULL;
         $this->goal_id = NULL;
     }
