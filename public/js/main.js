@@ -64,5 +64,3 @@ pause.addEventListener('click', function () {
     pauseTimer()
     startTimer = undefined;
 });
-
-/* Goal Close Modal Form */

@@ -109,68 +109,76 @@
   /* End of All */
 
 /* Start of Goal */
-.opacity{
-  display: none;
-  background-color: rgba(0,0,0,0.4);
-  width: 100%;
-  height: 100%; 
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-}
-.opacity1{
-  display: none;
-  background-color: rgba(0,0,0,0.4);
-  width: 100%;
-  height: 100%; 
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-
-}
-
-.goaldueDate p{
-  top: 0;
-  right: 0;
-  text-align: right;
-}
-
-.delete{
-  bottom:0;
-  right:0;
-  text-align: right;
-}
-
-.addGoalForm{
-    position: fixed;
-    top: 40%;
-    left: 55%;
-    transform: translate(-50%, -50%);
-    width: 75%;
-    height: 45%;
-    background-color: #F99192;
-}
-
-.cancel{
-  bottom: 0;
-  right: 0;
-  align-items: right;
-}
 .completed {
-  text-decoration: line-through;
-  opacity: 0.5;
+  opacity: 0.5; /* Optionally reduce opacity to visually indicate completed goals */
 }
 
-.createTaskForm{
-  position: fixed;
-  top: 55%;
-  left: 55%;
-  transform: translate(-50%, -50%);
-  width: 75%;
-  height: 70%;
-  background-color: #F99192;
+input[type="checkbox"] {
+  line-height: normal;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+
+.goal {
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  padding: 5%;
+  background-color: white;
+}
+
+.goal h5 {
+  text-align: center;
+  font-weight: bold;
+}
+
+.goal p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.goalDeadline{
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  background-color: #f6bbbc;
+}
+
+.goal .actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+
+
+
+/* Modal Form */
+
+
+.modal-dialog{
+  color: #314559;
+}
+
+.modal-dialog input{
+  background-color: #f6bbbc;
+  color: white;
+  
+}
+
+.modal-dialog input::placeholder{
+  color: white;
+  
 }
 
 /* End of Goal */

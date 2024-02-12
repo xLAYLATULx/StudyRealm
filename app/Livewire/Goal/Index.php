@@ -30,6 +30,7 @@ class Index extends Component
             'completed' => false,
         ]);
         session()->flash('success', 'Goal Created Successfully');
+        $this->dispatch('close-modal');
         $this->resetInputs();
     }
 
@@ -52,6 +53,20 @@ class Index extends Component
         ]);
         session()->flash('success', 'Goal Updated Successfully');
         $this->dispatch('close-modal');
+        $this->resetInputs();
+    }
+
+    public function completedGoal($goalId)
+    {
+        
+        $g = Goal::find($goalId);
+        if ($g->completed == true) {
+            $g->update(['completed' => false]);
+            session()->flash('success', 'Goal Marked As Incomplete');
+        } elseif ($g->completed == false) {
+            $g->update(['completed' => true]);
+            session()->flash('success', 'Goal Marked As Complete');
+        }
         $this->resetInputs();
     }
 
@@ -83,7 +98,7 @@ class Index extends Component
 
     public function render()
     {
-        $goals = Goal::where('userID', auth()->user()->id)->orderBy('deadline', 'desc')->paginate(6);
+        $goals = Goal::where('userID', auth()->user()->id)->orderBy('deadline', 'asc')->paginate(3);
         return view('livewire.goal.index', ['goals' => $goals])->extends('layouts.navbar')->section('content');
     }
 }

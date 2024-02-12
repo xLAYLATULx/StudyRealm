@@ -4,7 +4,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addGoalModal">Add Goal</h5>
+                <h5 class="modal-title" id="addGoalModal"><strong>Add Goal</strong></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form wire:submit.prevent="storeGoal">
@@ -23,14 +23,14 @@
                     </div>
                     <div class="mb-3">
                         <label>Deadline: </label>
-                        <input type="date" wire:model.defer="deadline" class="form-control"
+                        <input type="date" id="datepicker" wire:model.defer="deadline" class="form-control"
                             placeholder="Enter Deadline...">
                         @error ('deadline') <small class="text-danger">{{$message}}</small>@enderror
                     </div>
                 </div>
-                <div class="modal-footer">
+                <div class="actions mx-3 my-2">
+                    <button type="submit" class="btn text-white" id="pink-colour">Save</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
         </div>
@@ -44,7 +44,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editGoalModal">Edit Goal</h5>
+                <h5 class="modal-title" id="editGoalModal"><strong>Edit Goal</strong></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div wire:loading class="p-2">
@@ -69,15 +69,14 @@
                         </div>
                         <div class="mb-3">
                             <label>Deadline: </label>
-                            <input type="date" wire:model.defer="deadline" class="form-control"
+                            <input type="date" id="datepicker" wire:model.defer="deadline" class="form-control"
                                 placeholder="Enter Deadline...">
                             @error ('deadline') <small class="text-danger">{{$message}}</small>@enderror
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" wire:click="closeModal"
-                            data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                    <div class="actions mx-3 my-2">
+                        <button type="submit" class="btn text-white" id="pink-colour">Save</button>
+                        <button type="button" class="btn btn-secondary" wire:click="closeModal" data-bs-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
@@ -91,7 +90,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editGoalModal">Delete Goal</h5>
+                <h5 class="modal-title" id="editGoalModal"><strong>Delete Goal</strong></h5>
             </div>
         <div wire:loading class="p-2">
             <div class="spinner-border" role="status">
@@ -103,10 +102,9 @@
                 <div class="modal-body">
                     <h5>Are you sure you want to delete this goal?</h5>
                 </div>
-                <div class="modal-footer">
+                <div class="actions mx-3 my-2">
                     <button type="submit" class="btn btn-danger">Delete</button>
-                    <button type="button" class="btn btn-secondary" wire:click="closeModal"
-                        data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" wire:click="closeModal" data-bs-dismiss="modal">Cancel</button>
                 </div>
             </form>
         </div>
