@@ -64,3 +64,11 @@ pause.addEventListener('click', function () {
     pauseTimer()
     startTimer = undefined;
 });
+
+
+/* Goals Modal Form */
+window.addEventListener('close-modal', event => {
+    $('#addGoalModal').modal('hide');
+    $('#editGoalModal').modal('hide');
+    $('#deleteGoalModal').modal('hide');
+});
