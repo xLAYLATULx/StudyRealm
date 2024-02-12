@@ -34,14 +34,13 @@
                     </div>
                     <div class="mb-3 mt-3">
                         <label>Deadline: </label>
-                        <input type="date" id="datepicker" wire:model.defer="deadline" class="form-control"
-                            placeholder="Enter Deadline..." required>
+                        <input type="date" id="datepicker" name="deadline" wire:model.defer="deadline" class="form-control" required>
                         @error ('deadline') <small class="text-danger">{{$message}}</small>@enderror
                     </div>
                 </div>
                 <div class="actions mx-3 my-2">
-                    <button type="submit" class="btn text-white" id="pink-colour">Save</button>
-                    <button type="button" class="btn" data-bs-dismiss="modal" id="lightBlue-colour">Close</button>
+                    <button type="submit" class="btn text-white" id="pink-colour"><i class="fa fa-check"></i> Save</button>
+                    <button type="button" class="btn" data-bs-dismiss="modal" id="lightBlue-colour"><i class="fa fa-close"></i> Close</button>
                 </div>
             </form>
         </div>
@@ -91,16 +90,15 @@
                         </div>
                         <div class="mb-3 mt-3">
                             <label>Deadline: </label>
-                            <input type="date" id="datepicker" wire:model.defer="deadline" class="form-control"
-                                placeholder="Enter Deadline...">
+                            <input type="date" id="datepicker2" name="deadline" wire:model.defer="deadline" class="form-control" required>
                             @error ('deadline') <small class="text-danger">{{$message}}</small>@enderror
                         </div>
                         
                     </div>
                     <div class="actions mx-3 my-2">
-                        <button type="submit" class="btn text-white" id="pink-colour">Save</button>
+                        <button type="submit" class="btn text-white" id="pink-colour"><i class="fa fa-check"></i> Save</button>
                         <button type="button" class="btn" wire:click="closeModal" data-bs-dismiss="modal"
-                            id="lightBlue-colour">Close</button>
+                            id="lightBlue-colour"><i class="fa fa-close"></i> Close</button>
                     </div>
                 </form>
             </div>
@@ -127,9 +125,9 @@
                         <h5>Are you sure you want to delete this goal?</h5>
                     </div>
                     <div class="actions mx-3 my-2">
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
                         <button type="button" class="btn" wire:click="closeModal" data-bs-dismiss="modal"
-                            id="lightBlue-colour">Cancel</button>
+                            id="lightBlue-colour"><i class="fa fa-close"></i> Cancel</button>
                     </div>
                 </form>
             </div>
@@ -138,10 +136,34 @@
 </div>
 
 <script>
+    /* Slider */
     var slider = document.getElementById("progress");
-var output = document.getElementById("progressOutput");
-output.innerHTML = slider.value;
-slider.oninput = function() {
-  output.innerHTML = this.value;
-};
+    var output = document.getElementById("progressOutput");
+    output.innerHTML = slider.value;
+    slider.oninput = function() {
+         output.innerHTML = this.value;
+         };
+    
+    /* Date Picker */
+    function todayDate(){
+        var date = new Date(); /* 2024-02-14 */
+    console.log(date);
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    if (day < 10){
+        day = "0" + day;
+    }
+    if (month < 10){
+        month = "0" + month;
+    }
+    var today = year + "-" + month + "-" + day;
+    console.log(today);
+    document.getElementById("datepicker").min = today;
+    document.getElementById("datepicker2").min = today;
+    }
+    todayDate();
+    document.getElementById("datepicker").addEventListener("focus", todayDate);
+    document.getElementById("datepicker2").addEventListener("focus", todayDate);
+
 </script>
