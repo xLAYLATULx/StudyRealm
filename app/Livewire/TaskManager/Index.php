@@ -11,8 +11,8 @@ class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $userID, $categoryID, $taskName, $description, $priority, $dueDate, $progress, $task_id; // Tasks
-    public $categoryName, $category_id; // Categories
+    public $userID, $categoryID, $taskName, $description, $priority, $dueDate, $progress, $task_id; // Tasks Variables
+    public $categoryName, $category_id; // Categories Variables
     public $showTasks = false;
     public $categoryTasks;
 
@@ -65,7 +65,7 @@ class Index extends Component
         $this->resetCategoryInputs();
     }
 
-    public function categoryTasks($category_id){
+    public function ct($category_id){
         $this->categoryTasks = $category_id;
     }
 
@@ -110,7 +110,7 @@ class Index extends Component
         ]);
         session()->flash('success', 'Task Updated Successfully');
         $this->dispatch('close-modal');
-        $this->resetTask();
+        $this->resetTaskInputs();
     }
 
     public function completedTask($taskId)
@@ -125,7 +125,6 @@ class Index extends Component
             session()->flash('success', 'Task Marked As Complete');
         }
         $this->resetTaskInputs();
-        return redirect()->to('/tasks');
     }
 
     public function deleteTaskButton(int $task_id){

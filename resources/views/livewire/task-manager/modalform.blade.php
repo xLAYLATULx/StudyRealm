@@ -105,7 +105,7 @@ aria-hidden="true">
                 </div>                
                 <div class="mb-3">
                     <label>Priority: </label>
-                    <select name="priority" id="priority" wire:model.defer="priority" class="form-control">
+                    <select name="priority" id="priority" wire:model.defer="priority" class="form-control" required>
                         <option value="low">Low</option>
                         <option value="medium">Medium</option>
                         <option value="high">High</option>
@@ -119,7 +119,7 @@ aria-hidden="true">
                     <label>Progress: </label>
                     <div class="d-flex text-secondary">
                         <p>0%</p>
-                        <input type="range" wire:model.defer="progress" class="form-range" id="progress" name="progress" min="0" max="100">
+                        <input type="range" wire:model.defer="progress" class="form-range" id="progress" name="progress" min="0" max="100" required>
                         <p>100%</p>
                     </div>
                     <div class="text-center">
@@ -155,8 +155,16 @@ aria-hidden="true">
                     <input type="text" class="form-control" wire:model.defer="taskName" placeholder="Enter Task Name..." required>
                 </div>
                 <div class="mb-3">
+                    <label>Project: </label>
+                    <select name="project" id="project" wire:model.defer="categoryID" class="form-control" required>
+                        @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{$category->categoryName}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3">
                     <label>Priority: </label>
-                    <select name="priority" id="priority" wire:model.defer="priority" class="form-control">
+                    <select name="priority" id="priority" wire:model.defer="priority" class="form-control" required>
                         <option value="low">Low</option>
                         <option value="medium">Medium</option>
                         <option value="high">High</option>
@@ -170,7 +178,7 @@ aria-hidden="true">
                     <label>Progress: </label>
                     <div class="d-flex text-secondary">
                         <p>0%</p>
-                        <input type="range" wire:model.defer="progress" class="form-range" id="progress" name="progress" min="0" max="100">
+                        <input type="range" wire:model.defer="progress" class="form-range" id="progress" name="progress" min="0" max="100" required>
                         <p>100%</p>
                     </div>
                     <div class="text-center">
@@ -193,7 +201,7 @@ aria-hidden="true">
   </div>
 
   <!-- Delete Task Modal -->
-<div wire:ignore.self class="modal fade" id="deleteCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div wire:ignore.self class="modal fade" id="deleteTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel"
 aria-hidden="true">
 <div class="modal-dialog">
     <div class="modal-content">
