@@ -16,10 +16,11 @@ return new class extends Migration
             $table->integer('userID')->references('id')->on('users'); // Foreign key
             $table->integer('categoryID')->references('id')->on('category'); // Foreign key
             $table->string('taskName');
-            $table->integer('priority');
+            $table->text('description');
+            $table->enum('priority', ['high', 'medium', 'low']);
             $table->date('dueDate');
-            $table->float('progress');
-            $table->boolean('completed');
+            $table->float('progress', 5, 2)->default(0.00);
+            $table->boolean('completed')->default(false);
             $table->timestamps();
         });
     }

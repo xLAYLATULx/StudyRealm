@@ -11,12 +11,14 @@ body{
 }
 #blue-colour{
     background-color: #314559;
+    color: white;
 }
 .pink-colour{
     background-color: #FF6060;
 }
 #pink-colour{
     background-color: #FF6060;
+    color: white;
 }
 
 #lightBlue-colour{
@@ -189,52 +191,37 @@ input[type="checkbox"] {
 /* End of Goal */
 
 /* Start of Task */
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+.categories button{
+  border:none;
+}
+.task {
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  padding: 5%;
+  background-color: white;
 }
 
-.card-title{
-  text-align: left;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+.task h5 {
+  font-weight: bold;
 }
 
-.dropbtn {
+.task p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.taskDeadline{
+  text-align: center;
   color: black;
-  font-size: 16px;
-  border: none;
-  background-color: transparent;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid black;
+  border-radius: 16px;
+  background-color: white;
 }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-  background-color: transparent;
-}
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
+/* End of Task */
 
 /* Start of Pomodoro */
 .sessionTime{

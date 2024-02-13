@@ -16,7 +16,7 @@
                     <div class="col-md-3">
                         <div class="dropdown">
                             <button class="dropbtn text-white"><i class="fa fa-ellipsis-v"></i></button>
-                            <div class="dropdown-content">
+                            <div class="dropdown-menu">
                                 <a href="#" class="btn"><i class="fa fa-pencil"></i> Edit</a>
                                 <a href="#" class="btn"><i class="fa fa-trash"></i> Delete</a>
                             </div>

@@ -33,7 +33,6 @@ Route::get('/profile/{id}', [AuthManager::class, 'profile'])->name('profile' )->
 Route::put('/profile/{id}', [AuthManager::class, 'updateDetails'])->name('profile.update');
 
 
-
 // Route::get('/taskCreate', [TaskController::class, 'taskCreate'])->name('taskCreate');
 
 // Route::post('/tasks', [TaskController::class, 'createTask'])->name('createTask');
@@ -60,9 +59,7 @@ Route::get('/schedule', [ScheduleController::class, 'schedule'])->name('schedule
 
 Route::get('/pomodoro', [PomodoroController::class, 'pomodoro'])->name('pomodoro');
 
-Route::get('/report', function () {
-    return view('report');
-});
+Route::get('/report', function () { return view('report');});
 
 });
 

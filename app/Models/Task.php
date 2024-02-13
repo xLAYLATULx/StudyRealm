@@ -14,6 +14,7 @@ class Task extends Model
         'userID',
         'categoryID',
         'taskName',
+        'description',
         'priority',
         'dueDate',
         'progress',
