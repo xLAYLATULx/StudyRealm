@@ -12,8 +12,9 @@ class Index extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $userID, $categoryID, $taskName, $description, $priority, $dueDate, $progress, $task_id; // Tasks
-    public $categoryName; // Categories
+    public $categoryName, $category_id; // Categories
     public $showTasks = false;
+    public $categoryTasks;
 
     public function rules(){
         return [    
@@ -29,6 +30,8 @@ class Index extends Component
         Category::create([
             'userID' => auth()->user()->id,
             'categoryName' => $this->categoryName,
+            'sortbyPriority' => false,
+            'sortbyDueDate' => false,
         ]);
         session()->flash('success', 'Category Created Successfully');
         $this->dispatch('close-modal');
@@ -62,6 +65,11 @@ class Index extends Component
         $this->resetCategoryInputs();
     }
 
+    public function categoryTasks($category_id){
+        $this->categoryTasks = $category_id;
+    }
+
+
     public function storeTask(){
         Task::create([
             'userID' => auth()->user()->id,
@@ -81,13 +89,13 @@ class Index extends Component
     public function editTaskFields(int $task_id){
         $this->task_id = $task_id;
         $task = Task::findOrFail($task_id);
-        $this->categoryID = $task->categoryID;
         $this->taskName = $task->taskName;
         $this->description = $task->description;
         $this->priority = $task->priority;
-        $this->dueDate = $task->dueDate;
         $this->progress = $task->progress;
+        $this->dueDate = $task->dueDate;
     }
+    
 
     public function editTask(){
         Task::findOrFail($this->task_id)->update([
@@ -102,7 +110,7 @@ class Index extends Component
         ]);
         session()->flash('success', 'Task Updated Successfully');
         $this->dispatch('close-modal');
-        $this->resetInputs();
+        $this->resetTask();
     }
 
     public function completedTask($taskId)
@@ -146,11 +154,13 @@ class Index extends Component
     }
 
     public function closeModal(){
-        $this->resetInputs();
+        $this->resetCategoryInputs();
+        $this->resetTaskInputs();
     }
 
     public function openModal(){
-        $this->resetInputs();
+        $this->resetCategoryInputs();
+        $this->resetTaskInputs();
     }
 
     public function showTasksButton()
@@ -161,7 +171,7 @@ class Index extends Component
 
     public function render()
     {
-        $taskList = Task::where('userID', auth()->user()->id);
+        $taskList = Task::where('userID', auth()->user()->id)->where('categoryID', $this->categoryTasks);
 
         if ($this->showTasks) {
             $taskList->where('completed', true);
@@ -169,8 +179,9 @@ class Index extends Component
             $taskList->where('completed', false);
         }
 
-        $tasks = $taskList->orderBy('deadline', 'desc')->orderBy('priority', 'desc')->paginate(3);
+        $tasks = $taskList->orderBy('dueDate', 'desc')->orderBy('priority', 'desc')->paginate(3);
         $categories = Category::where('userID', auth()->user()->id)->get();
-        return view('livewire.task-manager.index', ['tasks' => $tasks], ['categories' => $categories])->extends('layouts.navbar')->section('content');
+
+        return view('livewire.task-manager.index', compact('tasks', 'categories'))->extends('layouts.navbar')->section('content');
     }
 }

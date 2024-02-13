@@ -1,43 +1,17 @@
-<!-- Create Goal Modal -->
-<div wire:ignore.self class="modal fade" id="addGoalModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<!-- Create Category Modal -->
+<div wire:ignore.self class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addGoalModal"><strong>Add Goal</strong></h5>
-            </div>
-            <form wire:submit.prevent="storeGoal">
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label>Goal Name: </label>
-                        <input type="text" wire:model.defer="goalName" class="form-control"
-                            placeholder="Enter Goal Name..." required>
-                        @error ('goalName') <small class="text-danger">{{$message}}</small>@enderror
-                    </div>
-                    <div class="mb-3">
-                        <label>Goal Description: </label>
-                        <input type="text" wire:model.defer="description" class="form-control"
-                            placeholder="Enter Goal Description..." required>
-                        @error ('description') <small class="text-danger">{{$message}}</small>@enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="progress"class="form-label">Progress:</label>
-                        <div class="d-flex text-secondary">
-                            <p>0%</p>
-                            <input type="range" wire:model.defer="progress" class="form-range" id="progress" name="progress" min="0" max="100" default="0">
-                            <p>100%</p>
-                        </div>
-                        <div class="text-center">
-                            <output for="progress" id="progressOutput" name="progress">0</output>%
-                        </div>
-                        @error ('progress') <small class="text-danger">{{$message}}</small>@enderror
-                    </div>
-                    <div class="mb-3 mt-3">
-                        <label>Deadline: </label>
-                        <input type="date" id="datepicker" name="deadline" wire:model.defer="deadline" class="form-control" required>
-                        @error ('deadline') <small class="text-danger">{{$message}}</small>@enderror
-                    </div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fs-5" id="exampleModalLabel"><strong>Add Project</strong></h5>
+        </div>
+        <div class="modal-body">
+            <form wire:submit.prevent="storeCategory">
+                <div class="mb-3">
+                    <label>Project Name: </label>
+                    <input type="text" class="form-control" wire:model.defer="categoryName" placeholder="Enter Project Name..." required>
                 </div>
+            </div>
                 <div class="actions mx-3 my-2">
                     <button type="submit" class="btn text-white" id="pink-colour"><i class="fa fa-check"></i> Save</button>
                     <button type="button" class="btn" data-bs-dismiss="modal" id="lightBlue-colour"><i class="fa fa-close"></i> Close</button>
@@ -45,95 +19,208 @@
             </form>
         </div>
     </div>
-</div>
+  </div>
 
-
-<!-- Edit Goal Modal -->
-<div wire:ignore.self class="modal fade" id="editGoalModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <!-- Edit Category Modal -->
+  <div wire:ignore.self class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editGoalModal"><strong>Edit Goal</strong></h5>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"><strong>Edit Project</strong></h1>
+        </div>
+        <div wire:loading class="p-2">
+            <div class="spinner-border" role="status">
             </div>
-            <div wire:loading class="p-2">
-                <div class="spinner-border" role="status">
+            <span class="">Loading...</span>
+        </div>
+        <div wire:loading.remove>
+        <div class="modal-body">
+            <form wire:submit.prevent="editCategory">
+                <div class="mb-3">
+                    <label>Project Name: </label>
+                    <input type="text" class="form-control" wire:model.defer="categoryName" placeholder="Enter Project Name..." required>
                 </div>
-                <span class="">Loading...</span>
             </div>
-            <div wire:loading.remove>
-                <form wire:submit.prevent="editGoal">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label>Goal Name: </label>
-                            <input type="text" wire:model.defer="goalName" class="form-control"
-                                placeholder="Enter Goal Name...">
-                            @error ('goalName') <small class="text-danger">{{$message}}</small>@enderror
-                        </div>
-                        <div class="mb-3">
-                            <label>Goal Description: </label>
-                            <input type="text" wire:model.defer="description" class="form-control"
-                                placeholder="Enter Goal Description...">
-                            @error ('description') <small class="text-danger">{{$message}}</small>@enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="progress"class="form-label">Progress:</label>
-                            <div class="d-flex text-secondary">
-                                <p>0%</p>
-                                <input type="range" wire:model.defer="progress" class="form-range" id="progress" name="progress" min="0" max="100">
-                                <p>100%</p>
-                            </div>
-                            <div class="text-center">
-                                <output for="progress" id="progressOutput" name="progress" wire:model.defer="progress">0</output>%
-                            </div>
-                            @error ('progress') <small class="text-danger">{{$message}}</small>@enderror
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <label>Deadline: </label>
-                            <input type="date" id="datepicker2" name="deadline" wire:model.defer="deadline" class="form-control" required>
-                            @error ('deadline') <small class="text-danger">{{$message}}</small>@enderror
-                        </div>
-                        
-                    </div>
-                    <div class="actions mx-3 my-2">
-                        <button type="submit" class="btn text-white" id="pink-colour"><i class="fa fa-check"></i> Save</button>
-                        <button type="button" class="btn" wire:click="closeModal" data-bs-dismiss="modal"
-                            id="lightBlue-colour"><i class="fa fa-close"></i> Close</button>
-                    </div>
-                </form>
+                <div class="actions mx-3 my-2">
+                    <button type="submit" class="btn text-white" id="pink-colour"><i class="fa fa-check"></i> Save</button>
+                    <button type="button" class="btn" data-bs-dismiss="modal" id="lightBlue-colour"><i class="fa fa-close"></i> Close</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Category Modal -->
+<div wire:ignore.self class="modal fade" id="deleteCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="editGoalModal"><strong>Delete Project</strong></h5>
+        </div>
+        <div wire:loading class="p-2">
+            <div class="spinner-border" role="status">
             </div>
+            <span class="">Loading...</span>
+        </div>
+        <div wire:loading.remove>
+            <form wire:submit.prevent="deleteCategory">
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this project? All tasks within this project will be deleted. </p>
+                </div>
+                <div class="actions mx-3 my-2">
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
+                    <button type="button" class="btn" wire:click="closeModal" data-bs-dismiss="modal"
+                        id="lightBlue-colour"><i class="fa fa-close"></i> Cancel</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+</div>
 
-<!-- Delete Goal Modal -->
-<div wire:ignore.self class="modal fade" id="deleteGoalModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<!------------------------------------------------------------TASK MODALS------------------------------------------------------------>
+
+<!-- Create Task Modal -->
+<div wire:ignore.self class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editGoalModal"><strong>Delete Goal</strong></h5>
-            </div>
-            <div wire:loading class="p-2">
-                <div class="spinner-border" role="status">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fs-5" id="exampleModalLabel"><strong>Add Task</strong></h5>
+        </div>
+        <div class="modal-body">
+            <form wire:submit.prevent="storeTask">
+                <div class="mb-3">
+                    <label>Task Name: </label>
+                    <input type="text" class="form-control" wire:model.defer="taskName" placeholder="Enter Task Name..." required>
                 </div>
-                <span class="">Loading...</span>
-            </div>
-            <div wire:loading.remove>
-                <form wire:submit.prevent="deleteGoal">
-                    <div class="modal-body">
-                        <h5>Are you sure you want to delete this goal?</h5>
+                <div class="mb-3">
+                    <label>Project: </label>
+                    <select name="project" id="project" wire:model.defer="categoryID" class="form-control" required>
+                        @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{$category->categoryName}}</option>
+                        @endforeach
+                    </select>
+                </div>                
+                <div class="mb-3">
+                    <label>Priority: </label>
+                    <select name="priority" id="priority" wire:model.defer="priority" class="form-control">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                      </select>
+                </div>
+                <div class="mb-3">
+                    <label>Task Description: </label>
+                    <input type="text" class="form-control" wire:model.defer="description" placeholder="Enter Task Description..." required>
+                </div>
+                <div class="mb-3">
+                    <label>Progress: </label>
+                    <div class="d-flex text-secondary">
+                        <p>0%</p>
+                        <input type="range" wire:model.defer="progress" class="form-range" id="progress" name="progress" min="0" max="100">
+                        <p>100%</p>
                     </div>
-                    <div class="actions mx-3 my-2">
-                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
-                        <button type="button" class="btn" wire:click="closeModal" data-bs-dismiss="modal"
-                            id="lightBlue-colour"><i class="fa fa-close"></i> Cancel</button>
+                    <div class="text-center">
+                        <output for="progress" id="progressOutput" name="progress" wire:model.defer="progress">0</output>%
                     </div>
-                </form>
+                </div>
+                <div class="mb-3">
+                    <label>Due Date: </label>
+                    <input type="date" class="form-control" wire:model.defer="dueDate" id="datepicker" required>
+                </div>
+                
             </div>
+                <div class="actions mx-3 my-2">
+                    <button type="submit" class="btn text-white" id="pink-colour"><i class="fa fa-check"></i> Save</button>
+                    <button type="button" class="btn" data-bs-dismiss="modal" id="lightBlue-colour" wire:click="closeModal"><i class="fa fa-close"></i> Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+
+  <!-- Edit Task Modal -->
+  <div wire:ignore.self class="modal fade" id="editTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fs-5" id="exampleModalLabel"><strong>Edit Task</strong></h5>
+        </div>
+        <div class="modal-body">
+            <form wire:submit.prevent="editTask">
+                <div class="mb-3">
+                    <label>Task Name: </label>
+                    <input type="text" class="form-control" wire:model.defer="taskName" placeholder="Enter Task Name..." required>
+                </div>
+                <div class="mb-3">
+                    <label>Priority: </label>
+                    <select name="priority" id="priority" wire:model.defer="priority" class="form-control">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                      </select>
+                </div>
+                <div class="mb-3">
+                    <label>Task Description: </label>
+                    <input type="text" class="form-control" wire:model.defer="description" placeholder="Enter Task Description..." required>
+                </div>
+                <div class="mb-3">
+                    <label>Progress: </label>
+                    <div class="d-flex text-secondary">
+                        <p>0%</p>
+                        <input type="range" wire:model.defer="progress" class="form-range" id="progress" name="progress" min="0" max="100">
+                        <p>100%</p>
+                    </div>
+                    <div class="text-center">
+                        <output for="progress" id="progressOutput" name="progress" wire:model.defer="progress">0</output>%
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label>Due Date: </label>
+                    <input type="date" class="form-control" wire:model.defer="dueDate" id="datepicker" required>
+                </div>
+                
+            </div>
+                <div class="actions mx-3 my-2">
+                    <button type="submit" class="btn text-white" id="pink-colour"><i class="fa fa-check"></i> Save</button>
+                    <button type="button" class="btn" data-bs-dismiss="modal" id="lightBlue-colour" wire:click="closeModal"><i class="fa fa-close"></i> Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+
+  <!-- Delete Task Modal -->
+<div wire:ignore.self class="modal fade" id="deleteCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="editGoalModal"><strong>Delete Project</strong></h5>
+        </div>
+        <div wire:loading class="p-2">
+            <div class="spinner-border" role="status">
+            </div>
+            <span class="">Loading...</span>
+        </div>
+        <div wire:loading.remove>
+            <form wire:submit.prevent="deleteTask">
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this task?  This action cannot be undone.</p>
+                </div>
+                <div class="actions mx-3 my-2">
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
+                    <button type="button" class="btn" wire:click="closeModal" data-bs-dismiss="modal"
+                        id="lightBlue-colour"><i class="fa fa-close"></i> Cancel</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+</div>
+
 
 <script>
     /* Slider */

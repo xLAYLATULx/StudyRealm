@@ -220,6 +220,15 @@ input[type="checkbox"] {
   background-color: white;
 }
 
+.taskPriority{
+  text-align: center;
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 16px;
+  width: 80%;
+}
+
 
 /* End of Task */
 

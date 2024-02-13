@@ -13,8 +13,5 @@ class Category extends Model
     protected $fillable = [
         'userID',
         'categoryName',
-        'sortbyPriority',
-        'sortbyDueDate',
-        'dueDate',
     ];
 }

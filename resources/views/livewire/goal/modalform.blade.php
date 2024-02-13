@@ -40,7 +40,7 @@
                 </div>
                 <div class="actions mx-3 my-2">
                     <button type="submit" class="btn text-white" id="pink-colour"><i class="fa fa-check"></i> Save</button>
-                    <button type="button" class="btn" data-bs-dismiss="modal" id="lightBlue-colour"><i class="fa fa-close"></i> Close</button>
+                    <button type="button" class="btn" data-bs-dismiss="modal" id="lightBlue-colour" wire:click="closeModal"><i class="fa fa-close"></i> Close</button>
                 </div>
             </form>
         </div>
@@ -122,7 +122,7 @@
             <div wire:loading.remove>
                 <form wire:submit.prevent="deleteGoal">
                     <div class="modal-body">
-                        <h5>Are you sure you want to delete this goal?</h5>
+                        <p>Are you sure you want to delete this goal?<p>
                     </div>
                     <div class="actions mx-3 my-2">
                         <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>

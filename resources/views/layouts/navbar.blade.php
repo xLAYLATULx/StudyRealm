@@ -72,6 +72,12 @@
             $('#addGoalModal').modal('hide');
             $('#editGoalModal').modal('hide');
             $('#deleteGoalModal').modal('hide');
+            $('#addTaskModal').modal('hide');
+            $('#editTaskModal').modal('hide');
+            $('#deleteTaskModal').modal('hide');
+            $('#addCategoryModal').modal('hide');
+            $('#editCategoryModal').modal('hide');
+            $('#deleteCategoryModal').modal('hide');
         });
     </script>
 </body>
