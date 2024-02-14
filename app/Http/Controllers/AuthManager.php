@@ -22,6 +22,10 @@ class AuthManager extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required'
+        ],[
+            'email.required' => 'Email is required',
+            'email.email' => 'Email is not valid',
+            'password.required' => 'Password is required'
         ]);
 
         $credentials = $request->only('email', 'password');
@@ -45,6 +49,13 @@ class AuthManager extends Controller
             'registerName' => 'required|regex:/^\S+$/',
             'registerEmail' => 'required|email|unique:users,email',
             'registerPassword' => 'required'
+        ] , [
+            'registerName.required' => 'Name is required',
+            'registerName.regex' => 'Name is not valid',
+            'registerEmail.required' => 'Email is required',
+            'registerEmail.email' => 'Email is not valid',
+            'registerEmail.unique' => 'Email is already registered',
+            'registerPassword.required' => 'Password is required'
         ]);
 
         $user = new User();
@@ -77,6 +88,14 @@ class AuthManager extends Controller
             'updateName' => 'required|regex:/^\S+$/',
             'newEmail' => 'required|email|unique:users,email',
             'newPassword' => 'required'
+        ], [
+            'updateName.required' => 'Name is required',
+            'updateName.regex' => 'Name is not valid',
+            'newEmail.required' => 'Email is required',
+            'newEmail.email' => 'Email is not valid',
+            'newEmail.unique' => 'Email is already registered',
+            'newPassword.required' => 'Password is required'
+        
         ]);
         if (!Hash::check($request->input('currentPassword'), $user->password)) {
             return redirect()->back()->with('error', 'Current password is incorrect.');

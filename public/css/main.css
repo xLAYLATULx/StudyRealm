@@ -9,7 +9,7 @@ body{
     color: #FF6060;
 }
 .blue-colour{
-    background-color: #314559;
+    color: #314559;
 }
 #blue-colour{
     background-color: #314559;
@@ -31,11 +31,37 @@ body{
 
 
 /* Start of Login */
+.loginPage{
+  background-color: #f9fafc;
+}
 .navbar-logo img {
-    max-width: 35%;
+    max-width: 20%;
     height: auto;
     margin-right: 5%;
-    margin-bottom: 15%;
+    margin-bottom: 2%;
+}
+
+.error-container {
+  position: relative;
+  height: 0; /* Height will be determined by the content of .errorMessage */
+}
+
+.errorMessage {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.errorMessage.show {
+  opacity: 1;
+}
+
+.login-register{
+  height: 100vh;
+  padding-top: 5%;
 }
 /* End of Login */
 

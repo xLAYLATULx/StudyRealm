@@ -7,6 +7,7 @@ var start = document.getElementById('start');
 var pause = document.getElementById('pause');
 var reset = document.getElementById('reset');
 var startTimer;
+var sessionAlert = false;
 
 function timer() {
     if (sSeconds.value != 0) {
@@ -21,8 +22,11 @@ function timer() {
         }
     }
     if (sHours.value == 0 && sMinutes.value == 0 && sSeconds.value == 0) {
+        if (sessionAlert == false){
         alert("Session time is over!");
-        if (bSeconds.value != 0) {
+        sessionAlert = true;
+        }
+        if (bSeconds.value != 0 && sessionAlert == true) {
             bSeconds.value--;
         } else if (bMinutes.value != 0 && bSeconds.value == 0) {
             bMinutes.value--;
@@ -63,12 +67,4 @@ reset.addEventListener('click', function () {
 pause.addEventListener('click', function () {
     pauseTimer()
     startTimer = undefined;
-});
-
-
-/* Goals Modal Form */
-window.addEventListener('close-modal', event => {
-    $('#addGoalModal').modal('hide');
-    $('#editGoalModal').modal('hide');
-    $('#deleteGoalModal').modal('hide');
 });

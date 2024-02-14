@@ -18,9 +18,9 @@
 
 <body>
     @auth
-    <div class="sidebar w-2 h-100 blue-colour text-white p-2">
+    <div class="sidebar w-2 h-100 text-white p-2" id="blue-colour">
         <div class="col-md-3 sidebar-logo">
-            <img src="{{ asset('assets/images/StudyRealm Dark Logo.png') }}" alt="Logo">
+            <img class="mt-3" src="{{ asset('assets/images/theLogo.png') }}" alt="Logo">
             <label>
                 <h5 class="fw-bold pt-3 pl-2">StudyRealm</h5>
             </label>

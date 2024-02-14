@@ -5,54 +5,56 @@
   <meta charset="UTF-8">
   <title>Login/Register</title>
   <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+  <link rel="stylesheet" href="{{ asset('js/main.js') }}">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
 <body>
-  <div class="login-content">
-    <div class="row h-20">
-      <div class="col-md-3 navbar-logo">
-        <img src="{{ asset('assets/images/Study Realm Light Logo.png') }}" alt="Logo"><label>
-          <h5 class="fw-bold">StudyRealm</h5>
-        </label>
+  <div class="loginPage">
+    <div class="row">
+      <div class="col-md-5">
       </div>
-      <div class="col-md-6">
-        <div class="mt-5 errorMessage">
-          @if($errors->any())
-          <div class="col-12">
-            @foreach($errors->all() as $error)
-            <div class="alert alert-danger">
-              {{$error}}
-            </div>
-            @endforeach
-          </div>
-          @endif
-
-          @if(session()->has('error'))
-          <div class="alert alert-danger">
-            {{session('error')}}
-          </div>
-          @endif
-
-          @if(session()->has('success'))
-          <div class="alert alert-success">
-            {{session('success')}}
-          </div>
-          @endif
-        </div>
+      <div class="col-md-4 navbar-logo justify-content-center align-items-center">
+        <img src="{{ asset('assets/images/theLogo.png') }}" alt="Logo">
+        <label><h5 class="blue-colour"><strong>StudyRealm</strong></h5></label>
       </div>
       <div class="col-md-3">
-
+        <div class="error-container mt-3">
+          <div class="errorMessage">
+            @if($errors->any())
+            <div class="col-12">
+              @foreach($errors->all() as $error)
+              <div class="alert alert-danger">
+                {{$error}}
+              </div>
+              @endforeach
+            </div>
+            @endif
+        
+            @if(session()->has('error'))
+            <div class="alert alert-danger">
+              {{session('error')}}
+            </div>
+            @endif
+        
+            @if(session()->has('success'))
+            <div class="alert alert-success">
+              {{session('success')}}
+            </div>
+            @endif
+          </div>
+        </div>
       </div>
     </div>
-    <div class="container">
+    
+    <div class="login-register">      
       <div class="row">
         <div class="col-md-2">
         </div>
         <div class="col-md-8">
-          <div class="row border rounded">
-            <div class="col-md-6 login blue-colour text-white border rounded">
+          <div class="row">
+            <div class="col-md-6 logintext-white border rounded-start shadow" id="blue-colour">
               <form action="{{ route('login.post') }}" method="POST" class="p-4">
                 @csrf
                 <h2>Login</h2>
@@ -74,7 +76,7 @@
               </form>
             </div>
 
-            <div class="col-md-6 bg-white pink-text">
+            <div class="col-md-6 bg-white pink-text border rounded-end shadow">
               <form action="{{ route('register.post') }}" method="POST" class="p-4">
                 @csrf
                 <h2>Register</h2>
@@ -98,12 +100,21 @@
             </div>
           </div>
         </div>
-
         <div class="col-md-2">
         </div>
       </div>
     </div>
   </div>
 </body>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    var errorMessage = document.querySelector('.errorMessage');
+    errorMessage.classList.add('show'); // Initially show the error message
+    setTimeout(function () {
+      errorMessage.classList.remove('show');
+    }, 5000); // Adjust the timeout value according to your preference
+  });
+</script>
 
 </html>
