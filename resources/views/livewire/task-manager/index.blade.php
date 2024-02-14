@@ -103,6 +103,7 @@
         </div>
         @endif
         <div class="paginationlinks mt-3">
+            {{$tasks->links()}}
         </div>
     </div>
 </div>
