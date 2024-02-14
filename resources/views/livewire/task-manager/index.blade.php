@@ -4,7 +4,7 @@
     @include('livewire.task-manager.modalform')
     <div class="row">
         <div class="col-md-9">
-        <div class="categories mt-5">
+        <div class="categories mt-3">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link" id="lightBlue-colour" href="#" data-bs-toggle="modal"
@@ -12,23 +12,20 @@
                 </li>
                 @if(!$categories->isEmpty())
                 @foreach($categories as $category)
-                <li class="nav-item">
+                <li class="nav-item dropdown">
                     <a class="nav-link @if($categoryTasks == $category->id) active @endif" href="#"
                         wire:model.defer="categoryTasks"
-                        wire:click="ct({{ $category->id }})">{{$category->categoryName}}</a>
+                        wire:click="ct({{ $category->id }})">{{$category->categoryName}} <i class="dropbtn ml-4 mr-3 fa fa-ellipsis-v"></i></a>
+                    <ul class="dropdown-content" @if(!$categoryTasks == $category->id) style="display: none;"@endif>
+                        <a class="btn" href="#" wire:click="editCategoryFields({{ $category->id }})"
+                            data-bs-toggle="modal" data-bs-target="#editCategoryModal"><i class="fa fa-pencil"></i> Edit</a>
+                        <a class="btn" href="#" wire:click="deleteCategoryButton({{ $category->id }})"
+                            data-bs-toggle="modal" data-bs-target="#deleteCategoryModal"><i class="fa fa-trash"></i> Delete</a>
+                        </ul>
                 </li>
                 @endforeach
             </ul>
         </div>
-        </div>
-        <div class="col-md-3 mt-4">
-            <div class="categoryActions mt-3" @if(!$categoryTasks) style="display: none;" @endif>
-                <a class="btn" id="blue-colour" href="#" wire:click="editCategoryFields({{ $category->id }})"
-                    data-bs-toggle="modal" data-bs-target="#editCategoryModal"><i class="fa fa-pencil"></i> Edit Project</a>
-                <a class="btn btn-danger" href="#" wire:click="deleteCategoryButton({{ $category->id }})"
-                    data-bs-toggle="modal" data-bs-target="#deleteCategoryModal"><i class="fa fa-trash"></i> Delete
-                    Project</a>
-            </div>
         </div>
         @endif
     </div>
@@ -53,12 +50,12 @@
                             <div class="row align-items-center">
                                 <div class="col-md-8">
                                     <div class="progress">
-                                        <div class="" role="progressbar"></div>
+                                        <div class="{{$task->progress == 100.00 ? 'bg-success' : 'pink-colour'}}" role="progressbar" style="width: {{$task->progress}}%;"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="progressBarText">
-                                        <p>% Completed</p>
+                                        <p>{{$task->progress}}% Completed</p>
                                     </div>
                                 </div>
                             </div>

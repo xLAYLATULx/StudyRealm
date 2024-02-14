@@ -11,10 +11,11 @@ class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $userID, $categoryID, $taskName, $description, $priority, $dueDate, $progress, $task_id; // Tasks Variables
+    public $userID, $categoryID, $taskName, $description, $priority, $dueDate, $progress = 50.00 , $task_id; // Tasks Variables
     public $categoryName, $category_id; // Categories Variables
     public $showTasks = false;
     public $categoryTasks;
+    
 
     public function rules(){
         return [    
@@ -22,7 +23,6 @@ class Index extends Component
             'description' => 'required',
             'priority' => 'required',
             'dueDate' => 'required|date',
-            'progress' => 'required',
         ];
     }
 
@@ -89,6 +89,7 @@ class Index extends Component
     public function editTaskFields(int $task_id){
         $this->task_id = $task_id;
         $task = Task::findOrFail($task_id);
+        $this->categoryID = $task->categoryID;
         $this->taskName = $task->taskName;
         $this->description = $task->description;
         $this->priority = $task->priority;
@@ -178,7 +179,7 @@ class Index extends Component
             $taskList->where('completed', false);
         }
 
-        $tasks = $taskList->orderBy('dueDate', 'desc')->orderBy('priority', 'desc')->paginate(3);
+        $tasks = $taskList->orderBy('dueDate', 'desc')->orderBy('priority', 'asc')->paginate(3);
         $categories = Category::where('userID', auth()->user()->id)->get();
 
         return view('livewire.task-manager.index', compact('tasks', 'categories'))->extends('layouts.navbar')->section('content');

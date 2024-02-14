@@ -98,6 +98,7 @@ aria-hidden="true">
                 <div class="mb-3">
                     <label>Project: </label>
                     <select name="project" id="project" wire:model.defer="categoryID" class="form-control" required>
+                        <option></option>
                         @foreach($categories as $category)
                             <option value="{{$category->id}}">{{$category->categoryName}}</option>
                         @endforeach
@@ -106,6 +107,7 @@ aria-hidden="true">
                 <div class="mb-3">
                     <label>Priority: </label>
                     <select name="priority" id="priority" wire:model.defer="priority" class="form-control" required>
+                        <option></option>
                         <option value="low">Low</option>
                         <option value="medium">Medium</option>
                         <option value="high">High</option>
@@ -119,11 +121,12 @@ aria-hidden="true">
                     <label>Progress: </label>
                     <div class="d-flex text-secondary">
                         <p>0%</p>
-                        <input type="range" wire:model.defer="progress" class="form-range" id="progress" name="progress" min="0" max="100" required>
+                        <input type="range" wire:model.defer="progress" class="form-range" id="progress" name="progress" min="0" max="100"  default="50" required>
+                        @error ('progress') <small class="text-danger">{{$message}}</small>@enderror
                         <p>100%</p>
                     </div>
                     <div class="text-center">
-                        <output for="progress" id="progressOutput" name="progress" wire:model.defer="progress">0</output>%
+                        <output for="progress" id="progressOutput" name="progress" wire:model.defer="progress" default="50">50</output>%
                     </div>
                 </div>
                 <div class="mb-3">
@@ -182,12 +185,12 @@ aria-hidden="true">
                         <p>100%</p>
                     </div>
                     <div class="text-center">
-                        <output for="progress" id="progressOutput" name="progress" wire:model.defer="progress">0</output>%
+                        <output for="progress" id="progressOutput" name="progress" wire:model.defer="progress"></output>%
                     </div>
                 </div>
                 <div class="mb-3">
                     <label>Due Date: </label>
-                    <input type="date" class="form-control" wire:model.defer="dueDate" id="datepicker" required>
+                    <input type="date" class="form-control" wire:model.defer="dueDate" id="datepicker2" required>
                 </div>
                 
             </div>
