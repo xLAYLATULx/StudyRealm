@@ -23,7 +23,16 @@
                   Not Completed Goals
                 </label>
               </div>
+              <div class="sortBy">
+                <select wire:model="sortBy">
+                    <option value="deadlineAsc">Deadline Ascending</option>
+                    <option value="deadlineDesc">Deadline Descending</option>
+                </select>
+              </div>
+        </div>
+        <div class="addGoal mt-5 actions">
             <a class="btn" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addGoalModal"><i class="fa fa-plus"></i> Add Goal</a>
+            {{$goals->links()}}
         </div>
         @if($goals->isEmpty())
         <div class="noGoals mt-3">
@@ -75,9 +84,6 @@
         </div>
         @endforeach
         @endif
-        <div class="paginationlinks mt-3">
-            {{$goals->links()}}
-        </div>
 
     </div>
 </div>

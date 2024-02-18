@@ -11,22 +11,43 @@ class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $userID, $categoryID, $taskName, $description, $priority, $dueDate, $progress = 50.00 , $task_id; // Tasks Variables
+    public $userID, $categoryID, $taskName, $description, $priority, $dueDate, $progress = 50.00 , $task_id, $completed; // Tasks Variables
     public $categoryName, $category_id; // Categories Variables
     public $showTasks = false;
     public $categoryTasks;
+    public $filter = 'all';
     
 
     public function rules(){
         return [    
-            'taskName' => 'required',
-            'description' => 'required',
-            'priority' => 'required',
-            'dueDate' => 'required|date',
+        'taskName' => 'required',
+        'categoryID' => 'required',
+        'priority' => 'required',
+        'description' => 'required',
+        'progress' => 'required|integer',
+        'dueDate' => 'required|date',
         ];
     }
 
+    public function messages()
+{
+    return [
+        'taskName.required' => 'Please enter a task name.',
+        'categoryID.required' => 'Please select a project.',
+        'priority.required' => 'Please select a priority level.',
+        'description.required' => 'Please enter a task description.',
+        'progress.required' => 'Please select progress for the task.',
+        'progress.integer' => 'Progress should be an integer value.',
+        'progress.between' => 'Progress should be between 0 and 100.',
+        'dueDate.required' => 'Please select a due date.',
+        'dueDate.date' => 'Due date should be a valid date.',
+    ];
+}
+
+    
+
     public function storeCategory(){
+        $this->validate();
         Category::create([
             'userID' => auth()->user()->id,
             'categoryName' => $this->categoryName,
@@ -45,6 +66,7 @@ class Index extends Component
     }
 
     public function editCategory(){
+        $this->validate();
         Category::findOrFail()->update([
             'userID' => auth()->user()->id,
             'categoryName' => $this->categoryName,
@@ -71,6 +93,12 @@ class Index extends Component
 
 
     public function storeTask(){
+        $this->validate();
+        if($this->progress >= 100){
+            $this->completed = true;
+        }else{
+            $this->completed = false;
+        }
         Task::create([
             'userID' => auth()->user()->id,
             'categoryID' => $this->categoryID,
@@ -79,7 +107,7 @@ class Index extends Component
             'priority' => $this->priority,
             'dueDate' => $this->dueDate,
             'progress' => $this->progress,
-            'completed' => false,
+            'completed' => $this->completed,
         ]);
         session()->flash('success', 'Task Created Successfully');
         $this->dispatch('close-modal');
@@ -99,6 +127,12 @@ class Index extends Component
     
 
     public function editTask(){
+        $this->validate();
+        if($this->progress >= 100){
+            $this->completed = true;
+        }else{
+            $this->completed = false;
+        }
         Task::findOrFail($this->task_id)->update([
             'userID' => auth()->user()->id,
             'categoryID' => $this->categoryID,
@@ -107,7 +141,7 @@ class Index extends Component
             'priority' => $this->priority,
             'dueDate' => $this->dueDate,
             'progress' => $this->progress,
-            'completed' => false,
+            'completed' => $this->completed,
         ]);
         session()->flash('success', 'Task Updated Successfully');
         $this->dispatch('close-modal');
@@ -163,9 +197,19 @@ class Index extends Component
         $this->resetTaskInputs();
     }
 
-    public function showTasksButton()
+    public function showAllTasksButton()
     {
-        $this->showTasks = !$this->showTasks;
+        $this->filter = 'all';
+    }
+
+    public function showCompletedTasksButton()
+    {
+        $this->filter = 'completed';
+    }
+
+    public function showNotCompletedTasksButton()
+    {
+        $this->filter = 'notCompleted';
     }
 
 
@@ -173,10 +217,12 @@ class Index extends Component
     {
         $taskList = Task::where('userID', auth()->user()->id)->where('categoryID', $this->categoryTasks);
 
-        if ($this->showTasks) {
+        if($this->filter == 'completed'){
             $taskList->where('completed', true);
-        } else {
+        } else if($this->filter == 'notCompleted'){
             $taskList->where('completed', false);
+        } else if($this->filter == 'all'){
+            $taskList->where('completed', true)->orWhere('completed', false);
         }
 
         $tasks = $taskList->orderBy('dueDate', 'desc')->orderBy('priority', 'asc')->paginate(3);

@@ -12,16 +12,30 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
     public $goalName, $description, $progress, $deadline, $goal_id, $completed;
     public $filter = 'all';
+    public $sortBy = 'deadlineAsc';
 
     public function rules(){
         return [
             'goalName' => 'required',
             'description' => 'required',
+            'progress' => 'required',
             'deadline' => 'required|date',
         ];
     }
 
+    public function messages()
+{
+    return [
+        'goalName.required' => 'Please enter a goal name.',
+        'description.required' => 'Please enter a description.',
+        'progress.required' => 'Please enter a progress.',
+        'deadline.required' => 'Please enter a deadline.',
+        'deadline.date' => 'Please enter a valid date for the deadline.',
+    ];
+}
+
     public function storeGoal(){
+        
         if($this->progress >= 100){
             $this->completed = true;
         }else{
@@ -126,6 +140,7 @@ class Index extends Component
         $this->filter = 'notCompleted';
     }
 
+
     public function render()
     {
         $goalList = Goal::where('userID', auth()->user()->id);
@@ -136,7 +151,7 @@ class Index extends Component
             $goalList->where('completed', false);
         } else if ($this->filter == 'all') {
             $goalList->where('completed', true)->orWhere('completed', false);
-        } 
+        }
         $goals = $goalList->orderBy('deadline', 'asc')->paginate(3);
 
         return view('livewire.goal.index', ['goals' => $goals])->extends('layouts.navbar')->section('content');

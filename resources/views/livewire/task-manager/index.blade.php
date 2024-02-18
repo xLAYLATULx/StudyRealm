@@ -30,21 +30,36 @@
         @endif
     </div>
     <div class="taskslist mt-5" @if(!$categoryTasks) style="display: none;" @endif>
-        <div class="actions">
-            <a class="btn" id="lightBlue-colour" wire:click="showTasksButton">{{$showTasks ?
-                'Show Not Completed Tasks' : ' Show Completed Tasks'}}</a>
+        <div class="actions text-black">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="allTasks" id="allTasks" wire:model="filter" value="all" wire:click="showAllTasksButton">
+                <label class="form-check-label" for="allTasks">
+                  All Tasks
+                </label>
+              </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="completedTasks" id="completedTasks" wire:model="filter" value="completed" wire:click="showCompletedTasksButton">
+                <label class="form-check-label" for="completedTasks">
+                  Completed Task
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="notCompletedTasks" id="notCompletedTasks" wire:model="filter" value="notCompleted" wire:click="showNotCompletedTasksButton">
+                <label class="form-check-label" for="notCompletedTasks">
+                  Not Completed Tasks
+                </label>
+              </div>
+        </div>
+        <div class="addTask mt-5 actions">
             <a class="btn" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i
-                    class="fa fa-plus"></i> Add Task</a>
+                class="fa fa-plus"></i> Add Task</a>
+            {{$tasks->links()}}
         </div>
         @if(!$tasks->isEmpty())
         @foreach($tasks as $task)
-        <div class="task shadow mt-4 p-3 {{ $task->completed ? 'completed' : '' }}" id="task">
+        <div class="task shadow mt-4 p-3" id="task">
             <div class="row">
-                <div class="col-md-1">
-                    <input wire:click="completedTask({{ $task->id }})" type="checkbox" id="myCheckbox"
-                        {{$task->completed ? 'checked' : '' }} />
-                </div>
-                <div class="col-md-8">
+                <div class="col-md-9">
                     <div class="row">
                         <div class="col-md-7">
                             <div class="row align-items-center">
@@ -102,8 +117,5 @@
             <p>No Tasks...</p>
         </div>
         @endif
-        <div class="paginationlinks mt-3">
-            {{$tasks->links()}}
-        </div>
     </div>
 </div>
