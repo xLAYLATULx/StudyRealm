@@ -27,16 +27,12 @@
         </div>
         @if($goals->isEmpty())
         <div class="noGoals mt-3">
-            <p>No Goals...</p>
+            <p>No Goals Here...</p>
         </div>
         @else
         @foreach($goals as $goal)
         <div class="goal shadow mt-4 p-3" id="goal">
             <div class="row">
-                {{-- <div class="col-md-1">
-                    <input wire:click="completedGoal({{ $goal->id }})" type="checkbox" id="myCheckbox"
-                        {{$goal->completed ? 'checked' : '' }}/>
-                </div> --}}
                 <div class="col-md-8">
                     <div class="row">
                     <div class="col-md-7">
