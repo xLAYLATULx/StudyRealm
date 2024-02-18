@@ -10,7 +10,7 @@ class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $goalName, $description, $progress, $deadline, $goal_id;
+    public $goalName, $description, $progress, $deadline, $goal_id, $completed;
     public $filter = 'all';
 
     public function rules(){
@@ -22,13 +22,18 @@ class Index extends Component
     }
 
     public function storeGoal(){
+        if($this->progress >= 100){
+            $this->completed = true;
+        }else{
+            $this->completed = false;
+        }
         Goal::create([
             'userID' => auth()->user()->id,
             'goalName' => $this->goalName,
             'description' => $this->description,
             'progress' => $this->progress,
             'deadline' => $this->deadline,
-            'completed' => false,
+            'completed' => $this->completed,
         ]);
         session()->flash('success', 'Goal Created Successfully');
         $this->dispatch('close-modal');
@@ -45,13 +50,19 @@ class Index extends Component
     }
 
     public function editGoal(){
+        if($this->progress >= 100){
+            $this->completed = true;
+        }else{
+            $this->completed = false;
+        }
         Goal::findOrFail($this->goal_id)->update([
             'userID' => auth()->user()->id,
             'goalName' => $this->goalName,
             'description' => $this->description,
             'progress' => $this->progress,
             'deadline' => $this->deadline,
-            'completed' => false,
+            'completed' => $this->completed
+            ,
         ]);
         session()->flash('success', 'Goal Updated Successfully');
         $this->dispatch('close-modal');

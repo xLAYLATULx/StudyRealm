@@ -31,19 +31,19 @@
         </div>
         @else
         @foreach($goals as $goal)
-        <div class="goal shadow mt-4 p-3 {{ $goal->completed ? 'completed' : '' }}" id="goal">
+        <div class="goal shadow mt-4 p-3" id="goal">
             <div class="row">
-                <div class="col-md-1">
+                {{-- <div class="col-md-1">
                     <input wire:click="completedGoal({{ $goal->id }})" type="checkbox" id="myCheckbox"
                         {{$goal->completed ? 'checked' : '' }}/>
-                </div>
+                </div> --}}
                 <div class="col-md-8">
                     <div class="row">
                     <div class="col-md-7">
                         <div class="row align-items-center">
                             <div class="col-md-8">
                                 <div class="progress">
-                                    <div class="{{$goal->progress == 100.00 ? 'bg-success' : 'pink-colour'}}" role="progressbar" style="width: {{$goal->progress}}%;"></div>
+                                    <div class="{{$goal->progress == 100.00 ? 'bg-success' : 'pink-colour'}}"  role="progressbar" style="width: {{$goal->progress}}%;"></div>
                                 </div>
                             </div>
                             <div class="col-md-4">
