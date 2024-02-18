@@ -11,7 +11,7 @@ class Index extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $goalName, $description, $progress, $deadline, $goal_id;
-    public $showGoals = false;
+    public $filter = 'all';
 
     public function rules(){
         return [
@@ -100,21 +100,32 @@ class Index extends Component
         $this->resetInputs();
     }
 
-    public function showGoalsButton()
+    public function showAllGoalsButton()
     {
-        $this->showGoals = !$this->showGoals;
+        $this->filter = 'all';
+    }
+
+    public function showCompletedGoalsButton()
+    {
+        $this->filter = 'completed';
+    }
+
+    public function showNotCompletedGoalsButton()
+    {
+        $this->filter = 'notCompleted';
     }
 
     public function render()
     {
         $goalList = Goal::where('userID', auth()->user()->id);
 
-        if ($this->showGoals) {
+        if ($this->filter == 'completed') {
             $goalList->where('completed', true);
-        } else {
+        } else if ($this->filter == 'notCompleted') {
             $goalList->where('completed', false);
-        }
-        
+        } else if ($this->filter == 'all') {
+            $goalList->where('completed', true)->orWhere('completed', false);
+        } 
         $goals = $goalList->orderBy('deadline', 'asc')->paginate(3);
 
         return view('livewire.goal.index', ['goals' => $goals])->extends('layouts.navbar')->section('content');

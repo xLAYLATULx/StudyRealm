@@ -4,9 +4,25 @@
     <h1>Goals</h1>
     @include('livewire.goal.modalform')
     <div class="goalsList mt-5">
-        <div class="actions">
-            <a class="btn" id="lightBlue-colour" wire:click="showGoalsButton">{{$showGoals ?
-                'Show Not Completed Goals' : ' Show Completed Goals'}}</a>
+        <div class="actions text-black">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="allGoals" id="allGoals" wire:model="filter" value="all" wire:click="showAllGoalsButton">
+                <label class="form-check-label" for="allGoals">
+                  All Goals
+                </label>
+              </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="completedGoals" id="completedGoals" wire:model="filter" value="completed" wire:click="showCompletedGoalsButton">
+                <label class="form-check-label" for="completedGoals">
+                  Completed Goals
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="notCompletedGoals" id="notCompletedGoals" wire:model="filter" value="notCompleted" wire:click="showNotCompletedGoalsButton">
+                <label class="form-check-label" for="notCompletedGoals">
+                  Not Completed Goals
+                </label>
+              </div>
             <a class="btn" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addGoalModal"><i class="fa fa-plus"></i> Add Goal</a>
         </div>
         @if($goals->isEmpty())
