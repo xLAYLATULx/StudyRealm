@@ -12,7 +12,7 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
     public $goalName, $description, $progress, $deadline, $goal_id, $completed;
     public $filter = 'all';
-    public $sortBy = 'deadlineAsc';
+    public $sortByAsc = true;
 
     public function rules(){
         return [
@@ -83,21 +83,6 @@ class Index extends Component
         $this->resetInputs();
     }
 
-    public function completedGoal($goalId)
-    {
-        
-        $g = Goal::find($goalId);
-        if ($g->completed == true) {
-            $g->update(['completed' => false]);
-            session()->flash('success', 'Goal Marked As Incomplete');
-        } elseif ($g->completed == false) {
-            $g->update(['completed' => true]);
-            session()->flash('success', 'Goal Marked As Complete');
-        }
-        $this->resetInputs();
-        return redirect()->to('/goals');
-    }
-
     public function deleteGoalButton(int $goal_id){
         $this->goal_id = $goal_id;
     }
@@ -140,21 +125,33 @@ class Index extends Component
         $this->filter = 'notCompleted';
     }
 
+    public function sortByAscButton()
+    {
+        $this->sortByAsc = !$this->sortByAsc;
+    }
+
 
     public function render()
-    {
-        $goalList = Goal::where('userID', auth()->user()->id);
+{
+    $goalList = Goal::where('userID', auth()->user()->id);
 
-        if ($this->filter == 'completed') {
-            $goalList->where('completed', true);
-        } else if ($this->filter == 'notCompleted') {
-            $goalList->where('completed', false);
-        } else if ($this->filter == 'all') {
-            $goalList->where('completed', true)->orWhere('completed', false);
-        }
-        $goals = $goalList->orderBy('deadline', 'asc')->paginate(3);
-
-        return view('livewire.goal.index', ['goals' => $goals])->extends('layouts.navbar')->section('content');
+    if ($this->filter == 'completed') {
+        $goalList->where('completed', true);
+    } elseif ($this->filter == 'notCompleted') {
+        $goalList->where('completed', false);
+    } elseif ($this->filter == 'all') {
+        $goalList->where('completed', true)->orWhere('completed', false);
     }
+    if ($this->sortByAsc) {
+        $goalList->orderBy('deadline', 'asc');
+    } else {
+        $goalList->orderBy('deadline', 'desc');
+    }
+
+    $goals = $goalList->paginate(3);
+
+    return view('livewire.goal.index', ['goals' => $goals])->extends('layouts.navbar')->section('content');
+}
+
 
 }

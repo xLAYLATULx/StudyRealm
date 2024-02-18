@@ -24,10 +24,8 @@
                 </label>
               </div>
               <div class="sortBy">
-                <select wire:model="sortBy">
-                    <option value="deadlineAsc">Deadline Ascending</option>
-                    <option value="deadlineDesc">Deadline Descending</option>
-                </select>
+                <a class="btn" id="lightBlue-colour" wire:click="sortByAscButton">{{$sortByAsc ?
+                    'Sort By Date Desc ↓' : 'Sort By Date Asc ↑'}}</a>
               </div>
         </div>
         <div class="addGoal mt-5 actions">
