@@ -24,11 +24,11 @@
                         <label for="progress"class="form-label">Progress:</label>
                         <div class="d-flex text-secondary">
                             <p>0%</p>
-                            <input type="range" wire:model.defer="progress" class="form-range" id="progress" name="progress" min="0" max="100" default="0">
+                            <input type="range" wire:model.defer="progress" class="form-range" id="progress" name="progress" min="0" max="100" default="0" value="0">
                             <p>100%</p>
                         </div>
                         <div class="text-center">
-                            <output for="progress" id="progressOutput" name="progress">0</output>%
+                            <output for="progress" id="progressOutput" name="progress" value="0">0</output>%
                         </div>
                         @error ('progress') <small class="text-danger">{{$message}}</small>@enderror
                     </div>

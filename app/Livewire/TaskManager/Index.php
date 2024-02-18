@@ -11,11 +11,13 @@ class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $userID, $categoryID, $taskName, $description, $priority, $dueDate, $progress = 50.00 , $task_id, $completed; // Tasks Variables
+    public $userID, $categoryID, $taskName, $description, $priority, $dueDate, $progress = 0.00, $task_id, $completed; // Tasks Variables
     public $categoryName, $category_id; // Categories Variables
     public $showTasks = false;
     public $categoryTasks;
     public $filter = 'all';
+    public $sortByAsc = true;
+    public $sortByPriority = true;
     
 
     public function rules(){
@@ -148,20 +150,6 @@ class Index extends Component
         $this->resetTaskInputs();
     }
 
-    public function completedTask($taskId)
-    {
-        
-        $t = Task::find($taskId);
-        if ($t->completed == true) {
-            $t->update(['completed' => false]);
-            session()->flash('success', 'Task Marked As Incomplete');
-        } elseif ($t->completed == false) {
-            $t->update(['completed' => true]);
-            session()->flash('success', 'Task Marked As Complete');
-        }
-        $this->resetTaskInputs();
-    }
-
     public function deleteTaskButton(int $task_id){
         $this->task_id = $task_id;
     }
@@ -183,7 +171,7 @@ class Index extends Component
         $this->description = NULL;
         $this->priority = NULL;
         $this->dueDate = NULL;
-        $this->progress = NULL;
+        $this->progress = 0.00;
         $this->task_id = NULL;
     }
 
@@ -212,6 +200,16 @@ class Index extends Component
         $this->filter = 'notCompleted';
     }
 
+    public function sortByDateButton()
+    {
+        $this->sortByAsc = !$this->sortByAsc;
+    }
+
+    public function sortByPriorityButton()
+    {
+        $this->sortByPriority = !$this->sortByPriority;
+    }
+
 
     public function render()
     {
@@ -224,8 +222,17 @@ class Index extends Component
         } else if($this->filter == 'all'){
             $taskList->where('completed', true)->orWhere('completed', false);
         }
+        if($this->sortByAsc && $this->sortByPriority){
+            $taskList->orderBy('dueDate', 'asc')->orderBy('priority', 'asc');
+        } else if($this->sortByAsc && !$this->sortByPriority){
+            $taskList->orderBy('dueDate', 'asc')->orderBy('priority', 'desc');
+        } else if(!$this->sortByAsc && $this->sortByPriority){
+            $taskList->orderBy('dueDate', 'desc')->orderBy('priority', 'asc');
+        } else if(!$this->sortByAsc && !$this->sortByPriority){
+            $taskList->orderBy('dueDate', 'desc')->orderBy('priority', 'desc');
+        }
 
-        $tasks = $taskList->orderBy('dueDate', 'desc')->orderBy('priority', 'asc')->paginate(3);
+        $tasks = $taskList->paginate(3);
         $categories = Category::where('userID', auth()->user()->id)->get();
 
         return view('livewire.task-manager.index', compact('tasks', 'categories'))->extends('layouts.navbar')->section('content');

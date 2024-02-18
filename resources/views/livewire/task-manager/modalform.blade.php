@@ -127,12 +127,12 @@ aria-hidden="true">
                         <label>Progress: </label>
                         <div class="d-flex text-secondary">
                             <p>0%</p>
-                            <input type="range" wire:model.defer="progress" class="form-range" id="progress" name="progress" min="0" max="100" default="50" required>
-                            @error ('progress') <small class="text-danger">{{$message}}</small>@enderror
+                            <input type="range" wire:model.defer="progress" class="form-range" id="progress" name="progress" min="0" max="100" required>
+                             @error ('progress') <small class="text-danger">{{$message}}</small>@enderror
                             <p>100%</p>
                         </div>
                         <div class="text-center">
-                            <output for="progress" id="progressOutput" name="progress" wire:model.defer="progress" default="50">50</output>%
+                            <output for="progress" id="progressOutput" name="progress" wire:model.defer="progress" value="0">0</output>%
                         </div>
                     </div>
                     <div class="mb-3">

@@ -4,57 +4,91 @@
     @include('livewire.task-manager.modalform')
     <div class="row">
         <div class="col-md-9">
-        <div class="categories mt-3">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link" id="lightBlue-colour" href="#" data-bs-toggle="modal"
-                        data-bs-target="#addCategoryModal"><i class="fa fa-plus"></i> Add Project</a>
-                </li>
-                @if(!$categories->isEmpty())
-                @foreach($categories as $category)
-                <li class="nav-item dropdown">
-                    <a class="nav-link @if($categoryTasks == $category->id) active @endif" href="#"
-                        wire:model.defer="categoryTasks"
-                        wire:click="ct({{ $category->id }})">{{$category->categoryName}} <i class="dropbtn ml-4 mr-3 fa fa-ellipsis-v"></i></a>
-                    <ul class="dropdown-content" @if(!$categoryTasks == $category->id) style="display: none;"@endif>
-                        <a class="btn" href="#" wire:click="editCategoryFields({{ $category->id }})"
-                            data-bs-toggle="modal" data-bs-target="#editCategoryModal"><i class="fa fa-pencil"></i> Edit</a>
-                        <a class="btn" href="#" wire:click="deleteCategoryButton({{ $category->id }})"
-                            data-bs-toggle="modal" data-bs-target="#deleteCategoryModal"><i class="fa fa-trash"></i> Delete</a>
+            <div class="categories mt-3">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" id="lightBlue-colour" href="#" data-bs-toggle="modal"
+                            data-bs-target="#addCategoryModal"><i class="fa fa-plus"></i> Add Project</a>
+                    </li>
+                    @if(!$categories->isEmpty())
+                    @foreach($categories as $category)
+                    <li class="nav-item dropdown">
+                        <a class="nav-link @if($categoryTasks == $category->id) active @endif" href="#"
+                            wire:model.defer="categoryTasks"
+                            wire:click="ct({{ $category->id }})">{{$category->categoryName}} <i
+                                class="dropbtn ml-4 mr-3 fa fa-ellipsis-v"></i></a>
+                        <ul class="dropdown-content" @if(!$categoryTasks==$category->id) style="display: none;"@endif>
+                            <a class="btn" href="#" wire:click="editCategoryFields({{ $category->id }})"
+                                data-bs-toggle="modal" data-bs-target="#editCategoryModal"><i class="fa fa-pencil"></i>
+                                Edit</a>
+                            <a class="btn" href="#" wire:click="deleteCategoryButton({{ $category->id }})"
+                                data-bs-toggle="modal" data-bs-target="#deleteCategoryModal"><i class="fa fa-trash"></i>
+                                Delete</a>
                         </ul>
-                </li>
-                @endforeach
-            </ul>
-        </div>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
         @endif
     </div>
-    <div class="taskslist mt-5" @if(!$categoryTasks) style="display: none;" @endif>
+    <div class="taskslist mt-4" @if(!$categoryTasks) style="display: none;" @endif>
         <div class="actions text-black">
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="allTasks" id="allTasks" wire:model="filter" value="all" wire:click="showAllTasksButton">
+                <input class="form-check-input" type="radio" name="allTasks" id="allTasks" wire:model="filter"
+                    value="all" wire:click="showAllTasksButton">
                 <label class="form-check-label" for="allTasks">
-                  All Tasks
+                    Show All Tasks
                 </label>
-              </div>
+            </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="completedTasks" id="completedTasks" wire:model="filter" value="completed" wire:click="showCompletedTasksButton">
+                <input class="form-check-input" type="radio" name="completedTasks" id="completedTasks"
+                    wire:model="filter" value="completed" wire:click="showCompletedTasksButton">
                 <label class="form-check-label" for="completedTasks">
-                  Completed Task
+                    Show Completed Tasks
                 </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="notCompletedTasks" id="notCompletedTasks" wire:model="filter" value="notCompleted" wire:click="showNotCompletedTasksButton">
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="notCompletedTasks" id="notCompletedTasks"
+                    wire:model="filter" value="notCompleted" wire:click="showNotCompletedTasksButton">
                 <label class="form-check-label" for="notCompletedTasks">
-                  Not Completed Tasks
+                    Show Not Completed Tasks
                 </label>
-              </div>
+            </div>
         </div>
-        <div class="addTask mt-5 actions">
-            <a class="btn" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i
-                class="fa fa-plus"></i> Add Task</a>
-            {{$tasks->links()}}
+        <div class="row mt-5">
+            <div class="col-md-9">
+                <a class="btn" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i
+                    class="fa fa-plus"></i> Add Task</a>
+            </div>
+            <div class="col-md-3 float-end d-flex">
+                <div class="sortByDate">
+                    <a class="btn" id="lightGrey-colour" wire:click="sortByDateButton">{{$sortByAsc ?
+                        'Date Desc ↓' : 'Date Asc ↑'}}</a>
+                </div>
+                <div class="sortByPriority">
+                    <a class="btn ml-3" id="lightGrey-colour" wire:click="sortByPriorityButton">{{$sortByPriority ?
+                        'Priority Desc ↓' : 'Priority Asc ↑'}}</a>
+                </div>
+            </div>
         </div>
+        {{-- <div class="addTask mt-5 actions">
+                <div class="col-md-8">
+                    <a class="btn" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i
+                            class="fa fa-plus"></i> Add Task</a>
+                    <div class="sortByDate">
+                        <a class="btn" id="lightGrey-colour" wire:click="sortByDateButton">{{$sortByAsc ?
+                            'Date Desc ↓' : 'Date Asc ↑'}}</a>
+                    </div>
+                    <div class="sortByPriority">
+                        <a class="btn" id="lightGrey-colour" wire:click="sortByPriorityButton">{{$sortByPriority ?
+                            'Priority Desc ↓' : 'Priority Asc ↑'}}</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    
+                </div>
+        </div> --}}
         @if(!$tasks->isEmpty())
         @foreach($tasks as $task)
         <div class="task shadow mt-4 p-3" id="task">
@@ -65,7 +99,8 @@
                             <div class="row align-items-center">
                                 <div class="col-md-8">
                                     <div class="progress">
-                                        <div class="{{$task->progress == 100.00 ? 'bg-success' : 'pink-colour'}}" role="progressbar" style="width: {{$task->progress}}%;"></div>
+                                        <div class="{{$task->progress == 100.00 ? 'bg-success' : 'pink-colour'}}"
+                                            role="progressbar" style="width: {{$task->progress}}%;"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -117,5 +152,8 @@
             <p>No Tasks...</p>
         </div>
         @endif
+        <div class="col-md-3 mt-5">
+            {{$tasks->links()}}
+        </div>
     </div>
 </div>

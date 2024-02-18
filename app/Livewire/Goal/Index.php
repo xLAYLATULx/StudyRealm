@@ -10,7 +10,7 @@ class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $goalName, $description, $progress, $deadline, $goal_id, $completed;
+    public $goalName, $description, $progress = 0.00, $deadline, $goal_id, $completed;
     public $filter = 'all';
     public $sortByAsc = true;
 
@@ -97,7 +97,7 @@ class Index extends Component
     public function resetInputs(){
         $this->goalName = NULL;
         $this->description = NULL;
-        $this->progress = NULL;
+        $this->progress = 0.00;
         $this->deadline = NULL;
         $this->goal_id = NULL;
     }

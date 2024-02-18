@@ -27,6 +27,11 @@ body{
   background-color: #588ec5;
   color: white;
 }
+
+#lightGrey-colour{
+  background-color: lightgrey;
+  color: black;
+}
 /*End of Colours*/
 
 

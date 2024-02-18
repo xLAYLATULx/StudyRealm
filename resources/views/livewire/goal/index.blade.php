@@ -8,30 +8,36 @@
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="allGoals" id="allGoals" wire:model="filter" value="all" wire:click="showAllGoalsButton">
                 <label class="form-check-label" for="allGoals">
-                  All Goals
+                 Show All Goals
                 </label>
               </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="completedGoals" id="completedGoals" wire:model="filter" value="completed" wire:click="showCompletedGoalsButton">
                 <label class="form-check-label" for="completedGoals">
-                  Completed Goals
+                 Show Completed Goals
                 </label>
               </div>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="notCompletedGoals" id="notCompletedGoals" wire:model="filter" value="notCompleted" wire:click="showNotCompletedGoalsButton">
                 <label class="form-check-label" for="notCompletedGoals">
-                  Not Completed Goals
+                 Show Not Completed Goals
                 </label>
               </div>
-              <div class="sortBy">
-                <a class="btn" id="lightBlue-colour" wire:click="sortByAscButton">{{$sortByAsc ?
-                    'Sort By Date Desc ↓' : 'Sort By Date Asc ↑'}}</a>
-              </div>
         </div>
-        <div class="addGoal mt-5 actions">
+        <div class="row mt-5">
+            <div class="col-md-9">
+                <a class="btn" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addGoalModal"><i class="fa fa-plus"></i> Add Goal</a>
+            </div>
+            <div class="col-md-3">
+                <div class="sortBy float-end">
+                    <a class="btn" id="lightGrey-colour" wire:click="sortByAscButton">{{$sortByAsc ?
+                        'Sort By Date Desc ↓' : 'Sort By Date Asc ↑'}}</a>
+                  </div>
+            </div>
+        </div>
+        {{-- <div class="addGoal mt-5 actions">
             <a class="btn" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addGoalModal"><i class="fa fa-plus"></i> Add Goal</a>
-            {{$goals->links()}}
-        </div>
+        </div> --}}
         @if($goals->isEmpty())
         <div class="noGoals mt-3">
             <p>No Goals Here...</p>
@@ -82,6 +88,8 @@
         </div>
         @endforeach
         @endif
-
+    </div>
+    <div class="col-md-3 mt-5">
+        {{$goals->links()}}
     </div>
 </div>
