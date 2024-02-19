@@ -46,8 +46,11 @@
         @foreach($goals as $goal)
         <div class="goal shadow mt-4 p-3" id="goal">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-9">
                     <div class="row">
+                        <div class="col-md-5">
+                            <h5><strong>{{$goal->goalName}}</strong></h5>
+                        </div>
                     <div class="col-md-7">
                         <div class="row align-items-center">
                             <div class="col-md-8">
@@ -63,12 +66,9 @@
                         </div>
                     </div>
                 </div>
-                    
-                    
-                    <div class="row">
-                        <h5>{{$goal->goalName}}</h5>
-                        <p>Description: {{$goal->description}} </p>
-                    </div>
+            <div class="row">
+                <p>Description: {{$goal->description}} </p>
+            </div>
                 </div>
                 <div class="col-md-3">
                     <div class="goalDeadline">
