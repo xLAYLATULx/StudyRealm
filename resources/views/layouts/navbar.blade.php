@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    @yield('title')
+    <title>StudyRealm</title>
     <link rel="icon" href="{{ asset('assets/images/Study Realm Light Logo.png') }}" type="image/png" sizes="16x16">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('js/main.js') }}">
