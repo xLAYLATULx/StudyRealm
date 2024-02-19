@@ -217,7 +217,7 @@ class Index extends Component
         } else if($this->filter == 'notCompleted'){
             $taskList->where('completed', false);
         } else if($this->filter == 'all'){
-            $taskList->where('completed', true)->orWhere('completed', false);
+            $taskList;
         }
         if($this->sortByAsc && $this->sortByPriority){
             $taskList->orderBy('dueDate', 'asc')->orderBy('priority', 'asc');
