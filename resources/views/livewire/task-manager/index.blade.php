@@ -56,45 +56,30 @@
                 </label>
             </div>
         </div>
+        
         <div class="row mt-5">
             <div class="col-md-9">
                 <a class="btn" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i
                     class="fa fa-plus"></i> Add Task</a>
             </div>
-            <div class="col-md-3 float-end d-flex">
-                <div class="sortByDate">
+            <div class="col-md-3">
+                <div class="sortBy float-end">
                     <a class="btn" id="lightGrey-colour" wire:click="sortByDateButton">{{$sortByAsc ?
                         'Date Desc ↓' : 'Date Asc ↑'}}</a>
-                </div>
-                <div class="sortByPriority">
                     <a class="btn ml-3" id="lightGrey-colour" wire:click="sortByPriorityButton">{{$sortByPriority ?
                         'Priority Desc ↓' : 'Priority Asc ↑'}}</a>
                 </div>
             </div>
         </div>
-        {{-- <div class="addTask mt-5 actions">
-                <div class="col-md-8">
-                    <a class="btn" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i
-                            class="fa fa-plus"></i> Add Task</a>
-                    <div class="sortByDate">
-                        <a class="btn" id="lightGrey-colour" wire:click="sortByDateButton">{{$sortByAsc ?
-                            'Date Desc ↓' : 'Date Asc ↑'}}</a>
-                    </div>
-                    <div class="sortByPriority">
-                        <a class="btn" id="lightGrey-colour" wire:click="sortByPriorityButton">{{$sortByPriority ?
-                            'Priority Desc ↓' : 'Priority Asc ↑'}}</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    
-                </div>
-        </div> --}}
         @if(!$tasks->isEmpty())
         @foreach($tasks as $task)
         <div class="task shadow mt-4 p-3" id="task">
             <div class="row">
                 <div class="col-md-9">
                     <div class="row">
+                        <div class="col-md-5">
+                            <h5><strong>{{$task->taskName}}</strong></h5>
+                        </div>
                         <div class="col-md-7">
                             <div class="row align-items-center">
                                 <div class="col-md-8">
@@ -110,24 +95,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-5">
-                            <div
-                                class="taskPriority @if($task->priority == 'medium') bg-warning @elseif($task->priority == 'high') bg-danger @elseif($task->priority == 'low') bg-success @endif">
-                                <p class="">
-                                    Priority:
-                                    @if($task->priority == 'medium')
-                                    Medium
-                                    @elseif($task->priority == 'high')
-                                    High
-                                    @elseif($task->priority == 'low')
-                                    Low
-                                    @endif
-                                </p>
-                            </div>
-                        </div>
                     </div>
                     <div class="row">
-                        <h5>{{$task->taskName}}</h5>
+                        <h6><i class="fa fa-flag" style="@if($task->priority == 'medium') color: orange @elseif($task->priority == 'high') color: red @elseif($task->priority == 'low') color: green @endif"></i>  @if($task->priority == 'medium')
+                            Medium
+                            @elseif($task->priority == 'high')
+                            High
+                            @elseif($task->priority == 'low')
+                            Low
+                            @endif Priority</h6>
                         <p>Description: {{$task->description}}</p>
                     </div>
                 </div>

@@ -28,6 +28,8 @@ class Index extends Component
         'description' => 'required',
         'progress' => 'required|integer',
         'dueDate' => 'required|date',
+        'categoryName' => 'required',
+
         ];
     }
 
@@ -43,18 +45,16 @@ class Index extends Component
         'progress.between' => 'Progress should be between 0 and 100.',
         'dueDate.required' => 'Please select a due date.',
         'dueDate.date' => 'Due date should be a valid date.',
+        'categoryName.required' => 'Please enter a category name.',
     ];
 }
 
     
 
     public function storeCategory(){
-        $this->validate();
         Category::create([
             'userID' => auth()->user()->id,
             'categoryName' => $this->categoryName,
-            'sortbyPriority' => false,
-            'sortbyDueDate' => false,
         ]);
         session()->flash('success', 'Category Created Successfully');
         $this->dispatch('close-modal');
@@ -68,8 +68,7 @@ class Index extends Component
     }
 
     public function editCategory(){
-        $this->validate();
-        Category::findOrFail()->update([
+        Category::findOrFail($this->category_id)->update([
             'userID' => auth()->user()->id,
             'categoryName' => $this->categoryName,
         ]);
@@ -95,7 +94,6 @@ class Index extends Component
 
 
     public function storeTask(){
-        $this->validate();
         if($this->progress >= 100){
             $this->completed = true;
         }else{
@@ -129,7 +127,6 @@ class Index extends Component
     
 
     public function editTask(){
-        $this->validate();
         if($this->progress >= 100){
             $this->completed = true;
         }else{

@@ -174,9 +174,6 @@ input[type="checkbox"] {
   background-color: white;
 }
 
-.goal h5 {
-  font-weight: bold;
-}
 
 .goal p {
   margin: 5px 0;
@@ -233,10 +230,6 @@ input[type="checkbox"] {
   border-radius: 16px;
   padding: 5%;
   background-color: white;
-}
-
-.task h5 {
-  font-weight: bold;
 }
 
 .task p {

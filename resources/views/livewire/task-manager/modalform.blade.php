@@ -10,7 +10,6 @@
                 <div class="mb-3">
                     <label>Project Name: </label>
                     <input type="text" class="form-control" wire:model.defer="categoryName" placeholder="Enter Project Name..." required>
-                    @error ('categoryName') <small class="text-danger">{{$message}}</small>@enderror
                 </div>
             </div>
                 <div class="actions mx-3 my-2">
@@ -21,6 +20,7 @@
         </div>
     </div>
   </div>
+
 
   <!-- Edit Category Modal -->
   <div wire:ignore.self class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
