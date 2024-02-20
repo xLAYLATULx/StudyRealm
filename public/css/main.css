@@ -282,6 +282,13 @@ input[type="checkbox"] {
   color: white;
 }
 
+.cycleNumber{
+  border-radius: 10px;
+  background-color: transparent;
+  color: #314559;
+  padding-left: 35%;
+}
+
 .sessionTime input{
   border: none;
   outline: none;
@@ -304,6 +311,17 @@ input[type="checkbox"] {
   color: white;
 }
 
+.cycleNumber input{
+  border: none;
+  outline: none;
+  background: none;
+  display: inline;
+  font-size: 300%;
+  font-family: 'Orbitron', sans-serif;
+  margin-left: 5%;
+  color: #314559;
+}
+
 .sessionTime p {
   display: inline;
   font-size: 300%;
@@ -311,6 +329,12 @@ input[type="checkbox"] {
 }
 
 .breakTime p {
+  display: inline;
+  font-size: 300%;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.cycleNumber p {
   display: inline;
   font-size: 300%;
   font-family: 'Orbitron', sans-serif;

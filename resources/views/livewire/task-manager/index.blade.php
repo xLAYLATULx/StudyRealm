@@ -33,7 +33,7 @@
         @endif
     </div>
     <div class="taskslist mt-4" @if(!$categoryTasks) style="display: none;" @endif>
-        <div class="actions text-black">
+        <div class="col-md-6 mt-1 actions text-black">
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="allTasks" id="allTasks" wire:model="filter"
                     value="all" wire:click="showAllTasksButton">

@@ -4,7 +4,7 @@
     <h1>Goals</h1>
     @include('livewire.goal.modalform')
     <div class="goalsList mt-5">
-        <div class="actions text-black">
+        <div class="col-md-6 actions text-black">
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="allGoals" id="allGoals" wire:model="filter" value="all" wire:click="showAllGoalsButton">
                 <label class="form-check-label" for="allGoals">
