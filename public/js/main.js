@@ -31,20 +31,26 @@ function timer() {
     }
     if (sHours.value == 0 && sMinutes.value == 0 && sSeconds.value == 0) {
         if (sessionAlert == false) {
+            ringtone.currentTime = 0;
             ringtone.play();
-            alert("Session time is over!");
-            sessionAlert = true;
+            if (confirm("Session time is over!")){
+                ringtone.pause();
+                sessionAlert = true;
+            } else{
+                ringtone.pause();
+                pauseTimer();
+                startTimer = undefined;
+                sessionAlert = true;
+                ringtone.stop();
+            }
         }
         if (bSeconds.value != 0 && sessionAlert == true) {
-            ringtone.stop();
             bSeconds.value--;
         } else if (bMinutes.value != 0 && bSeconds.value == 0) {
             bMinutes.value--;
             bSeconds.value = 59;
         } else if (bMinutes.value == 0 && bSeconds.value == 0) {
             clearInterval(startTimer);
-            ringtone.play();
-            alert("Break time is over!");
         }
     }
     if (sHours.value == 0 && sMinutes.value == 0 && sSeconds.value == 0 && bMinutes.value == 0 && bSeconds.value == 0) {
@@ -56,11 +62,30 @@ function timer() {
             bMinutes.value = bMinutes1;
             bSeconds.value = bSeconds1;
             cycle.value = cycle1;
-            alert("Cycle is over! Starting new cycle.");
+            ringtone.currentTime = 0;
+            ringtone.play();
+            if (confirm("Cycle is over! Starting new cycle.")){
+                ringtone.pause();
+            } else{
+                ringtone.pause();
+                pauseTimer();
+                startTimer = undefined;
+                ringtone.stop();
+            }
+            sessionAlert = false; 
         } else {
             clearInterval(startTimer);
+            ringtone.currentTime = 0;
             ringtone.play();
-            alert("All cycles completed!");
+            if (confirm("All cycles completed!")){
+                ringtone.pause();
+                location.reload();
+            } else{
+                ringtone.pause();
+                pauseTimer();
+                startTimer = undefined;
+                ringtone.stop();
+            }
         }
     }
 }
@@ -70,6 +95,7 @@ function pauseTimer() {
 }
 
 start.addEventListener('click', function () {
+    ringtone.currentTime = 0;
     if (startTimer === undefined) {
         sHours1 = sHours.value;
         sMinutes1 = sMinutes.value;
@@ -84,6 +110,7 @@ start.addEventListener('click', function () {
 });
 
 reset.addEventListener('click', function () {
+    ringtone.currentTime = 0;
     sHours.value = 0;
     sMinutes.value = 25;
     sSeconds.value = 0;
@@ -93,9 +120,11 @@ reset.addEventListener('click', function () {
 
     pauseTimer();
     startTimer = undefined;
+    sessionAlert = false;
 });
 
 pause.addEventListener('click', function () {
+    ringtone.currentTime = 0;
     pauseTimer()
     startTimer = undefined;
 });
