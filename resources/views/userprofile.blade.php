@@ -3,12 +3,13 @@
 <title>Profile</title>
 @endsection
 @section('content')
+<h1>Profile</h1>
 <div class="row bg-green profile">
-  <div class="col-md-8">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
     <div class="details">
-      <h1>Profile</h1>
       @auth
-      <table class="table border border-grey border-rounded">
+      <table class="table">
         <thead>
           <tr>
             <th scope="col" class="text-white" id="pink-colour">My Details</th>
@@ -24,39 +25,49 @@
         </tbody>
       </table>
       @endauth
-      <div class="updateDetails border rounded">
-        <form action="{{ route('profile.update', ['id' => $user->id]) }}" method="POST" class="border rounded bg-white">
-          @csrf
-          @method('PUT')
-          <div class="pink-colour pl-2 py-3 text-white ">
-            <h6><b>Update Details</b></h6>
-          </div>
-          <div class="my-3 mx-2">
-            <label for="updateName">New Name:</label>
-            <input type="text" name="updateName" class="form-control" id="updateName"
-              placeholder="Enter New First Name...">
-          </div>
-          <div class="my-3 mx-2">
-            <label for="newEmail">New Email:</label>
-            <input type="email" name="newEmail" class="form-control" id="newEmail"
-              placeholder="Enter New Email Address...">
-          </div>
-          <div class="my-3 mx-2">
-            <label for="currentPassword">Current Password:</label>
-            <input type="password" name="currentPassword" class="form-control" id="currentPassword"
-              placeholder="Enter Current Password...">
-          </div>
-          <div class="my-3 mx-2">
-            <label for="newPassword">New Password:</label>
-            <input type="password" name="newPassword" class="form-control" id="newPassword"
-              placeholder="Enter New Password...">
-          </div>
+      <form action="{{ route('profile.update', ['id' => $user->id]) }}" method="POST" class=" bg-white">
+        @csrf
+        @method('PUT')
+      <table class="table border border-grey rounded">
+        <thead>
+          <tr>
+            <th scope="col" class="text-white" id="pink-colour">Update Details</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr>
+            <td><div class="my-3 mx-2">
+              <label for="updateName">New Name:</label>
+              <input type="text" name="updateName" class="form-control" id="updateName"
+                placeholder="Enter New First Name...">
+            </div>
+            <div class="my-3 mx-2">
+              <label for="newEmail">New Email:</label>
+              <input type="email" name="newEmail" class="form-control" id="newEmail"
+                placeholder="Enter New Email Address...">
+            </div>
+            <div class="my-3 mx-2">
+              <label for="currentPassword">Current Password:</label>
+              <input type="password" name="currentPassword" class="form-control" id="currentPassword"
+                placeholder="Enter Current Password...">
+            </div>
+            <div class="my-3 mx-2">
+              <label for="newPassword">New Password:</label>
+              <input type="password" name="newPassword" class="form-control" id="newPassword"
+                placeholder="Enter New Password...">
+            </div>
           <button type="submit" class="btn text-white my-3 mx-2" id="blue-colour">Update</button>
+        </td>
+          </tr>
+        </tbody>
+      </table>
         </form>
+
+
+
       </div>
     </div>
-  </div>
-  <div class="col-md-4">
+  <div class="col-md-1">
     <div class="mt-5 errorMessage">
       @if($errors->any())
       <div class="col-12">

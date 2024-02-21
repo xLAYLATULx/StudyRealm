@@ -147,7 +147,7 @@ body{
   .content {
     margin-left: 15%;
     padding: 2%;
-    background-color: #f6f2f2;
+    background-color: #fefdfd;
     height: 100vh;
     overflow-y: auto;
     font-family: 'Roboto', sans-serif;
@@ -222,6 +222,12 @@ input[type="checkbox"] {
 /* End of Goal */
 
 /* Start of Task */
+.task-manager a{
+  color:#314559
+}
+.task-manager a:hover, a:active, a:focus{
+  color:#314559
+}
 .categories button{
   border:none;
 }
@@ -256,14 +262,36 @@ input[type="checkbox"] {
   width: 80%;
 }
 
+.dropbtn {
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
 }
+.dropdown-content a {
+  color: #314559;
+  padding: 12px 12px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #fefdfd; text-decoration: none;}
 
 .dropdown:hover .dropdown-content {display: block;}
 
+.dropdown:hover .dropbtn {background-color: lightgrey;}
 
 /* End of Task */
 
@@ -351,4 +379,16 @@ input[type="checkbox"] {
 .timer button:hover{
   background-color: #5e7388;
   color: white;
+}
+
+
+/* End of Pomodoro */
+
+
+/* Start of Profile */
+table{
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  padding: 5%;
+  background-color: white;
 }

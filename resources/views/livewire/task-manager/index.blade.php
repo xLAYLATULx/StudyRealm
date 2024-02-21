@@ -17,14 +17,14 @@
                             wire:model.defer="categoryTasks"
                             wire:click="ct({{ $category->id }})">{{$category->categoryName}} <i
                                 class="dropbtn ml-4 mr-3 fa fa-ellipsis-v"></i></a>
-                        <ul class="dropdown-content" @if(!$categoryTasks==$category->id) style="display: none;"@endif>
-                            <a class="btn" href="#" wire:click="editCategoryFields({{ $category->id }})"
+                        <div class="dropdown-content" @if(!$categoryTasks==$category->id) style="display: none;"@endif>
+                            <a class="" href="#" wire:click="editCategoryFields({{ $category->id }})"
                                 data-bs-toggle="modal" data-bs-target="#editCategoryModal"><i class="fa fa-pencil"></i>
                                 Edit</a>
-                            <a class="btn" href="#" wire:click="deleteCategoryButton({{ $category->id }})"
+                            <a class="" href="#" wire:click="deleteCategoryButton({{ $category->id }})"
                                 data-bs-toggle="modal" data-bs-target="#deleteCategoryModal"><i class="fa fa-trash"></i>
                                 Delete</a>
-                        </ul>
+                            </div>
                     </li>
                     @endforeach
                 </ul>
