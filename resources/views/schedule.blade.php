@@ -5,5 +5,6 @@
 @section('content')
 
 <h1>Schedule</h1>
+@yield('calendar')
 
 @endsection
