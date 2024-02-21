@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
-    function schedule(){
-        return view('schedule');
+    public function index(){
+        return view('schedule.index');
     }
 }
