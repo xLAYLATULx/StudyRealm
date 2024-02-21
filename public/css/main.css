@@ -18,6 +18,10 @@ body{
 .pink-colour{
     background-color: #FF6060;
 }
+#saveBtn{
+    background-color: #FF6060;
+    color: white;
+}
 #pink-colour{
     background-color: #FF6060;
     color: white;

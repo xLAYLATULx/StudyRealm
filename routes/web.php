@@ -56,6 +56,7 @@ Route::put('/profile/{id}', [AuthManager::class, 'updateDetails'])->name('profil
 Route::group(['middleware' => 'auth'], function(){
 
 Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule');
+Route::post('/schedule', [ScheduleController::class, 'store'])->name('schedule.store');
 
 Route::get('/pomodoro', [PomodoroController::class, 'pomodoro'])->name('pomodoro');
 
