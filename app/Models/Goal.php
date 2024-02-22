@@ -18,4 +18,9 @@ class Goal extends Model
         'deadline',
         'completed',
     ];
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'goalID');
+    }
 }

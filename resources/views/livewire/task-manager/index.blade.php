@@ -104,6 +104,7 @@
                             @elseif($task->priority == 'low')
                             Low
                             @endif Priority</h6>
+                        <p>{{$task->goalID}}</p>
                         <p>Description: {{$task->description}}</p>
                     </div>
                 </div>

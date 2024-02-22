@@ -35,9 +35,6 @@
                   </div>
             </div>
         </div>
-        {{-- <div class="addGoal mt-5 actions">
-            <a class="btn" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addGoalModal"><i class="fa fa-plus"></i> Add Goal</a>
-        </div> --}}
         @if($goals->isEmpty())
         <div class="noGoals mt-3">
             <p>No Goals Here...</p>
@@ -55,12 +52,12 @@
                         <div class="row align-items-center">
                             <div class="col-md-8">
                                 <div class="progress">
-                                    <div class="{{$goal->progress == 100.00 ? 'bg-success' : 'pink-colour'}}"  role="progressbar" style="width: {{$goal->progress}}%;"></div>
+                                    <div class="{{$goal->overallProgress == 100.00 ? 'bg-success' : 'pink-colour'}}" role="progressbar" style="width: {{$goal->overallProgress}}%;"></div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="progressBarText">
-                                    <p>{{$goal->progress}}% Completed</p>
+                                    <p>{{$goal->overallProgress}}% Completed</p>
                                 </div>
                             </div>
                         </div>
@@ -68,6 +65,17 @@
                 </div>
             <div class="row">
                 <p>Description: {{$goal->description}} </p>
+                @if ($goal->tasks->isEmpty())
+                <p>No Tasks Here...</p>
+                @else
+                <p>Tasks:</p>
+                <ul class="ml-5">
+                @foreach($goal->tasks as $task)
+                            <li>{{$task->taskName}}: Progress - {{$task->progress}}%</li>
+                        
+                    @endforeach
+                </ul>
+                @endif
             </div>
                 </div>
                 <div class="col-md-3">

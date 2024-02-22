@@ -178,6 +178,16 @@ class Index extends Component
 
         $goals = $goalList->paginate(3);
 
+        foreach ($goals as $goal) {
+            if($goal->tasks->count() > 0){
+                $totalProgress = $goal->tasks->sum('progress');
+                $totalTasks = $goal->tasks->count();
+                $goal->overallProgress = $totalTasks > 0 ? ($totalProgress / $totalTasks) : 0;
+            }else{
+                $goal->overallProgress = $goal->progress;
+            }
+        }
+
         return view('livewire.goal.index', ['goals' => $goals])->extends('layouts.navbar')->section('content');
     }
 

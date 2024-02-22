@@ -107,6 +107,16 @@ aria-hidden="true">
                             @endforeach
                         </select>
                         @error('categoryID') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div> 
+                    <div class="mb-3">
+                        <label>Goal: </label>
+                        <select name="goal" id="goal" wire:model.defer="goalID" class="form-select" aria-label="Default select example" required>
+                            <option value="" selected>Select Goal: </option>
+                            @foreach($goals as $goal)
+                                <option value="{{$goal->id}}">{{$goal->goalName}}</option>
+                            @endforeach
+                        </select>
+                        @error('goalID') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>                
                     <div class="mb-3">
                         <label>Priority: </label>
@@ -172,6 +182,16 @@ aria-hidden="true">
                         @endforeach
                     </select>
                 </div>
+                <div class="mb-3">
+                    <label>Goal: </label>
+                    <select name="goal" id="goal" wire:model.defer="goalID" class="form-select" aria-label="Default select example" required>
+                        <option value="" selected>Select Goal: </option>
+                        @foreach($goals as $goal)
+                            <option value="{{$goal->id}}">{{$goal->goalName}}</option>
+                        @endforeach
+                    </select>
+                    @error('goalID') <span class="text-danger">{{ $message }}</span> @enderror
+                </div> 
                 <div class="mb-3">
                     <label>Priority: </label>
                     <select name="priority" id="priority" wire:model.defer="priority" class="form-select" aria-label="Default select example" required>

@@ -4,6 +4,7 @@ namespace App\Livewire\TaskManager;
 
 use App\Models\Task;
 use App\Models\Category;
+use App\Models\Goal;
 use App\Models\Schedule;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -12,8 +13,9 @@ class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $userID, $categoryID, $taskName, $description, $priority, $dueDate, $progress = 0.00, $task_id, $completed; // Tasks Variables
+    public $userID, $categoryID, $taskName, $description, $priority, $dueDate, $progress = 0.00, $task_id, $completed, $goalID; // Tasks Variables
     public $categoryName, $category_id; // Categories Variables
+    public $goalName, $goal_id; // Goals Variables
     public $showTasks = false;
     public $categoryTasks;
     public $filter = 'all';
@@ -30,7 +32,6 @@ class Index extends Component
         'progress' => 'required|integer',
         'dueDate' => 'required|date',
         'categoryName' => 'required',
-
         ];
     }
 
@@ -109,6 +110,7 @@ class Index extends Component
             'dueDate' => $this->dueDate,
             'progress' => $this->progress,
             'completed' => $this->completed,
+            'goalID' => $this->goalID,
         ]);
         Schedule::create([
             'userID' => auth()->user()->id,
@@ -131,6 +133,7 @@ class Index extends Component
         $this->priority = $task->priority;
         $this->progress = $task->progress;
         $this->dueDate = $task->dueDate;
+        $this->goalID = $task->goalID;
     }
     
 
@@ -151,6 +154,7 @@ class Index extends Component
             'dueDate' => $this->dueDate,
             'progress' => $this->progress,
             'completed' => $this->completed,
+            'goalID' => $this->goalID,
         ]);
         Schedule::where('title', $editEventName)->update([
             'userID' => auth()->user()->id,
@@ -190,6 +194,7 @@ class Index extends Component
         $this->dueDate = NULL;
         $this->progress = 0.00;
         $this->task_id = NULL;
+        $this->goalID = NULL;
     }
 
     public function closeModal(){
@@ -251,7 +256,8 @@ class Index extends Component
 
         $tasks = $taskList->paginate(3);
         $categories = Category::where('userID', auth()->user()->id)->get();
+        $goals = Goal::where('userID', auth()->user()->id)->get();
 
-        return view('livewire.task-manager.index', compact('tasks', 'categories'))->extends('layouts.navbar')->section('content');
+        return view('livewire.task-manager.index', compact('tasks', 'categories', 'goals'))->extends('layouts.navbar')->section('content');
     }
 }

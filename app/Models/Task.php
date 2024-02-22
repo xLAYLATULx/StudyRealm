@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Goal;
 
 class Task extends Model
 {
@@ -19,5 +20,11 @@ class Task extends Model
         'dueDate',
         'progress',
         'completed',
+        'goalID',
     ];
+
+    public function goal()
+    {
+        return $this->belongsTo(Goal::class);
+    }
 }

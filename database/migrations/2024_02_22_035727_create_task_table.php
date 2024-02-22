@@ -13,14 +13,18 @@ return new class extends Migration
     {
         Schema::create('task', function (Blueprint $table) {
             $table->id();
-            $table->integer('userID')->references('id')->on('users'); // Foreign key
-            $table->integer('categoryID')->references('id')->on('category'); // Foreign key
+            $table->unsignedBigInteger('userID');
+            $table->foreign('userID')->references('id')->on('users');
+            $table->unsignedBigInteger('categoryID');
+            $table->foreign('categoryID')->references('id')->on('categories');
             $table->string('taskName');
             $table->text('description');
             $table->enum('priority', ['high', 'medium', 'low']);
             $table->date('dueDate');
             $table->float('progress', 5, 2)->default(0.00);
             $table->boolean('completed')->default(false);
+            $table->unsignedBigInteger('goalID')->nullable();
+            $table->foreign('goalID')->references('id')->on('goals');
             $table->timestamps();
         });
     }
@@ -30,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('task');
+        Schema::dropIfExists('tasks');
     }
 };
