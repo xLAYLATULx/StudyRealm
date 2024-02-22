@@ -110,10 +110,10 @@
 <script>
   window.addEventListener('DOMContentLoaded', function () {
     var errorMessage = document.querySelector('.errorMessage');
-    errorMessage.classList.add('show'); // Initially show the error message
+    errorMessage.classList.add('show');
     setTimeout(function () {
       errorMessage.classList.remove('show');
-    }, 5000); // Adjust the timeout value according to your preference
+    }, 5000);
   });
 </script>
 

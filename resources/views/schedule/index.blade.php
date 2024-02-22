@@ -212,9 +212,6 @@ $(document).ready(function() {
             <a href="{{ route('pomodoro') }}" class="{{ Request::is('pomodoro') ? 'active' : '' }} rounded">
                 <i class="fa fa-hourglass-start"></i><label>Pomodoro</label>
             </a>
-            <a href="{{ url('/report') }}" class="{{ Request::is('report') ? 'active' : '' }} rounded">
-                <i class="fa fa-file-text"></i><label>Reports</label>
-            </a>
         </div>
         <div class="bottom-nav-items nav-items">
             <a href="{{ route('profile', ['id' => auth()->user()->id]) }}"
