@@ -110,7 +110,7 @@ aria-hidden="true">
                     </div> 
                     <div class="mb-3">
                         <label>Goal: </label>
-                        <select name="goal" id="goal" wire:model.defer="goalID" class="form-select" aria-label="Default select example" required>
+                        <select name="goal" id="goal" wire:model.defer="goalID" class="form-select" aria-label="Default select example">
                             <option value="" selected>Select Goal: </option>
                             @foreach($goals as $goal)
                                 <option value="{{$goal->id}}">{{$goal->goalName}}</option>
@@ -184,7 +184,7 @@ aria-hidden="true">
                 </div>
                 <div class="mb-3">
                     <label>Goal: </label>
-                    <select name="goal" id="goal" wire:model.defer="goalID" class="form-select" aria-label="Default select example" required>
+                    <select name="goal" id="goal" wire:model.defer="goalID" class="form-select" aria-label="Default select example">
                         <option value="" selected>Select Goal: </option>
                         @foreach($goals as $goal)
                             <option value="{{$goal->id}}">{{$goal->goalName}}</option>
