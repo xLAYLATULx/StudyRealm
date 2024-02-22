@@ -24,57 +24,106 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
-        $(document).ready(function() {
+       $(document).ready(function() {
     $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
     });
+
     var event = @json($events);
-   $('#calendar').fullCalendar({
-    header:{
-     left:'prev,next today',
-     center:'title',
-     right:'month,agendaWeek,agendaDay'
-    },
-    events: event,
-    selectable: true,
-    selectHelper: true,
-    select: function(start, end, allDays) {
-        $('#scheduleModal').modal('toggle');
-        $('#saveBtn').click(function() {
-            var title = $("#eventName").val();
-            var startDate = start.format('YYYY-MM-DD');
-            var endDate = start.format('YYYY-MM-DD');
+
+    $('#calendar').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        events: event,
+        selectable: true,
+        selectHelper: true,
+        defaultView: 'agendaDay',
+        select: function(start, end, allDays) {
+            $('#scheduleModal').modal('toggle');
+            $('#saveBtn').click(function() {
+                var title = $("#eventName").val();
+                var description = $("#eventDescription").val();
+                var startDate = start.format('YYYY-MM-DD');
+                var endDate = start.format('YYYY-MM-DD');
+                $.ajax({
+                    url: '{{ route("schedule.store") }}',
+                    type: "POST",
+                    dataType: 'json',
+                    data: {
+                        title: title,
+                        description: description,
+                        startDate: startDate,
+                        endDate: endDate,
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        $('#scheduleModal').modal('hide');
+                        $('#calendar').fullCalendar('renderEvent', {
+                            'title': response.title,
+                            'description': response.description,
+                            'start': response.startDate,
+                            'end': response.endDate
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        },
+        editable: true,
+        eventDrop: function(event, delta, revertFunc) {
+            var id = event.id;
+            var startDate = event.start.format('YYYY-MM-DD');
+            var endDate = (event.end == null) ? startDate : event.end.format('YYYY-MM-DD');
             $.ajax({
-                url: '{{ route("schedule.store") }}',
-                type: "POST",
+                url: '{{ route("schedule.update", "") }}' + '/' + id,
+                type: "PATCH",
                 dataType: 'json',
                 data: {
-                    title: title,
                     startDate: startDate,
                     endDate: endDate,
                 },
                 success: function(response) {
-                    console.log(response);
-                    $('#scheduleModal').modal('hide');
-                    $('#calendar').fullCalendar('renderEvent', {
-                        'title': response.title,
-                        'start': response.startDate,
-                        'end': response.endDate
-                    });
+                    swal("Done!", "Event Updated Successfully!", "success");
                 },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
+                error: function(error) {
+                    console.log(error)
                 }
             });
-        });
-    },
-
-
+        },
+        eventClick: function(event){
+            var id = event.id;
+            if(confirm("Are you sure you want to delete this event?")){
+                $.ajax({
+                url: '{{ route("schedule.destroy", "") }}' + '/' + id,
+                type: "DELETE",
+                dataType: 'json',
+                success: function(response) {
+                    var id = response;
+                    console.log(id);
+                    $('#calendar').fullCalendar('removeEvents', id);
+                    swal("Done!", "Event Deleted!", "success");
+                },
+                error: function(error) {
+                    console.log(error)
+                }
+            });
+            }
+        },
+    });
+    $("#scheduleModal").on('hidden.bs.modal', function () {
+        $("#saveBtn").unbind();
+    });
 });
-});
+
    
     </script>
 </head>
@@ -132,10 +181,17 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <div class="mb-3">
                         <label for="eventName">Event Name: </label>
                         <input id="eventName" name="eventName" type="text" class="form-control"
                             placeholder="Enter Event Name..." required>
                         <span id="titleError" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="eventdescription">Event Description: </label>
+                            <input type="text" name="eventDescription" id="eventDescription" class="form-control"
+                                placeholder="Enter Event Description..." required>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn" data-bs-dismiss="modal" id="lightBlue-colour"><i

@@ -14,7 +14,9 @@ class ScheduleController extends Controller
         foreach($schedule as $s){
             if($s->userID == auth()->id()){
             $events[] = [
+                'id' => $s->id,
                 'title' => $s->title,
+                'description' => $s->description,
                 'start' => $s->startDate,
                 'end' => $s->endDate,
             ];
@@ -34,12 +36,35 @@ class ScheduleController extends Controller
     $schedule = Schedule::create([
         'userID' => auth()->id(),
         'title' => $request->title,
-        'description' => 'No description',
+        'description' => $request->description,
         'startDate' => $request->startDate,
         'endDate' => $request->endDate,
     ]);
 
     return response()->json($schedule);
+}
+
+public function update(Request $request, $id)
+{
+    $schedule = Schedule::find($id);
+    if(!$schedule){
+        return response()->json(['error' => 'Event not found'], 404);
+    }
+    $schedule->update([
+        'startDate' => $request->startDate,
+        'endDate' => $request->endDate,
+    ]);
+    return response()->json("Event Updated");
+
+}
+
+public function destroy($id){
+    $schedule = Schedule::find($id);
+    if(!$schedule){
+        return response()->json(['error' => 'Event not found'], 404);
+    }
+    $schedule->delete();
+    return $id;
 }
 
 }

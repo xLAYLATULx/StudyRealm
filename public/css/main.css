@@ -232,6 +232,10 @@ input[type="checkbox"] {
 .task-manager a:hover, a:active, a:focus{
   color:#314559
 }
+
+.task-manager .btn:hover{
+  opacity: 0.90;
+}
 .categories button{
   border:none;
 }

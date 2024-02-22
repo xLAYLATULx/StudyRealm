@@ -4,6 +4,7 @@ namespace App\Livewire\TaskManager;
 
 use App\Models\Task;
 use App\Models\Category;
+use App\Models\Schedule;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -109,6 +110,13 @@ class Index extends Component
             'progress' => $this->progress,
             'completed' => $this->completed,
         ]);
+        Schedule::create([
+            'userID' => auth()->user()->id,
+            'title' => $this->taskName,
+            'description' => $this->description,
+            'startDate' => $this->dueDate,
+            'endDate' => $this->dueDate,
+        ]);
         session()->flash('success', 'Task Created Successfully');
         $this->dispatch('close-modal');
         $this->resetTaskInputs();
@@ -127,6 +135,8 @@ class Index extends Component
     
 
     public function editTask(){
+        $editEvent = Task::findOrFail($this->task_id);
+        $editEventName = $editEvent->taskName;
         if($this->progress >= 100){
             $this->completed = true;
         }else{
@@ -142,6 +152,13 @@ class Index extends Component
             'progress' => $this->progress,
             'completed' => $this->completed,
         ]);
+        Schedule::where('title', $editEventName)->update([
+            'userID' => auth()->user()->id,
+            'title' => $this->taskName,
+            'description' => $this->description,
+            'startDate' => $this->dueDate,
+            'endDate' => $this->dueDate,
+        ]);
         session()->flash('success', 'Task Updated Successfully');
         $this->dispatch('close-modal');
         $this->resetTaskInputs();
@@ -153,6 +170,9 @@ class Index extends Component
 
     public function deleteTask(){
         Task::findOrFail($this->task_id)->delete();
+        $editEvent = Task::findOrFail($this->task_id);
+        $editEventName = $editEvent->taskName;
+        Schedule::where('title', $editEventName)->delete;
         session()->flash('success', 'Task Deleted Successfully');
         $this->dispatch('close-modal');
         $this->resetTaskInputs();

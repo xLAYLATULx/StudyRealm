@@ -112,10 +112,10 @@
                         <p class="ml-4">Due Date: {{$task->dueDate}}</p>
                     </div>
                     <div class="position-absolute bottom-0 end-0 mx-3">
-                        <a href="" wire:click="editTaskFields({{ $task->id }})" class="edit btn text-white"
+                        <a href="text-white" wire:click="editTaskFields({{ $task->id }})" class="edit btn text-white"
                             data-bs-toggle="modal" data-bs-target="#editTaskModal" id="blue-colour"><i
                                 class="fa fa-pencil"></i> Edit</a>
-                        <a class="btn btn-danger" href="#" wire:click="deleteTaskButton({{ $task->id }})"
+                        <a class="btn btn-danger text-white" href="#" wire:click="deleteTaskButton({{ $task->id }})"
                             data-bs-toggle="modal" data-bs-target="#deleteTaskModal"><i class="fa fa-trash"></i>
                             Delete</a>
                     </div>

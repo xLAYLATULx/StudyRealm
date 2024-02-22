@@ -3,6 +3,7 @@
 namespace App\Livewire\Goal;
 
 use App\Models\Goal;
+use App\Models\Schedule;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -51,6 +52,13 @@ class Index extends Component
             'deadline' => $this->deadline,
             'completed' => $this->completed,
         ]);
+        Schedule::create([
+            'userID' => auth()->user()->id,
+            'title' => $this->goalName,
+            'description' => $this->description,
+            'startDate' => $this->deadline,
+            'endDate' => $this->deadline,
+        ]);
         session()->flash('success', 'Goal Created Successfully');
         $this->dispatch('close-modal');
         $this->resetInputs();
@@ -68,6 +76,8 @@ class Index extends Component
 
     public function editGoal()
     {
+        $editEvent = Goal::findOrFail($this->goal_id);
+        $editEventName = $editEvent->goalName;
         if ($this->progress >= 100) {
             $this->completed = true;
         } else {
@@ -82,6 +92,13 @@ class Index extends Component
             'completed' => $this->completed
             ,
         ]);
+        Schedule::where('title', $editEventName)->update([
+            'userID' => auth()->user()->id,
+            'title' => $this->goalName,
+            'description' => $this->description,
+            'startDate' => $this->deadline,
+            'endDate' => $this->deadline,
+        ]);
         session()->flash('success', 'Goal Updated Successfully');
         $this->dispatch('close-modal');
         $this->resetInputs();
@@ -94,7 +111,10 @@ class Index extends Component
 
     public function deleteGoal()
     {
+        $deleteEvent = Goal::findOrFail($this->goal_id);
+        $deleteEventName = $deleteEvent->goalName;
         Goal::findOrFail($this->goal_id)->delete();
+        Schedule::where('title', $deleteEventName)->delete();
         session()->flash('success', 'Goal Deleted Successfully');
         $this->dispatch('close-modal');
         $this->resetInputs();
@@ -138,7 +158,6 @@ class Index extends Component
     {
         $this->sortByAsc = !$this->sortByAsc;
     }
-
 
     public function render()
     {
