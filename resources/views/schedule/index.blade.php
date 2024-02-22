@@ -26,32 +26,45 @@
     </script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
-       $(document).ready(function() {
+$(document).ready(function() {
+    function getCurrentDateTime() {
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = ('0' + (now.getMonth() + 1)).slice(-2);
+        var day = ('0' + now.getDate()).slice(-2);
+        var hours = ('0' + now.getHours()).slice(-2);
+        var minutes = ('0' + now.getMinutes()).slice(-2);
+        return year + '-' + month + '-' + day + 'T' + hours + ':' + minutes;
+    }
+    $('#eventStart').val(getCurrentDateTime());
+    $('#eventEnd').val(getCurrentDateTime());
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
 
-    var event = @json($events);
+    var events = @json($events);
 
     $('#calendar').fullCalendar({
+        height: 600,
+        timeFormat: 'HH:mm',
         header: {
             left: 'prev,next today',
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
         },
-        events: event,
+        events: events,
         selectable: true,
         selectHelper: true,
         defaultView: 'agendaDay',
         select: function(start, end, allDays) {
             $('#scheduleModal').modal('toggle');
-            $('#saveBtn').click(function() {
+            $('#saveEventBtn').click(function() {
                 var title = $("#eventName").val();
                 var description = $("#eventDescription").val();
-                var startDate = start.format('YYYY-MM-DD');
-                var endDate = start.format('YYYY-MM-DD');
+                var startDate = $("#eventStart").val();
+                var endDate = $("#eventEnd").val();
                 $.ajax({
                     url: '{{ route("schedule.store") }}',
                     type: "POST",
@@ -66,6 +79,7 @@
                         console.log(response);
                         $('#scheduleModal').modal('hide');
                         $('#calendar').fullCalendar('renderEvent', {
+                            'id': response.id,
                             'title': response.title,
                             'description': response.description,
                             'start': response.startDate,
@@ -84,7 +98,7 @@
             var startDate = event.start.format('YYYY-MM-DD');
             var endDate = (event.end == null) ? startDate : event.end.format('YYYY-MM-DD');
             $.ajax({
-                url: '{{ route("schedule.update", "") }}' + '/' + id,
+                url: '{{ route("schedule.drag", "") }}' + '/' + id,
                 type: "PATCH",
                 dataType: 'json',
                 data: {
@@ -99,33 +113,81 @@
                 }
             });
         },
-        eventClick: function(event){
-            var id = event.id;
-            if(confirm("Are you sure you want to delete this event?")){
+        
+        eventClick: function(event) {
+            $('#editEventModal').modal('show');
+            var start = moment(event.start).format('YYYY-MM-DD HH:mm:ss');
+            var end = (event.end == null) ? start : moment(event.end).format('YYYY-MM-DD HH:mm:ss');
+
+
+            $('#editEventName').val(event.title);
+            $('#editEventDescription').val(event.description);
+            $('#editEventStart').val(start);
+            $('#editEventEnd').val(end);
+            
+
+            console.log(start, end);
+
+            $('#updateEventBtn').unbind().click(function() {
+                var id = event.id;
+                var title = $('#editEventName').val();
+                var description = $('#editEventDescription').val();
+                var startDate = $('#editEventStart').val();
+                var endDate = $('#editEventEnd').val();
                 $.ajax({
-                url: '{{ route("schedule.destroy", "") }}' + '/' + id,
-                type: "DELETE",
-                dataType: 'json',
-                success: function(response) {
-                    var id = response;
-                    console.log(id);
-                    $('#calendar').fullCalendar('removeEvents', id);
-                    swal("Done!", "Event Deleted!", "success");
-                },
-                error: function(error) {
-                    console.log(error)
+                    url: '{{ route("schedule.update", "") }}' + '/' + id,
+                    type: "PATCH",
+                    dataType: 'json',
+                    data: {
+                        title: title,
+                        description: description,
+                        startDate: startDate,
+                        endDate: endDate
+                    },
+                    success: function(response) {
+                        event.title = title;
+                        event.description = description;
+                        event.start = startDate;
+                        event.end = endDate;
+                        $('#calendar').fullCalendar('updateEvent', event);
+                        $('#editEventModal').modal('hide');
+                        swal("Done!", "Event Updated Successfully!", "success");
+                    },
+                    error: function(error) {
+                        console.log(error)
+                    }
+                });
+            });
+
+            $('#deleteEventBtn').unbind().click(function() {
+                if (confirm("Are you sure you want to delete this event?")) {
+                    var id = event.id;
+                    $.ajax({
+                        url: '{{ route("schedule.destroy", "") }}' + '/' + id,
+                        type: "DELETE",
+                        dataType: 'json',
+                        success: function(response) {
+                            $('#calendar').fullCalendar('removeEvents', id);
+                            $('#editEventModal').modal('hide');
+                            swal("Done!", "Event Deleted!", "success");
+                        },
+                        error: function(error) {
+                            console.log(error)
+                            console.log("didn't work")
+                        }
+                    });
                 }
             });
-            }
         },
+        
     });
-    $("#scheduleModal").on('hidden.bs.modal', function () {
-        $("#saveBtn").unbind();
+    $("#scheduleModal").on('hidden.bs.modal', function() {
+        $("#saveEventBtn").unbind();
     });
 });
 
-   
-    </script>
+</script>
+
 </head>
 
 <body>
@@ -167,12 +229,6 @@
     <div class="content">
         <h1>Schedule</h1>
         <!-- Modal Form -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#scheduleModal">
-            Launch demo modal
-        </button>
-
-        <!-- Modal -->
-        <!-- Modal Form -->
         <div class="modal fade" id="scheduleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -192,12 +248,20 @@
                             <input type="text" name="eventDescription" id="eventDescription" class="form-control"
                                 placeholder="Enter Event Description..." required>
                         </div>
+                        <div class="mb-3">
+                            <label for="eventStart">Start Time:</label>
+                            <input type="datetime-local" name="eventStart" id="eventStart" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="eventEnd">End Time:</label>
+                            <input type="datetime-local" name="eventEnd" id="eventEnd" class="form-control" required>
+                        </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="actions d-flex m-3">
+                        <button type="submit" class="btn pink-colour-bg" id="saveFullBtn"><i class="fa fa-check"></i>
+                            Save</button>
                         <button type="button" class="btn" data-bs-dismiss="modal" id="lightBlue-colour"><i
                                 class="fa fa-close"></i> Close</button>
-                        <button type="submit" class="btn pink-colour-bg" id="saveBtn"><i class="fa fa-check"></i>
-                            Save</button>
                     </div>
                 </div>
             </div>
@@ -205,7 +269,51 @@
 
         <!-- End of Modal Form -->
 
-        <div class="container mt-5">
+
+        <!-- Edit Modal Form -->
+<div class="modal fade" id="editEventModal" tabindex="-1" aria-labelledby="editEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editEventModalLabel">Edit Event</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="editEventName">Event Name:</label>
+                    <input id="editEventName" name="editEventName" type="text" class="form-control"
+                        placeholder="Enter Event Name..." required>
+                    <span id="editTitleError" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="editEventDescription">Event Description:</label>
+                    <input type="text" name="editEventDescription" id="editEventDescription" class="form-control"
+                        placeholder="Enter Event Description..." required>
+                </div>
+                <div class="mb-3">
+                    <label for="editEventStart">Start Time:</label>
+                    <input type="datetime-local" name="editEventStart" id="editEventStart" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="editEventEnd">End Time:</label>
+                    <input type="datetime-local" name="editEventEnd" id="editEventEnd" class="form-control" required>
+                </div>
+            </div>
+            <div class="actions d-flex m-3">
+                <button type="submit" class="btn pink-colour-bg" id="updateEventBtn"><i class="fa fa-check"></i> Save</button>
+                <button type="button" class="btn btn-danger" id="deleteEventBtn"><i class="fa fa-trash"></i> Delete</button>
+                <button type="button" class="btn btn-secondary" id="lightBlue-colour" data-bs-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <!-- End of Edit Modal Form -->
+
+        <div class="container mt-3">
+
             <div id="calendar"></div>
         </div>
     </div>

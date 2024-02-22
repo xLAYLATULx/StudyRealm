@@ -20,6 +20,7 @@ class ScheduleController extends Controller
                 'start' => $s->startDate,
                 'end' => $s->endDate,
             ];
+            
         }
         }
         return view('schedule.index', ['events' => $events]);
@@ -44,6 +45,21 @@ class ScheduleController extends Controller
     return response()->json($schedule);
 }
 
+public function drag(Request $request, $id)
+{
+    $schedule = Schedule::find($id);
+    if(!$schedule){
+        return response()->json(['error' => 'Event not found'], 404);
+    }
+    $schedule->update([
+        'startDate' => $request->startDate,
+        'endDate' => $request->endDate,
+    ]);
+    return response()->json("Event Updated");
+
+}
+
+
 public function update(Request $request, $id)
 {
     $schedule = Schedule::find($id);
@@ -51,6 +67,8 @@ public function update(Request $request, $id)
         return response()->json(['error' => 'Event not found'], 404);
     }
     $schedule->update([
+        'title' => $request->title,
+        'description' => $request->description,
         'startDate' => $request->startDate,
         'endDate' => $request->endDate,
     ]);

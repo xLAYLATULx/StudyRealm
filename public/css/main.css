@@ -22,6 +22,18 @@ body{
     background-color: #FF6060;
     color: white;
 }
+
+#saveFullBtn{
+    background-color: #FF6060;
+    color: white;
+
+}
+
+#updateEventBtn{
+    background-color: #FF6060;
+    color: white;
+
+}
 #pink-colour{
     background-color: #FF6060;
     color: white;
@@ -302,6 +314,20 @@ input[type="checkbox"] {
 .dropdown:hover .dropbtn {background-color: lightgrey;}
 
 /* End of Task */
+
+/* Start of Schedule */
+.fc {
+  text-transform: capitalize;
+}
+.fc-button {
+  text-transform: capitalize;
+  background-color: #588ec5;
+  color: white;
+
+}
+
+
+
 
 /* Start of Pomodoro */
 .sessionTime{

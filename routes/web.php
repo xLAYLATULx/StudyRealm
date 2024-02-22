@@ -57,6 +57,7 @@ Route::group(['middleware' => 'auth'], function(){
 
 Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule');
 Route::post('/schedule', [ScheduleController::class, 'store'])->name('schedule.store');
+Route::patch('/schedule/drag/{id}', [ScheduleController::class, 'drag'])->name('schedule.drag');
 Route::patch('/schedule/update/{id}', [ScheduleController::class, 'update'])->name('schedule.update');
 Route::delete('/schedule/destroy/{id}', [ScheduleController::class, 'destroy'])->name('schedule.destroy');
 
