@@ -84,8 +84,8 @@
                             <div class="row align-items-center">
                                 <div class="col-md-8">
                                     <div class="progress">
-                                        <div class="{{$task->progress == 100.00 ? 'bg-success' : 'pink-colour'}}"
-                                            role="progressbar" style="width: {{$task->progress}}%;"></div>
+                                        <div class="progress-bar {{$task->progress == 100.00 ? 'bg-success' : 'pink-colour'}}"
+                                            role="progressbar" style="width: {{$task->progress}}%; background-color: #FF6060"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
