@@ -60,11 +60,17 @@ $(document).ready(function() {
         defaultView: 'agendaDay',
         select: function(start, end, allDays) {
             $('#scheduleModal').modal('toggle');
-            $('#saveEventBtn').click(function() {
+            var startE = moment(start).format('YYYY-MM-DD HH:mm:ss');
+            var endE = (end == null) ? start : moment(end).format('YYYY-MM-DD HH:mm:ss');
+            $('#eventStart').val(startE);
+            $('#eventEnd').val(endE);
+            $('#saveFullBtn').click(function() {
                 var title = $("#eventName").val();
                 var description = $("#eventDescription").val();
                 var startDate = $("#eventStart").val();
                 var endDate = $("#eventEnd").val();
+                var isGoal = '0';
+                var isTask = '0';
                 $.ajax({
                     url: '{{ route("schedule.store") }}',
                     type: "POST",
@@ -74,6 +80,8 @@ $(document).ready(function() {
                         description: description,
                         startDate: startDate,
                         endDate: endDate,
+                        isGoal: isGoal,
+                        isTask: isTask,
                     },
                     success: function(response) {
                         console.log(response);
@@ -83,7 +91,9 @@ $(document).ready(function() {
                             'title': response.title,
                             'description': response.description,
                             'start': response.startDate,
-                            'end': response.endDate
+                            'end': response.endDate,
+                            'isGoal' : response.isGoal,
+                            'isTask' : response.isTask,
                         });
                     },
                     error: function(xhr, status, error) {
@@ -182,7 +192,7 @@ $(document).ready(function() {
         
     });
     $("#scheduleModal").on('hidden.bs.modal', function() {
-        $("#saveEventBtn").unbind();
+        $("#saveFullBtn").unbind();
     });
 });
 

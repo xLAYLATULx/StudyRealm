@@ -58,6 +58,8 @@ class Index extends Component
             'description' => $this->description,
             'startDate' => $this->deadline,
             'endDate' => $this->deadline,
+            'isGoal' => true,
+            'isTask' => false,
         ]);
         session()->flash('success', 'Goal Created Successfully');
         $this->dispatch('close-modal');
@@ -89,8 +91,9 @@ class Index extends Component
             'description' => $this->description,
             'progress' => $this->progress,
             'deadline' => $this->deadline,
-            'completed' => $this->completed
-            ,
+            'completed' => $this->completed,
+            'isGoal' => true,
+            'isTask' => false,
         ]);
         Schedule::where('title', $editEventName)->update([
             'userID' => auth()->user()->id,
@@ -98,6 +101,8 @@ class Index extends Component
             'description' => $this->description,
             'startDate' => $this->deadline,
             'endDate' => $this->deadline,
+            'isGoal' => '0',
+            'isTask' => '0',
         ]);
         session()->flash('success', 'Goal Updated Successfully');
         $this->dispatch('close-modal');
@@ -183,6 +188,7 @@ class Index extends Component
                 $totalProgress = $goal->tasks->sum('progress');
                 $totalTasks = $goal->tasks->count();
                 $goal->overallProgress = $totalTasks > 0 ? ($totalProgress / $totalTasks) : 0;
+                $goal->progress = $totalProgress;
             }else{
                 $goal->overallProgress = $goal->progress;
             }

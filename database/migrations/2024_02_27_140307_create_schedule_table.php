@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('schedule', function (Blueprint $table) {
             $table->id();
-            $table->integer('userID')->references('id')->on('users'); // Foreign key
-            $table->string('sessionName');
-            $table->date('sessionDate');
-            $table->date('reminder');
+            $table->integer('userID')->references('id')->on('users');
+            $table->string('title');
+            $table->text('description');
+            $table->dateTime('startDate');
+            $table->dateTime('endDate');
+            $table->boolean('isGoal');
+            $table->boolean('isTask');
             $table->timestamps();
         });
     }

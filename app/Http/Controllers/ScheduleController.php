@@ -13,12 +13,20 @@ class ScheduleController extends Controller
         $schedule = Schedule::all();
         foreach($schedule as $s){
             if($s->userID == auth()->id()){
+                if($s->isGoal == 1){
+                    $colour = "yellow";
+                } else if($s->isTask == 1){
+                    $colour = "red";
+                } else {
+                    $colour = "#3788d8";
+                }
             $events[] = [
                 'id' => $s->id,
                 'title' => $s->title,
                 'description' => $s->description,
                 'start' => $s->startDate,
                 'end' => $s->endDate,
+                'backgroundColor' => $colour,
             ];
             
         }
@@ -40,6 +48,8 @@ class ScheduleController extends Controller
         'description' => $request->description,
         'startDate' => $request->startDate,
         'endDate' => $request->endDate,
+        'isGoal' => $request->isGoal,
+        'isTask' => $request->isTask,
     ]);
 
     return response()->json($schedule);

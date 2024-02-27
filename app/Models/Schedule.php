@@ -16,5 +16,7 @@ class Schedule extends Model
         'description',
         'startDate',
         'endDate',
+        'isGoal',
+        'isTask',
     ];
 }

@@ -118,6 +118,8 @@ class Index extends Component
             'description' => $this->description,
             'startDate' => $this->dueDate,
             'endDate' => $this->dueDate,
+            'isGoal' => false,
+            'isTask' => true,
         ]);
         session()->flash('success', 'Task Created Successfully');
         $this->dispatch('close-modal');
@@ -162,6 +164,8 @@ class Index extends Component
             'description' => $this->description,
             'startDate' => $this->dueDate,
             'endDate' => $this->dueDate,
+            'isGoal' => false,
+            'isTask' => true,
         ]);
         session()->flash('success', 'Task Updated Successfully');
         $this->dispatch('close-modal');

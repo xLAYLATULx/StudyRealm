@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('userID');
             $table->foreign('userID')->references('id')->on('users');
             $table->unsignedBigInteger('categoryID');
-            $table->foreign('categoryID')->references('id')->on('categories');
+            $table->foreign('categoryID')->references('id')->on('category');
             $table->string('taskName');
             $table->text('description');
             $table->enum('priority', ['high', 'medium', 'low']);
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->float('progress', 5, 2)->default(0.00);
             $table->boolean('completed')->default(false);
             $table->unsignedBigInteger('goalID')->nullable();
-            $table->foreign('goalID')->references('id')->on('goals');
+            $table->foreign('goalID')->references('id')->on('goal');
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('task');
     }
 };
