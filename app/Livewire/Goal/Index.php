@@ -188,7 +188,10 @@ class Index extends Component
                 $totalProgress = $goal->tasks->sum('progress');
                 $totalTasks = $goal->tasks->count();
                 $goal->overallProgress = $totalTasks > 0 ? ($totalProgress / $totalTasks) : 0;
-                $goal->progress = $totalProgress;
+                $goal->progress = $goal->overallProgress;
+                Goal::findOrFail($goal->id)->update([
+                    'progress' => $goal->overallProgress,
+                ]);
             }else{
                 $goal->overallProgress = $goal->progress;
             }
