@@ -46,7 +46,7 @@
                 <div class="col-md-9">
                     <div class="row">
                         <div class="col-md-5">
-                            <h5><strong>{{$goal->goalName}}</strong></h5>
+                            <h5><i class="fa fa-bullseye pink-text"></i> <strong>{{$goal->goalName}}</strong></h5>
                         </div>
                     <div class="col-md-7">
                         <div class="row align-items-center">
@@ -66,15 +66,13 @@
             <div class="row">
                 <p>Description: {{$goal->description}} </p>
                 @if ($goal->tasks->isEmpty())
-                <p>No Tasks Here...</p>
+                
                 @else
-                <p>Tasks:</p>
-                <ul class="ml-5">
+                <p>Tasks: </p>
                 @foreach($goal->tasks as $task)
-                            <li>{{$task->taskName}}: Progress - {{$task->progress}}%</li>
+                            <p><i class="fa fa-check pink-text"></i> {{$task->taskName}}: Progress - {{$task->progress}}%</p>
                         
                     @endforeach
-                </ul>
                 @endif
             </div>
                 </div>

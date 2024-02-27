@@ -78,7 +78,7 @@
                 <div class="col-md-9">
                     <div class="row">
                         <div class="col-md-5">
-                            <h5><strong>{{$task->taskName}}</strong></h5>
+                            <h5><i class="fa fa-check pink-text"></i> <strong>{{$task->taskName}}</strong></h5>
                         </div>
                         <div class="col-md-7">
                             <div class="row align-items-center">
@@ -104,7 +104,11 @@
                             @elseif($task->priority == 'low')
                             Low
                             @endif Priority</h6>
-                        <p>{{$task->goalID}}</p>
+                            @foreach($goals as $goal)
+                            @if($task->goalID == $goal->id)
+                        <p> <i class="fa fa-bullseye pink-text"></i> Goal: {{$goal->goalName}}</p>
+                        @endif
+                        @endforeach
                         <p>Description: {{$task->description}}</p>
                     </div>
                 </div>
