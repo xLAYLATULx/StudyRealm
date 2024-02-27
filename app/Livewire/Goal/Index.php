@@ -167,6 +167,29 @@ class Index extends Component
     public function render()
     {
         $goalList = Goal::where('userID', auth()->user()->id);
+        $gs = $goalList->get();
+        foreach ($gs as $goal) {
+            if($goal->tasks->count() > 0){
+                $totalProgress = $goal->tasks->sum('progress');
+                $totalTasks = $goal->tasks->count();
+                $goal->overallProgress = $totalTasks > 0 ? ($totalProgress / $totalTasks) : 0;
+                $goal->progress = $goal->overallProgress;
+            }else{
+                $goal->overallProgress = $goal->progress;
+            }
+            if($goal->progress == 100){
+                Goal::findOrFail($goal->id)->update([
+                    'progress' => $goal->overallProgress,
+                    'completed' => true,
+                ]);
+            }else{
+                Goal::findOrFail($goal->id)->update([
+                    'progress' => $goal->overallProgress,
+                    'completed' => false,
+                ]);
+            }
+        }
+        
 
         if ($this->filter == 'completed') {
             $goalList->where('completed', true);
@@ -183,19 +206,7 @@ class Index extends Component
 
         $goals = $goalList->paginate(3);
 
-        foreach ($goals as $goal) {
-            if($goal->tasks->count() > 0){
-                $totalProgress = $goal->tasks->sum('progress');
-                $totalTasks = $goal->tasks->count();
-                $goal->overallProgress = $totalTasks > 0 ? ($totalProgress / $totalTasks) : 0;
-                $goal->progress = $goal->overallProgress;
-                Goal::findOrFail($goal->id)->update([
-                    'progress' => $goal->overallProgress,
-                ]);
-            }else{
-                $goal->overallProgress = $goal->progress;
-            }
-        }
+        
 
         return view('livewire.goal.index', ['goals' => $goals])->extends('layouts.navbar')->section('content');
     }

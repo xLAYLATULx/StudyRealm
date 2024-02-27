@@ -52,12 +52,12 @@
                         <div class="row align-items-center">
                             <div class="col-md-8">
                                 <div class="progress">
-                                    <div class="{{$goal->overallProgress == 100.00 ? 'bg-success' : 'pink-colour'}}" role="progressbar" style="width: {{$goal->overallProgress}}%;"></div>
+                                    <div class="progress-bar {{ $goal->progress == 100 ? 'bg-success' : 'pink-colour' }}" role="progressbar" style="width: {{ $goal->progress }}%;" aria-valuenow="{{ $goal->overallProgress }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="progressBarText">
-                                    <p>{{$goal->overallProgress}}% Completed</p>
+                                    <p>{{$goal->progress}}% Completed</p>
                                 </div>
                             </div>
                         </div>
