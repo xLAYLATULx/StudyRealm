@@ -151,6 +151,11 @@ aria-hidden="true">
                         </div>
                     </div>
                     <div class="mb-3">
+                        <label>Start Date: </label>
+                        <input type="date" class="form-control" wire:model.defer="startDate" id="datepicker0" required>
+                        @error ('startDate') <small class="text-danger">{{$message}}</small>@enderror
+                    </div>
+                    <div class="mb-3">
                         <label>Due Date: </label>
                         <input type="date" class="form-control" wire:model.defer="dueDate" id="datepicker" required>
                         @error ('dueDate') <small class="text-danger">{{$message}}</small>@enderror
@@ -222,6 +227,11 @@ aria-hidden="true">
                     </div>
                 </div>
                 <div class="mb-3">
+                    <label>Start Date: </label>
+                    <input type="date" class="form-control" wire:model.defer="startDate" id="datepicker3" required>
+                    @error ('startDate') <small class="text-danger">{{$message}}</small>@enderror
+                </div>
+                <div class="mb-3">
                     <label>Due Date: </label>
                     <input type="date" class="form-control" wire:model.defer="dueDate" id="datepicker2" required>
                     @error ('dueDate') <small class="text-danger">{{$message}}</small>@enderror
@@ -291,11 +301,15 @@ aria-hidden="true">
     }
     var today = year + "-" + month + "-" + day;
     console.log(today);
+    document.getElementById("datepicker0").min = today;
     document.getElementById("datepicker").min = today;
     document.getElementById("datepicker2").min = today;
+    document.getElementById("datepicker3").min = today;
     }
     todayDate();
+    document.getElementById("datepicker0").addEventListener("focus", todayDate);
     document.getElementById("datepicker").addEventListener("focus", todayDate);
     document.getElementById("datepicker2").addEventListener("focus", todayDate);
+    document.getElementById("datepicker3").addEventListener("focus", todayDate);
 
 </script>

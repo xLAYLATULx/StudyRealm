@@ -15,6 +15,7 @@ class Goal extends Model
         'goalName',
         'description',
         'progress',
+        'startDate',
         'deadline',
         'completed',
     ];

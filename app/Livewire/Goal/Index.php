@@ -11,7 +11,7 @@ class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $goalName, $description, $progress = 0.00, $deadline, $goal_id, $completed;
+    public $goalName, $description, $progress = 0.00, $startDate, $deadline, $goal_id, $completed;
     public $filter = 'all';
     public $sortByAsc = true;
 
@@ -21,6 +21,7 @@ class Index extends Component
             'goalName' => 'required',
             'description' => 'required',
             'progress' => 'required',
+            'startDate' => 'required|date',
             'deadline' => 'required|date',
         ];
     }
@@ -31,6 +32,8 @@ class Index extends Component
             'goalName.required' => 'Please enter a goal name.',
             'description.required' => 'Please enter a description.',
             'progress.required' => 'Please enter a progress.',
+            'startDate.required' => 'Please enter a start date.',
+            'startDate.date' => 'Please enter a valid date for the start date.',
             'deadline.required' => 'Please enter a deadline.',
             'deadline.date' => 'Please enter a valid date for the deadline.',
         ];
@@ -49,6 +52,7 @@ class Index extends Component
             'goalName' => $this->goalName,
             'description' => $this->description,
             'progress' => $this->progress,
+            'startDate' => $this->startDate,
             'deadline' => $this->deadline,
             'completed' => $this->completed,
         ]);
@@ -56,7 +60,7 @@ class Index extends Component
             'userID' => auth()->user()->id,
             'title' => $this->goalName,
             'description' => $this->description,
-            'startDate' => $this->deadline,
+            'startDate' => $this->startDate,
             'endDate' => $this->deadline,
             'isGoal' => true,
             'isTask' => false,
@@ -73,6 +77,7 @@ class Index extends Component
         $this->goalName = $goal->goalName;
         $this->description = $goal->description;
         $this->progress = $goal->progress;
+        $this->startDate = $goal->startDate;
         $this->deadline = $goal->deadline;
     }
 
@@ -90,6 +95,7 @@ class Index extends Component
             'goalName' => $this->goalName,
             'description' => $this->description,
             'progress' => $this->progress,
+            'startDate' => $this->startDate,
             'deadline' => $this->deadline,
             'completed' => $this->completed,
             'isGoal' => true,
@@ -99,7 +105,7 @@ class Index extends Component
             'userID' => auth()->user()->id,
             'title' => $this->goalName,
             'description' => $this->description,
-            'startDate' => $this->deadline,
+            'startDate' => $this->startDate,
             'endDate' => $this->deadline,
             'isGoal' => '0',
             'isTask' => '0',
@@ -130,6 +136,7 @@ class Index extends Component
         $this->goalName = NULL;
         $this->description = NULL;
         $this->progress = 0.00;
+        $this->startDate = NULL;
         $this->deadline = NULL;
         $this->goal_id = NULL;
     }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('goalName');
             $table->text('description');
             $table->float('progress', 5, 2)->default(0.00);
+            $table->date('startDate');
             $table->date('deadline');
             $table->boolean('completed')->default(false);
             $table->timestamps();

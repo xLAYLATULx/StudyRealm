@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('taskName');
             $table->text('description');
             $table->enum('priority', ['high', 'medium', 'low']);
+            $table->date('startDate');
             $table->date('dueDate');
             $table->float('progress', 5, 2)->default(0.00);
             $table->boolean('completed')->default(false);

@@ -13,7 +13,7 @@ class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $userID, $categoryID, $taskName, $description, $priority, $dueDate, $progress = 0.00, $task_id, $completed, $goalID; // Tasks Variables
+    public $userID, $categoryID, $taskName, $description, $priority, $startDate, $dueDate, $progress = 0.00, $task_id, $completed, $goalID; // Tasks Variables
     public $categoryName, $category_id; // Categories Variables
     public $goalName, $goal_id; // Goals Variables
     public $showTasks = false;
@@ -30,6 +30,7 @@ class Index extends Component
         'priority' => 'required',
         'description' => 'required',
         'progress' => 'required|integer',
+        'startDate' => 'required|date',
         'dueDate' => 'required|date',
         'categoryName' => 'required',
         ];
@@ -45,6 +46,8 @@ class Index extends Component
         'progress.required' => 'Please select progress for the task.',
         'progress.integer' => 'Progress should be an integer value.',
         'progress.between' => 'Progress should be between 0 and 100.',
+        'startDate.required' => 'Please select a start date.',
+        'startDate.date' => 'Start date should be a valid date.',
         'dueDate.required' => 'Please select a due date.',
         'dueDate.date' => 'Due date should be a valid date.',
         'categoryName.required' => 'Please enter a category name.',
@@ -107,6 +110,7 @@ class Index extends Component
             'taskName' => $this->taskName,
             'description' => $this->description,
             'priority' => $this->priority,
+            'startDate' => $this->startDate,
             'dueDate' => $this->dueDate,
             'progress' => $this->progress,
             'completed' => $this->completed,
@@ -116,7 +120,7 @@ class Index extends Component
             'userID' => auth()->user()->id,
             'title' => $this->taskName,
             'description' => $this->description,
-            'startDate' => $this->dueDate,
+            'startDate' => $this->startDate,
             'endDate' => $this->dueDate,
             'isGoal' => false,
             'isTask' => true,
@@ -134,6 +138,7 @@ class Index extends Component
         $this->description = $task->description;
         $this->priority = $task->priority;
         $this->progress = $task->progress;
+        $this->startDate = $task->startDate;
         $this->dueDate = $task->dueDate;
         $this->goalID = $task->goalID;
     }
@@ -157,6 +162,7 @@ class Index extends Component
             'taskName' => $this->taskName,
             'description' => $this->description,
             'priority' => $this->priority,
+            'startDate' => $this->startDate,
             'dueDate' => $this->dueDate,
             'progress' => $this->progress,
             'completed' => $this->completed,
@@ -166,7 +172,7 @@ class Index extends Component
             'userID' => auth()->user()->id,
             'title' => $this->taskName,
             'description' => $this->description,
-            'startDate' => $this->dueDate,
+            'startDate' => $this->startDate,
             'endDate' => $this->dueDate,
             'isGoal' => false,
             'isTask' => true,
@@ -199,6 +205,7 @@ class Index extends Component
         $this->taskName = NULL;
         $this->description = NULL;
         $this->priority = NULL;
+        $this->startDate = NULL;
         $this->dueDate = NULL;
         $this->progress = 0.00;
         $this->task_id = NULL;
