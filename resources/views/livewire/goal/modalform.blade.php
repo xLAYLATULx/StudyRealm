@@ -16,8 +16,8 @@
                     </div>
                     <div class="mb-3">
                         <label>Goal Description: </label>
-                        <input type="text" wire:model.defer="description" class="form-control"
-                            placeholder="Enter Goal Description..." required>
+                        <textarea type="text" wire:model.defer="description" class="form-control"
+                            placeholder="Enter Goal Description..." required></textarea>
                         @error ('description') <small class="text-danger">{{$message}}</small>@enderror
                     </div>
                     <div class="mb-3">
@@ -32,16 +32,18 @@
                         </div>
                         @error ('progress') <small class="text-danger">{{$message}}</small>@enderror
                     </div>
-                    <div class="mb-3 mt-3">
+                    <div class="row mb-3">
+                        <div class="col">
                         <label>Start Date: </label>
                         <input type="date" id="datepicker0" name="startDate" wire:model.defer="startDate" class="form-control" required>
                         @error ('startDate') <small class="text-danger">{{$message}}</small>@enderror
                     </div>
-                    <div class="mb-3 mt-3">
+                    <div class="col">
                         <label>Deadline: </label>
                         <input type="date" id="datepicker" name="deadline" wire:model.defer="deadline" class="form-control" required>
                         @error ('deadline') <small class="text-danger">{{$message}}</small>@enderror
                     </div>
+                </div>
                 </div>
                 <div class="actions mx-3 my-2">
                     <button type="submit" class="btn text-white" id="pink-colour"><i class="fa fa-check"></i> Save</button>
@@ -77,8 +79,8 @@
                         </div>
                         <div class="mb-3">
                             <label>Goal Description: </label>
-                            <input type="text" wire:model.defer="description" class="form-control"
-                                placeholder="Enter Goal Description...">
+                            <textarea type="text" wire:model.defer="description" class="form-control"
+                                placeholder="Enter Goal Description..."></textarea>
                             @error ('description') <small class="text-danger">{{$message}}</small>@enderror
                         </div>
                         <div class="mb-3">
@@ -93,15 +95,17 @@
                             </div>
                             @error ('progress') <small class="text-danger">{{$message}}</small>@enderror
                         </div>
-                        <div class="mb-3 mt-3">
+                        <div class="row mb-3">
+                            <div class="col">
                             <label>Start Date: </label>
                             <input type="date" id="datepicker3" name="startDate" wire:model.defer="startDate" class="form-control" required>
                             @error ('startDate') <small class="text-danger">{{$message}}</small>@enderror
                         </div>
-                        <div class="mb-3 mt-3">
+                        <div class="col">
                             <label>Deadline: </label>
                             <input type="date" id="datepicker2" name="deadline" wire:model.defer="deadline" class="form-control" required>
                             @error ('deadline') <small class="text-danger">{{$message}}</small>@enderror
+                        </div>
                         </div>
                         
                     </div>

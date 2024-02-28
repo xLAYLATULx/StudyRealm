@@ -93,12 +93,13 @@ aria-hidden="true">
             </div>
             <div class="modal-body">
                 <form wire:submit.prevent="storeTask">
-                    <div class="mb-3">
+                    <div class="row mb-3">
+                        <div class="col">
                         <label>Task Name: </label>
                         <input type="text" class="form-control" name="taskName" wire:model.defer="taskName" placeholder="Enter Task Name..." required>
                         @error('taskName') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
-                    <div class="mb-3">
+                    <div class="col">
                         <label>Project: </label>
                             <select name="project" id="project" wire:model.defer="categoryID" class="form-select" aria-label="Default select example" required>
                                 <option value="" selected>Select Project</option>
@@ -108,7 +109,9 @@ aria-hidden="true">
                             </select>
                         @error('categoryID') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
-                    <div class="mb-3">
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
                         <label>Goal: </label>
                         <select name="goal" id="goal" wire:model.defer="goalID" class="form-select" aria-label="Default select example">
                             <option value="" selected>Select Goal: </option>
@@ -116,9 +119,9 @@ aria-hidden="true">
                                 <option value="{{$goal->id}}">{{$goal->goalName}}</option>
                             @endforeach
                         </select>
-                        @error('goalID') <span class="text-danger">{{ $message }}</span> @enderror
-                    </div>                
-                    <div class="mb-3">
+                        @error('goalID') <span class="text-danger">{{ $message }}</span> @enderror    
+                        </div>            
+                    <div class="col">
                         <label>Priority: </label>
                         <select name="priority" id="priority" wire:model.defer="priority" class="form-select" aria-label="Default select example" required>
                             <option value="" selected>Select Priority</option>
@@ -128,9 +131,10 @@ aria-hidden="true">
                         </select>
                         @error('priority') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
+                        </div>
                     <div class="mb-3">
                         <label>Task Description: </label>
-                        <input type="text" class="form-control" wire:model.defer="description" placeholder="Enter Task Description..." required>
+                        <textarea type="text" class="form-control" wire:model.defer="description" placeholder="Enter Task Description..." required></textarea>
                         @error ('description') <small class="text-danger">{{$message}}</small>@enderror
                     </div>
                     <div class="mb-3">
@@ -145,17 +149,19 @@ aria-hidden="true">
                             <output for="progress" id="progressOutput" name="progress" wire:model.defer="progress" value="0">0</output>%
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="row mb-5">
+                        <div class="col">
                         <label>Start Date: </label>
                         <input type="date" class="form-control" wire:model.defer="startDate" id="datepicker0" required>
                         @error ('startDate') <small class="text-danger">{{$message}}</small>@enderror
                     </div>
-                    <div class="mb-3">
+                    <div class="col">
                         <label>Due Date: </label>
                         <input type="date" class="form-control" wire:model.defer="dueDate" id="datepicker" required>
                         @error ('dueDate') <small class="text-danger">{{$message}}</small>@enderror
                     </div>
-                    <div class="actions mx-3 my-2">
+                </div>
+                    <div class="actions mx-1">
                         <button type="submit" class="btn text-white" id="pink-colour"><i class="fa fa-check"></i> Save</button>
                         <button type="button" class="btn" data-bs-dismiss="modal" id="lightBlue-colour" wire:click="closeModal"><i class="fa fa-close"></i> Close</button>
                     </div>
@@ -174,12 +180,13 @@ aria-hidden="true">
         </div>
         <div class="modal-body">
             <form wire:submit.prevent="editTask">
-                <div class="mb-3">
+                <div class="row mb-3">
+                    <div class="col">
                     <label>Task Name: </label>
                     <input type="text" class="form-control" wire:model.defer="taskName" placeholder="Enter Task Name..." required>
                     @error ('taskName') <small class="text-danger">{{$message}}</small>@enderror
                 </div>
-                <div class="mb-3">
+                <div class="col">
                     <label>Project: </label>
                     <select name="project" id="project" wire:model.defer="categoryID" class="form-select" aria-label="Default select example" required>
                         @foreach($categories as $category)
@@ -187,7 +194,9 @@ aria-hidden="true">
                         @endforeach
                     </select>
                 </div>
-                <div class="mb-3">
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
                     <label>Goal: </label>
                     <select name="goal" id="goal" wire:model.defer="goalID" class="form-select" aria-label="Default select example">
                         <option value="" selected>Select Goal: </option>
@@ -197,7 +206,7 @@ aria-hidden="true">
                     </select>
                     @error('goalID') <span class="text-danger">{{ $message }}</span> @enderror
                 </div> 
-                <div class="mb-3">
+                <div class="col">
                     <label>Priority: </label>
                     <select name="priority" id="priority" wire:model.defer="priority" class="form-select" aria-label="Default select example" required>
                         <option value="low">Low</option>
@@ -205,9 +214,10 @@ aria-hidden="true">
                         <option value="high">High</option>
                       </select>
                 </div>
+                </div>
                 <div class="mb-3">
                     <label>Task Description: </label>
-                    <input type="text" class="form-control" wire:model.defer="description" placeholder="Enter Task Description..." required>
+                    <textarea type="text" class="form-control" wire:model.defer="description" placeholder="Enter Task Description..." required></textarea>
                 </div>
                 <div class="mb-3">
                     <label>Progress: </label>
@@ -218,22 +228,24 @@ aria-hidden="true">
                         <p>100%</p>
                     </div>
                     <div class="text-center">
-                        <output for="progress" id="progressOutput" name="progress" wire:model.defer="progress"></output>%
+                        <output for="progress" id="progressOutput" name="progress" wire:model.defer="progress">{{$progress}}</output>%
                     </div>
                 </div>
-                <div class="mb-3">
+                <div class="row mb-5">
+                    <div class="col">
                     <label>Start Date: </label>
                     <input type="date" class="form-control" wire:model.defer="startDate" id="datepicker3" required>
                     @error ('startDate') <small class="text-danger">{{$message}}</small>@enderror
                 </div>
-                <div class="mb-3">
+                <div class="col">
                     <label>Due Date: </label>
                     <input type="date" class="form-control" wire:model.defer="dueDate" id="datepicker2" required>
                     @error ('dueDate') <small class="text-danger">{{$message}}</small>@enderror
                 </div>
+                </div>
                 
             </div>
-                <div class="actions mx-3 my-2">
+                <div class="actions mx-3 mb-3">
                     <button type="submit" class="btn text-white" id="pink-colour"><i class="fa fa-check"></i> Save</button>
                     <button type="button" class="btn" data-bs-dismiss="modal" id="lightBlue-colour" wire:click="closeModal"><i class="fa fa-close"></i> Close</button>
                 </div>
