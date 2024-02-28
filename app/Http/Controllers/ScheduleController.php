@@ -14,9 +14,9 @@ class ScheduleController extends Controller
         foreach($schedule as $s){
             if($s->userID == auth()->id()){
                 if($s->isGoal == 1){
-                    $colour = "yellow";
+                    $colour = "GoldenRod";
                 } else if($s->isTask == 1){
-                    $colour = "red";
+                    $colour = "IndianRed";
                 } else {
                     $colour = "#3788d8";
                 }

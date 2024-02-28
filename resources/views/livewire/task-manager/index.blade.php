@@ -59,7 +59,7 @@
         
         <div class="row mt-5">
             <div class="col-md-9">
-                <a class="btn" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addTaskModal" wire:click="editTaskFieldCategory({{ $category->id }})"><i
+                <a class="btn" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i
                     class="fa fa-plus"></i> Add Task</a>
             </div>
             <div class="col-md-3">
