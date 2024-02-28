@@ -252,16 +252,18 @@ $(document).ready(function() {
                         </div>
                         <div class="mb-3">
                             <label for="eventdescription">Event Description: </label>
-                            <input type="text" name="eventDescription" id="eventDescription" class="form-control"
-                                placeholder="Enter Event Description..." required>
+                            <textarea type="text" name="eventDescription" id="eventDescription" class="form-control"
+                                placeholder="Enter Event Description..." required></textarea>
                         </div>
-                        <div class="mb-3">
+                        <div class="row mb-3">
+                            <div class="col">
                             <label for="eventStart">Start Time:</label>
                             <input type="datetime-local" name="eventStart" id="eventStart" class="form-control" required>
                         </div>
-                        <div class="mb-3">
+                        <div class="col">
                             <label for="eventEnd">End Time:</label>
                             <input type="datetime-local" name="eventEnd" id="eventEnd" class="form-control" required>
+                        </div>
                         </div>
                     </div>
                     <div class="actions d-flex m-3">
@@ -294,16 +296,18 @@ $(document).ready(function() {
                 </div>
                 <div class="mb-3">
                     <label for="editEventDescription">Event Description:</label>
-                    <input type="text" name="editEventDescription" id="editEventDescription" class="form-control"
-                        placeholder="Enter Event Description..." required>
+                    <textarea type="text" name="editEventDescription" id="editEventDescription" class="form-control"
+                        placeholder="Enter Event Description..." required></textarea>
                 </div>
-                <div class="mb-3">
+                <div class="row">
+                    <div class="col">
                     <label for="editEventStart">Start Time:</label>
                     <input type="datetime-local" name="editEventStart" id="editEventStart" class="form-control" required>
                 </div>
-                <div class="mb-3">
+                <div class="col">
                     <label for="editEventEnd">End Time:</label>
                     <input type="datetime-local" name="editEventEnd" id="editEventEnd" class="form-control" required>
+                </div>
                 </div>
             </div>
             <div class="actions d-flex m-3">
