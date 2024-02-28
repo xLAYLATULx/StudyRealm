@@ -7,28 +7,15 @@
 <div class="row bg-green profile">
   <div class="col-md-1"></div>
   <div class="col-md-10">
-    <div class="details">
+    <div class="card p-5 shadow">
       @auth
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col" class="text-white" id="pink-colour">My Details</th>
-          </tr>
-        </thead>
-        <tbody class="bg-white">
-          <tr>
-            <td scope="row">Name: {{auth()->user()->name}}</td>
-          </tr>
-          <tr>
-            <td scope="row">Email: {{auth()->user()->email}}</td>
-          </tr>
-        </tbody>
-      </table>
+        <h6><strong>Name: </strong>{{auth()->user()->name}}</h6>
+        <h6><strong>Email: </strong>{{auth()->user()->email}}</h6>
       @endauth
       <form action="{{ route('profile.update', ['id' => $user->id]) }}" method="POST" class=" bg-white">
         @csrf
         @method('PUT')
-      <table class="table border border-grey rounded">
+      <table class="table border border-grey rounded mt-3">
         <thead>
           <tr>
             <th scope="col" class="text-white" id="pink-colour">Update Details</th>
