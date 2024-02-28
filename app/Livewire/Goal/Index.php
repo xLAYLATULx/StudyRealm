@@ -4,6 +4,7 @@ namespace App\Livewire\Goal;
 
 use App\Models\Goal;
 use App\Models\Schedule;
+use App\Models\Task;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -14,6 +15,7 @@ class Index extends Component
     public $goalName, $description, $progress = 0.00, $startDate, $deadline, $goal_id, $completed;
     public $filter = 'all';
     public $sortByAsc = true;
+    public $goalHasTasks = false;
 
     public function rules()
     {
@@ -74,11 +76,18 @@ class Index extends Component
     {
         $this->goal_id = $goal_id;
         $goal = Goal::findOrFail($goal_id);
+        $goalTasks = Task::where('goalID', $this->goal_id)->get();
+        if(count($goalTasks) > 0) {
+            $this->goalHasTasks = true;
+        }else{
+            $this->goalHasTasks = false;
+        }
         $this->goalName = $goal->goalName;
         $this->description = $goal->description;
         $this->progress = $goal->progress;
         $this->startDate = $goal->startDate;
         $this->deadline = $goal->deadline;
+
     }
 
     public function editGoal()
@@ -90,6 +99,7 @@ class Index extends Component
         } else {
             $this->completed = false;
         }
+
         Goal::findOrFail($this->goal_id)->update([
             'userID' => auth()->user()->id,
             'goalName' => $this->goalName,

@@ -151,6 +151,9 @@ class Index extends Component
         }else{
             $this->completed = false;
         }
+        if($this->goalID == "NULL"){
+            $this->goalID = NULL;
+        }
         Task::findOrFail($this->task_id)->update([
             'userID' => auth()->user()->id,
             'categoryID' => $this->categoryID,

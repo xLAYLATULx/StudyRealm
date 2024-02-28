@@ -83,6 +83,7 @@
                                 placeholder="Enter Goal Description..."></textarea>
                             @error ('description') <small class="text-danger">{{$message}}</small>@enderror
                         </div>
+                        @if(!$goalHasTasks)
                         <div class="mb-3">
                             <label for="progress"class="form-label">Progress:</label>
                             <div class="d-flex text-secondary">
@@ -95,6 +96,12 @@
                             </div>
                             @error ('progress') <small class="text-danger">{{$message}}</small>@enderror
                         </div>
+                        @else
+                        <div class="mb-5">
+                            <label for="progress"class="form-label">Progress:</label>
+                            <p>This goal's progress is determined by its sub-tasks.</p>
+                        </div>
+                        @endif
                         <div class="row mb-3">
                             <div class="col">
                             <label>Start Date: </label>
