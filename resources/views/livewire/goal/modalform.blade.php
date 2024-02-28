@@ -89,7 +89,7 @@
                                 <p>100%</p>
                             </div>
                             <div class="text-center">
-                                <output for="progress" id="progressOutput" name="progress" wire:model.defer="progress">0</output>%
+                                <output for="progress" id="progressOutput" name="progress" wire:model.defer="progress">{{$progress}}</output>%
                             </div>
                             @error ('progress') <small class="text-danger">{{$message}}</small>@enderror
                         </div>
