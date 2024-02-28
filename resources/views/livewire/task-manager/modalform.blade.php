@@ -100,14 +100,19 @@ aria-hidden="true">
                     </div>
                     <div class="mb-3">
                         <label>Project: </label>
-                        <select name="project" id="project" wire:model.defer="categoryID" class="form-select" aria-label="Default select example" required>
-                            <option value="" selected>Select Project</option>
-                            @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->categoryName}}</option>
-                            @endforeach
-                        </select>
+                        @if(!$categoryTasks)
+                            <select name="project" id="project" wire:model.defer="categoryID" class="form-select" aria-label="Default select example" required>
+                                <option value="" selected>Select Project</option>
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->categoryName}}</option>
+                                @endforeach
+                            </select>
+                        @else
+                            <input type="text" class="form-control" value="{{ $categories->where('id', $categoryTasks)->first()->categoryName }}" disabled>
+                            <input type="hidden" wire:model.defer="categoryID" value="{{ $categoryTasks }}">
+                        @endif
                         @error('categoryID') <span class="text-danger">{{ $message }}</span> @enderror
-                    </div> 
+                    </div>
                     <div class="mb-3">
                         <label>Goal: </label>
                         <select name="goal" id="goal" wire:model.defer="goalID" class="form-select" aria-label="Default select example">

@@ -137,6 +137,10 @@ class Index extends Component
         $this->dueDate = $task->dueDate;
         $this->goalID = $task->goalID;
     }
+
+    public function editTaskFieldCategory(int $category_id){
+        $this->categoryID = $category_id;
+    }
     
 
     public function editTask(){
