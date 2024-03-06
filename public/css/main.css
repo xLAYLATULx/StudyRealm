@@ -6,31 +6,31 @@ body{
 
 /* Start of Colours */
 .pink-text{
-    color: #D3AC2B;
+    color: #FF6060;
 }
 .blue-colour{
-    color: #333D51;
+    color: #314559;
 }
 #blue-colour{
-    background-color: #333D51;
+    background-color: #1A2A3A;
     color: white;
 }
 .pink-colour{
-    background-color: #D3AC2B ;
+    background-color: #FF6060;
 }
 #saveBtn{
-    background-color: #D3AC2B;
+    background-color: #FF6060;
     color: white;
 }
 
 #saveFullBtn{
-    background-color: #D3AC2B;
+    background-color: #FF6060;
     color: white;
 
 }
 
 #updateEventBtn{
-    background-color: #D3AC2B;
+    background-color: #FF6060;
     color: white;
 
 }
@@ -166,7 +166,7 @@ input[type="text"] {
     margin-left: 15%;
     padding: 2%;
     height: 100vh;
-    overflow-y: auto;
+    overflow-y: scroll;
     font-family: 'Roboto', sans-serif;
   }
   /* End of All */

@@ -4,32 +4,30 @@
     <h1>Goals</h1>
     @include('livewire.goal.modalform')
     <div class="goalsList mt-5">
-        <div class="col-md-6 actions text-black">
-            <div class="form-check">
+        <div class="row">
+            <div class="col-md-8 d-flex">
+            <div class="form-check mx-3">
                 <input class="form-check-input" type="radio" name="allGoals" id="allGoals" wire:model="filter" value="all" wire:click="showAllGoalsButton">
                 <label class="form-check-label" for="allGoals">
                  Show All Goals
                 </label>
               </div>
-            <div class="form-check">
+            <div class="form-check mx-3">
                 <input class="form-check-input" type="radio" name="completedGoals" id="completedGoals" wire:model="filter" value="completed" wire:click="showCompletedGoalsButton">
                 <label class="form-check-label" for="completedGoals">
                  Show Completed Goals
                 </label>
               </div>
-              <div class="form-check">
+              <div class="form-check mx-3">
                 <input class="form-check-input" type="radio" name="notCompletedGoals" id="notCompletedGoals" wire:model="filter" value="notCompleted" wire:click="showNotCompletedGoalsButton">
                 <label class="form-check-label" for="notCompletedGoals">
                  Show Not Completed Goals
                 </label>
               </div>
         </div>
-        <div class="row mt-5">
-            <div class="col-md-9">
-                <a class="btn" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addGoalModal"><i class="fa fa-plus"></i> Add Goal</a>
-            </div>
-            <div class="col-md-3">
+        <div class="col-md-4">
                 <div class="sortBy float-end">
+                    <a class="btn mr-5" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addGoalModal"><i class="fa fa-plus"></i> Goal</a>
                     <a class="btn" id="lightGrey-colour" wire:click="sortByAscButton">{{$sortByAsc ?
                         'Sort By Date Desc ↓' : 'Sort By Date Asc ↑'}}</a>
                   </div>

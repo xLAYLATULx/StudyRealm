@@ -33,42 +33,39 @@
         @endif
     </div>
     <div class="taskslist mt-5" @if(!$categoryTasks) style="display: none;" @endif>
-        <div class="col-md-6 actions text-black">
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="allTasks" id="allTasks" wire:model="filter"
-                    value="all" wire:click="showAllTasksButton">
-                <label class="form-check-label" for="allTasks">
-                    Show All Tasks
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="completedTasks" id="completedTasks"
-                    wire:model="filter" value="completed" wire:click="showCompletedTasksButton">
-                <label class="form-check-label" for="completedTasks">
-                    Show Completed Tasks
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="notCompletedTasks" id="notCompletedTasks"
-                    wire:model="filter" value="notCompleted" wire:click="showNotCompletedTasksButton">
-                <label class="form-check-label" for="notCompletedTasks">
-                    Show Not Completed Tasks
-                </label>
-            </div>
-        </div>
-
-        <div class="row mt-5">
-            <div class="col-md-9">
-                <a class="btn" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i
-                        class="fa fa-plus"></i> Add Task</a>
-            </div>
-            <div class="col-md-3">
-                <div class="sortBy float-end">
-                    <a class="btn" id="lightGrey-colour" wire:click="sortByDateButton">{{$sortByAsc ?
-                        'Date Desc ↓' : 'Date Asc ↑'}}</a>
-                    <a class="btn ml-3" id="lightGrey-colour" wire:click="sortByPriorityButton">{{$sortByPriority ?
-                        'Priority Desc ↓' : 'Priority Asc ↑'}}</a>
+        <div class="row">
+            <div class="col-md-8 d-flex">
+                <div class="form-check mx-3">
+                    <input class="form-check-input" type="radio" name="allTasks" id="allTasks" wire:model="filter"
+                        value="all" wire:click="showAllTasksButton">
+                    <label class="form-check-label" for="allTasks">
+                        Show All Tasks
+                    </label>
                 </div>
+                <div class="form-check mx-3">
+                    <input class="form-check-input" type="radio" name="completedTasks" id="completedTasks"
+                        wire:model="filter" value="completed" wire:click="showCompletedTasksButton">
+                    <label class="form-check-label" for="completedTasks">
+                        Show Completed Tasks
+                    </label>
+                </div>
+                <div class="form-check mx-3">
+                    <input class="form-check-input" type="radio" name="notCompletedTasks" id="notCompletedTasks"
+                        wire:model="filter" value="notCompleted" wire:click="showNotCompletedTasksButton">
+                    <label class="form-check-label" for="notCompletedTasks">
+                        Show Not Completed Tasks
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                    <div class="sortBy float-end">
+                        <a class="btn mr-5" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i
+                            class="fa fa-plus"></i> Task</a>
+                        <a class="btn" id="lightGrey-colour" wire:click="sortByDateButton">{{$sortByAsc ?
+                            'Date Desc ↓' : 'Date Asc ↑'}}</a>
+                        <a class="btn ml-3" id="lightGrey-colour" wire:click="sortByPriorityButton">{{$sortByPriority ?
+                            'Priority Desc ↓' : 'Priority Asc ↑'}}</a>
+                    </div>
             </div>
         </div>
         @if($tasks->isEmpty())
