@@ -6,31 +6,31 @@ body{
 
 /* Start of Colours */
 .pink-text{
-    color: #FF6060;
+    color: #D3AC2B;
 }
 .blue-colour{
-    color: #314559;
+    color: #333D51;
 }
 #blue-colour{
-    background-color: #314559;
+    background-color: #333D51;
     color: white;
 }
 .pink-colour{
-    background-color: #FF6060;
+    background-color: #D3AC2B ;
 }
 #saveBtn{
-    background-color: #FF6060;
+    background-color: #D3AC2B;
     color: white;
 }
 
 #saveFullBtn{
-    background-color: #FF6060;
+    background-color: #D3AC2B;
     color: white;
 
 }
 
 #updateEventBtn{
-    background-color: #FF6060;
+    background-color: #D3AC2B;
     color: white;
 
 }
@@ -118,8 +118,8 @@ input[type="text"] {
   }
    
   .sidebar a.active {
-    background-color: white;
-    color: #FF6060;
+    background-color: #576a7c;
+    color: white;
     font-weight: bold;
 }
 
@@ -165,7 +165,6 @@ input[type="text"] {
   .content {
     margin-left: 15%;
     padding: 2%;
-    background-color: #fefdfd;
     height: 100vh;
     overflow-y: auto;
     font-family: 'Roboto', sans-serif;
@@ -186,7 +185,6 @@ input[type="checkbox"] {
 }
 
 .goal {
-  border: 1px solid #ccc;
   border-radius: 16px;
   padding: 5%;
   background-color: white;

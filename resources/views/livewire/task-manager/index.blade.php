@@ -24,7 +24,7 @@
                             <a class="" href="#" wire:click="deleteCategoryButton({{ $category->id }})"
                                 data-bs-toggle="modal" data-bs-target="#deleteCategoryModal"><i class="fa fa-trash"></i>
                                 Delete</a>
-                            </div>
+                        </div>
                     </li>
                     @endforeach
                 </ul>
@@ -32,8 +32,8 @@
         </div>
         @endif
     </div>
-    <div class="taskslist mt-4" @if(!$categoryTasks) style="display: none;" @endif>
-        <div class="col-md-6 mt-1 actions text-black">
+    <div class="taskslist mt-5" @if(!$categoryTasks) style="display: none;" @endif>
+        <div class="col-md-6 actions text-black">
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="allTasks" id="allTasks" wire:model="filter"
                     value="all" wire:click="showAllTasksButton">
@@ -56,11 +56,11 @@
                 </label>
             </div>
         </div>
-        
+
         <div class="row mt-5">
             <div class="col-md-9">
                 <a class="btn" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i
-                    class="fa fa-plus"></i> Add Task</a>
+                        class="fa fa-plus"></i> Add Task</a>
             </div>
             <div class="col-md-3">
                 <div class="sortBy float-end">
@@ -71,68 +71,71 @@
                 </div>
             </div>
         </div>
-        @if(!$tasks->isEmpty())
+        @if($tasks->isEmpty())
+        <div class="noTasks mt-3">
+            <p>No Tasks...</p>
+        </div>
+        @else
         @foreach($tasks as $task)
-        <div class="task shadow mt-4 p-3" id="task">
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <h5><i class="fa fa-check pink-text"></i> <strong>{{$task->taskName}}</strong></h5>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="row align-items-center">
-                                <div class="col-md-8">
-                                    <div class="progress">
-                                        <div class="progress-bar {{$task->progress == 100.00 ? 'bg-success' : 'pink-colour'}}"
-                                            role="progressbar" style="width: {{$task->progress}}%; background-color: #FF6060"></div>
-                                    </div>
+        <div class="card task shadow mt-4 p-3" id="task">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-4">
+                        @foreach($goals as $goal)
+                        @if($task->goalID == $goal->id)
+                        <h5><i class="fa fa-check pink-text"></i> <strong>{{$task->taskName}} ({{$goal->goalName}})
+                            </strong></h5>
+                        @endif
+                        @endforeach
+                        @if($task->goalID == NULL)
+                        <h5><i class="fa fa-check pink-text"></i> <strong>{{$task->taskName}}</strong></h5>
+                        @endif
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row align-items-center">
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar {{$task->progress == 100.00 ? 'bg-success' : 'pink-colour'}}"
+                                        role="progressbar"
+                                        style="width: {{$task->progress}}%; background-color: #FF6060"></div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="progressBarText">
-                                        <p>{{$task->progress}}% Completed</p>
-                                    </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="progressBarText">
+                                    <p>{{$task->progress}}% Completed</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <h6><i class="fa fa-flag" style="@if($task->priority == 'medium') color: orange @elseif($task->priority == 'high') color: red @elseif($task->priority == 'low') color: green @endif"></i>  @if($task->priority == 'medium')
-                            Medium
-                            @elseif($task->priority == 'high')
-                            High
-                            @elseif($task->priority == 'low')
-                            Low
-                            @endif Priority</h6>
-                            @foreach($goals as $goal)
-                            @if($task->goalID == $goal->id)
-                        <p> <i class="fa fa-bullseye pink-text"></i> Goal: {{$goal->goalName}}</p>
-                        @endif
-                        @endforeach
-                        <p>Description: {{$task->description}}</p>
+                    <div class="col-md-2">
+                        <div class="text-end mb-3">
+                            <h6 class="card-title">Due: {{$task->dueDate}}</h6>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="taskDeadline">
-                        <p class="ml-4">Due Date: {{$task->dueDate}}</p>
-                    </div>
-                    <div class="position-absolute bottom-0 end-0 mx-3">
-                        <a href="text-white" wire:click="editTaskFields({{ $task->id }})" class="edit btn text-white"
-                            data-bs-toggle="modal" data-bs-target="#editTaskModal" id="blue-colour"><i
-                                class="fa fa-pencil"></i> Edit</a>
-                        <a class="btn btn-danger text-white" href="#" wire:click="deleteTaskButton({{ $task->id }})"
-                            data-bs-toggle="modal" data-bs-target="#deleteTaskModal"><i class="fa fa-trash"></i>
-                            Delete</a>
-                    </div>
+            </div>
+            <div class="card-body">
+                <p class="card-subtitle"><i class="fa fa-flag" style="@if($task->priority == 'medium') color: orange @elseif($task->priority == 'high') color: red @elseif($task->priority == 'low') color: green @endif"></i>
+                    @if($task->priority == 'medium')
+                    Medium
+                    @elseif($task->priority == 'high')
+                    High
+                    @elseif($task->priority == 'low')
+                    Low
+                    @endif Priority</p>
+                <p class="card-text">{{$task->description}}</p>
+                <div class="position-absolute bottom-0 end-0 m-3">
+                    <a href="text-white" wire:click="editTaskFields({{ $task->id }})" class="edit btn text-white"
+                        data-bs-toggle="modal" data-bs-target="#editTaskModal" id="blue-colour"><i
+                            class="fa fa-pencil"></i></a>
+                    <a class="btn btn-danger text-white" href="#" wire:click="deleteTaskButton({{ $task->id }})"
+                        data-bs-toggle="modal" data-bs-target="#deleteTaskModal"><i class="fa fa-trash"></i></a>
                 </div>
             </div>
         </div>
         @endforeach
-        @else
-        <div class="noTasks mt-3">
-            <p>No Tasks...</p>
-        </div>
         @endif
+    </div>
         <div class="col-md-3 mt-5">
             {{$tasks->links()}}
         </div>
