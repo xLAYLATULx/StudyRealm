@@ -48,7 +48,7 @@
         </div>
     </div>
     <!-- Page content -->
-    <div class="content ">
+    <div class="content bg-white">
         @yield('content')
     </div>
     </div>
