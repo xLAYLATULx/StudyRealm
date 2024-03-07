@@ -6,41 +6,41 @@ body{
 
 /* Start of Colours */
 .pink-text{
-    color: #FF6060;
+    color: #323232;
 }
 .blue-colour{
-    color: #314559;
+    color: #DDD0C8;
 }
 #blue-colour{
-    background-color: #1A2A3A;
+    background-color: #DDD0C8;
     color: white;
 }
 .pink-colour{
-    background-color: #FF6060;
+    background-color: #323232;
 }
 #saveBtn{
-    background-color: #FF6060;
+    background-color: #DDD0C8;
     color: white;
 }
 
 #saveFullBtn{
-    background-color: #FF6060;
+    background-color: #DDD0C8;
     color: white;
 
 }
 
 #updateEventBtn{
-    background-color: #FF6060;
+    background-color: #DDD0C8;
     color: white;
 
 }
 #pink-colour{
-    background-color: #FF6060;
+    background-color: #323232;
     color: white;
 }
 
 #lightBlue-colour{
-  background-color: #588ec5;
+  background-color: #905858;
   color: white;
 }
 
@@ -112,13 +112,13 @@ input[type="text"] {
 }  
   .sidebar a {
     display: block;
-    color: white;
+    color: #323232;
     padding: 5%;
     text-decoration: none;
   }
    
   .sidebar a.active {
-    background-color: #576a7c;
+    background-color: #323232;
     color: white;
     font-weight: bold;
 }
@@ -126,7 +126,7 @@ input[type="text"] {
   
   .sidebar a:hover:not(.active) {
     text-decoration: none;
-    color: inherit;
+    color: #323232;
   }
     
   @media screen and (max-width: 700px) {
@@ -332,14 +332,14 @@ input[type="checkbox"] {
 /* Start of Pomodoro */
 .sessionTime{
   border-radius: 10px;
-  background-color: #F99192;
+  background-color: #DDD0C8;
   padding: 2%;
   color: white;
 }
 
 .breakTime{
   border-radius: 10px;
-  background-color: #F99192;
+  background-color: #DDD0C8;
   padding: 2%;
   color: white;
 }
@@ -347,7 +347,7 @@ input[type="checkbox"] {
 .cycleNumber{
   border-radius: 10px;
   background-color: transparent;
-  color: #314559;
+  color: #323232;
   padding-left: 35%;
 }
 
@@ -381,7 +381,7 @@ input[type="checkbox"] {
   font-size: 300%;
   font-family: 'Orbitron', sans-serif;
   margin-left: 5%;
-  color: #314559;
+  color: #323232;
 }
 
 .sessionTime p {
@@ -404,7 +404,7 @@ input[type="checkbox"] {
 
 .timer button{
   margin-top: 50%;
-  background-color: #314559;
+  background-color: #905858;
   color: white;
   margin: auto;
   width: 80%;

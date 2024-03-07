@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>StudyRealm</title>
-    <link rel="icon" href="{{ asset('assets/images/Study Realm Light Logo.png') }}" type="image/png" sizes="16x16">
+    <link rel="icon" href="{{ asset('assets/images/theLogo.png') }}" type="image/png" sizes="16x16">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -206,7 +206,7 @@ $(document).ready(function() {
         <div class="col-md-3 sidebar-logo">
             <img class="mt-3" src="{{ asset('assets/images/theLogo.png') }}" alt="Logo">
             <label>
-                <h5 class="fw-bold pt-3 pl-2">StudyRealm</h5>
+                <h5 class="fw-bold pt-3 pl-2 pink-text">StudyRealm</h5>
             </label>
         </div>
         <div class="top-nav-items nav-items">
@@ -313,7 +313,6 @@ $(document).ready(function() {
             <div class="actions d-flex m-3">
                 <button type="submit" class="btn pink-colour-bg" id="updateEventBtn"><i class="fa fa-check"></i> Save</button>
                 <button type="button" class="btn btn-danger" id="deleteEventBtn"><i class="fa fa-trash"></i> Delete</button>
-                <button type="button" class="btn btn-secondary" id="lightBlue-colour" data-bs-dismiss="modal"><i class="fa fa-close"></i> Close</button>
                 
             </div>
         </div>

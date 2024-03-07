@@ -7,7 +7,7 @@
 <div class="row bg-green profile">
   <div class="col-md-1"></div>
   <div class="col-md-10">
-    <div class="card p-5 shadow">
+    <div class="card p-5">
       @auth
         <h6><strong>Name: </strong>{{auth()->user()->name}}</h6>
         <h6><strong>Email: </strong>{{auth()->user()->email}}</h6>

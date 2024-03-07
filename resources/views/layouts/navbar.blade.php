@@ -3,7 +3,7 @@
 
 <head>
     <title>StudyRealm</title>
-    <link rel="icon" href="{{ asset('assets/images/Study Realm Light Logo.png') }}" type="image/png" sizes="16x16">
+    <link rel="icon" href="{{ asset('assets/images/theLogo.png') }}" type="image/png" sizes="16x16">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('js/main.js') }}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -21,7 +21,7 @@
         <div class="col-md-3 sidebar-logo">
             <img class="mt-3" src="{{ asset('assets/images/theLogo.png') }}" alt="Logo">
             <label>
-                <h5 class="fw-bold pt-3 pl-2">StudyRealm</h5>
+                <h5 class="fw-bold pt-3 pl-2 pink-text">StudyRealm</h5>
             </label>
         </div>
         <div class="top-nav-items nav-items">
