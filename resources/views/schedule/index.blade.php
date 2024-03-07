@@ -102,6 +102,10 @@ $(document).ready(function() {
                 });
             });
         },
+        eventRender: function(event, element) {
+            element.find('.fc-title').css('font-weight', 'bold');
+            element.find('.fc-title').after('<div class="fc-description">' + event.description + '</div>');
+        },
         editable: true,
         eventDrop: function(event, delta, revertFunc) {
             var id = event.id;
