@@ -12,12 +12,12 @@ body{
     color: #0D98BA;
 }
 #blue-colour{
-    background-color: #0D98BA;
+    background-color: orange;
     color: white;
 }
 
 #sort{
-  background-color: #3f4040 ;
+  background-color: #0D98BA;
   color: white;
 }
 
@@ -421,14 +421,32 @@ input[type="checkbox"] {
 
 .timer button{
   margin-top: 50%;
-  background-color: #3f4040;
+  background-color: orange;
   color: white;
   margin: auto;
   width: 80%;
 }
 
+.play button{
+  margin-top: 50%;
+  background-color: orange;
+  color: white;
+  margin: auto;
+  width: 80%;
+}
+/* Normal state */
+.button {
+    background-color: orange; /* Lighter color */
+}
+
+/* Active state */
+.active {
+  background-color: orange;
+  color: white;
+}
+
 .timer button:hover{
-  background-color: #5e7388;
+  background-color: rgb(241, 212, 159);
   color: white;
 }
 

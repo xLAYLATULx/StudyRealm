@@ -17,6 +17,10 @@ var bSeconds1;
 var cycle1;
 ringtone = new Audio('../assets/audio/alarm-ringtone-short.mp4');
 
+toggleButtonState('reset', false);
+    toggleButtonState('pause', false);
+    toggleButtonState('start', true);
+
 function timer() {
     if (sSeconds.value != 0) {
         sSeconds.value--;
@@ -95,6 +99,7 @@ function pauseTimer() {
 }
 
 start.addEventListener('click', function () {
+    
     ringtone.currentTime = 0;
     if (startTimer === undefined) {
         sHours1 = sHours.value;
@@ -126,5 +131,43 @@ reset.addEventListener('click', function () {
 pause.addEventListener('click', function () {
     ringtone.currentTime = 0;
     pauseTimer()
+    startTimer = undefined;
+});
+
+
+
+function toggleButtonState(buttonId, isEnabled) {
+    var button = document.getElementById(buttonId);
+    button.disabled = !isEnabled;
+}
+
+start.addEventListener('click', function () {
+    toggleButtonState('start', false);
+    toggleButtonState('reset', false);
+    toggleButtonState('pause', true);
+});
+
+reset.addEventListener('click', function () {
+    ringtone.currentTime = 0;
+    sHours.value = 0;
+    sMinutes.value = 25;
+    sSeconds.value = 0;
+    bMinutes.value = 5;
+    bSeconds.value = 0;
+    toggleButtonState('reset', false);
+    toggleButtonState('pause', false);
+    toggleButtonState('start', true);
+    pauseTimer();
+    startTimer = undefined;
+    sessionAlert = false;
+});
+
+pause.addEventListener('click', function () {
+    ringtone.currentTime = 0;
+    toggleButtonState('pause', false);
+    toggleButtonState('start', true);
+    toggleButtonState('reset', true);
+    
+    pauseTimer();
     startTimer = undefined;
 });

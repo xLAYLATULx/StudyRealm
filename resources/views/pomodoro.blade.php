@@ -37,7 +37,7 @@
         </div>
         <div class="col-md-9 ml-5">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 play">
                     <button class="btn btn-lg" id="start"><i class="fa fa-play"></i></button>
                 </div>
                 <div class="col-md-3">
