@@ -38,13 +38,13 @@
         <div class="col-md-9 ml-5">
             <div class="row">
                 <div class="col-md-3">
-                    <button class="btn btn-lg" id="start">Start</button>
+                    <button class="btn btn-lg" id="start"><i class="fa fa-play"></i></button>
                 </div>
                 <div class="col-md-3">
-                    <button class="btn btn-lg" id="pause">Pause</button>
+                    <button class="btn btn-lg" id="pause"><i class="fa fa-pause"></i></button>
                 </div>
                 <div class="col-md-3">
-                    <button class="btn btn-lg" id="reset">Reset</button>
+                    <button class="btn btn-lg" id="reset"><i class="fa fa-undo"></i></button>
                 </div>
             </div>
         </div>

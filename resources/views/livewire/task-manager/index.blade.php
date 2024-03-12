@@ -7,7 +7,7 @@
             <div class="categories mt-3">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link" id="lightBlue-colour" href="#" data-bs-toggle="modal"
+                        <a class="nav-link" id="blue-colour" href="#" data-bs-toggle="modal"
                             data-bs-target="#addCategoryModal"><i class="fa fa-plus"></i> Add Project</a>
                     </li>
                     @if(!$categories->isEmpty())
@@ -59,11 +59,11 @@
             </div>
             <div class="col-md-4">
                     <div class="sortBy float-end">
-                        <a class="btn mr-5" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i
+                        <a class="btn mr-5" id="blue-colour" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i
                             class="fa fa-plus"></i> Task</a>
-                        <a class="btn" id="lightGrey-colour" wire:click="sortByDateButton">{{$sortByAsc ?
+                        <a class="btn" id="sort" wire:click="sortByDateButton">{{$sortByAsc ?
                             'Date Desc ↓' : 'Date Asc ↑'}}</a>
-                        <a class="btn ml-3" id="lightGrey-colour" wire:click="sortByPriorityButton">{{$sortByPriority ?
+                        <a class="btn ml-3" id="sort" wire:click="sortByPriorityButton">{{$sortByPriority ?
                             'Priority Desc ↓' : 'Priority Asc ↑'}}</a>
                     </div>
             </div>
@@ -75,7 +75,7 @@
         @else
         @foreach($tasks as $task)
         <div class="card task shadow mt-4 p-3" id="task">
-            <div class="card-header">
+            <div class="card-header bg-white">
                 <div class="row">
                     <div class="col-md-4">
                         @foreach($goals as $goal)
@@ -92,9 +92,9 @@
                         <div class="row align-items-center">
                             <div class="col-md-9">
                                 <div class="progress">
-                                    <div class="progress-bar {{$task->progress == 100.00 ? 'bg-success' : 'pink-colour'}}"
+                                    <div class="progress-bar {{$task->progress == 100.00 ? 'bg-success' : 'IndianRed'}}"
                                         role="progressbar"
-                                        style="width: {{$task->progress}}%; background-color: #FF6060"></div>
+                                        style="width: {{$task->progress}}%; background-color: IndianRed"></div>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -123,10 +123,10 @@
                 <p class="card-text">{{$task->description}}</p>
                 <div class="position-absolute bottom-0 end-0 m-3">
                     <a href="text-white" wire:click="editTaskFields({{ $task->id }})" class="edit btn text-white"
-                        data-bs-toggle="modal" data-bs-target="#editTaskModal" id="blue-colour"><i
+                        data-bs-toggle="modal" data-bs-target="#editTaskModal" id="lightBlue"><i
                             class="fa fa-pencil"></i></a>
                     <a class="btn btn-danger text-white" href="#" wire:click="deleteTaskButton({{ $task->id }})"
-                        data-bs-toggle="modal" data-bs-target="#deleteTaskModal"><i class="fa fa-trash"></i></a>
+                        data-bs-toggle="modal" data-bs-target="#deleteTaskModal" id="lightRed"><i class="fa fa-trash"></i></a>
                 </div>
             </div>
         </div>

@@ -27,8 +27,8 @@
         </div>
         <div class="col-md-4">
                 <div class="sortBy float-end">
-                    <a class="btn mr-5" id="lightBlue-colour" data-bs-toggle="modal" data-bs-target="#addGoalModal"><i class="fa fa-plus"></i> Goal</a>
-                    <a class="btn" id="lightGrey-colour" wire:click="sortByAscButton">{{$sortByAsc ?
+                    <a class="btn mr-5" id="blue-colour" data-bs-toggle="modal" data-bs-target="#addGoalModal"><i class="fa fa-plus"></i> Goal</a>
+                    <a class="btn" id="sort" wire:click="sortByAscButton">{{$sortByAsc ?
                         'Sort By Date Desc ↓' : 'Sort By Date Asc ↑'}}</a>
                   </div>
             </div>
@@ -40,16 +40,16 @@
         @else
         @foreach($goals as $goal)
         <div class="card goal shadow mt-4 p-3" id="goal">
-            <div class="card-header">
+            <div class="card-header bg-white">
                 <div class="row">
                     <div class="col-md-4">
-                        <h5 class="card-title"><i class="fa fa-bullseye pink-text"></i> <strong>{{$goal->goalName}}</strong></h5>
+                        <h5 class="card-title"><i class="fa fa-bullseye"></i> <strong>{{$goal->goalName}}</strong></h5>
                     </div>
                     <div class="col-md-6">
                         <div class="row align-items-center">
                             <div class="col-md-9">
                                 <div class="progress">
-                                    <div class="progress-bar {{ $goal->progress == 100 ? 'bg-success' : '' }}" role="progressbar" style="width: {{ $goal->progress }}%; background-color: #FF6060" aria-valuenow="{{ $goal->overallProgress }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar {{ $goal->progress == 100 ? 'bg-success' : '' }}" role="progressbar" style="width: {{ $goal->progress }}%; background-color: IndianRed" aria-valuenow="{{ $goal->overallProgress }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -80,8 +80,8 @@
                 @endif
                 <div class="position-absolute bottom-0 end-0 m-3">
                     <a href="" wire:click="editGoalFields({{ $goal->id }})" class="edit btn text-white"
-                        data-bs-toggle="modal" data-bs-target="#editGoalModal" id="blue-colour"><i class="fa fa-pencil"></i></a>
-                    <a href="" wire:click="deleteGoalButton({{ $goal->id }})" class="delete btn btn-danger"
+                        data-bs-toggle="modal" data-bs-target="#editGoalModal" id="lightBlue"><i class="fa fa-pencil"></i></a>
+                    <a href="" wire:click="deleteGoalButton({{ $goal->id }})" id="lightRed" class="delete btn btn-danger"
                         data-bs-toggle="modal" data-bs-target="#deleteGoalModal"><i class="fa fa-trash"></i></a>
                 </div>
             </div>

@@ -206,11 +206,11 @@ $(document).ready(function() {
 
 <body>
     @auth
-    <div class="sidebar w-2 h-100 text-white p-2" id="blue-colour">
+    <div class="sidebar w-2 h-100 text-white p-2" id="navbarBg">
         <div class="col-md-3 sidebar-logo">
             <img class="mt-3" src="{{ asset('assets/images/theLogo.png') }}" alt="Logo">
             <label>
-                <h5 class="fw-bold pt-3 pl-2 pink-text">StudyRealm</h5>
+                <h5 class="fw-bold pt-3 pl-2 blue-colour">StudyRealm</h5>
             </label>
         </div>
         <div class="top-nav-items nav-items">
@@ -228,14 +228,14 @@ $(document).ready(function() {
             </a>
         </div>
         <div class="bottom-nav-items nav-items">
-            <a href="{{ route('profile', ['id' => auth()->user()->id]) }}"
-                class="{{ Request::is('profile*') ? 'active' : '' }} rounded">
+            <a href="{{ route('profile', ['id' => auth()->user()->id]) }}" class="{{ Request::is('profile*') ? 'active' : '' }} rounded">
                 <i class="fa fa-user"></i><label>{{auth()->user()->name}}</label>
             </a>
             <a href="{{ route('logout') }}" class="{{ Request::is('logout') ? 'active' : '' }} rounded">
                 <i class="fa fa-sign-out"></i><label>Sign Out</label>
             </a>
         </div>
+    </div>
     </div>
     <div class="content">
         <h1>Schedule</h1>

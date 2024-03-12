@@ -5,18 +5,39 @@ body{
 
 
 /* Start of Colours */
-.pink-text{
+.black-text{
     color: #323232;
 }
 .blue-colour{
-    color: #DDD0C8;
+    color: #0D98BA;
 }
 #blue-colour{
-    background-color: #DDD0C8;
+    background-color: #0D98BA;
     color: white;
 }
-.pink-colour{
+
+#sort{
+  background-color: #3f4040 ;
+  color: white;
+}
+
+#lightBlue{
+  background-color: #8dbec9;
+  color: white;
+}
+
+#navbarBg{
+  background-color: #F4F4F4;
+}
+.black-colour{
     background-color: #323232;
+}
+#lightRed{
+  background-color: #ff6666;
+  color: white;
+}
+.indianRed{
+  color: IndianRed;
 }
 #saveBtn{
     background-color: #323232;
@@ -24,30 +45,26 @@ body{
 }
 
 #saveFullBtn{
-    background-color: #323232;
+    background-color: #0D98BA;
     color: white;
 
 }
 
 #updateEventBtn{
-    background-color: #323232;
+    background-color: #0D98BA;
     color: white;
 
 }
 #pink-colour{
-    background-color: #323232;
+    background-color: #0D98BA;
     color: white;
 }
 
 #lightBlue-colour{
-  background-color: #905858;
+  background-color: #1A1A1A;
   color: white;
 }
 
-#lightGrey-colour{
-  background-color: lightgrey;
-  color: black;
-}
 /*End of Colours*/
 input[type="text"] {
   text-transform: capitalize;
@@ -112,13 +129,13 @@ input[type="text"] {
 }  
   .sidebar a {
     display: block;
-    color: #323232;
+    color: #0D98BA;
     padding: 5%;
     text-decoration: none;
   }
    
   .sidebar a.active {
-    background-color: #323232;
+    background-color: #0D98BA;
     color: white;
     font-weight: bold;
 }
@@ -126,7 +143,7 @@ input[type="text"] {
   
   .sidebar a:hover:not(.active) {
     text-decoration: none;
-    color: #323232;
+    color: #8ab9c5;
   }
     
   @media screen and (max-width: 700px) {
@@ -332,14 +349,14 @@ input[type="checkbox"] {
 /* Start of Pomodoro */
 .sessionTime{
   border-radius: 10px;
-  background-color: #DDD0C8;
+  background-color: #8dbec9;
   padding: 2%;
   color: white;
 }
 
 .breakTime{
   border-radius: 10px;
-  background-color: #DDD0C8;
+  background-color: #8dbec9;
   padding: 2%;
   color: white;
 }
@@ -404,7 +421,7 @@ input[type="checkbox"] {
 
 .timer button{
   margin-top: 50%;
-  background-color: #905858;
+  background-color: #3f4040;
   color: white;
   margin: auto;
   width: 80%;
