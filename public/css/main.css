@@ -11,9 +11,24 @@ body{
 .blue-colour{
     color: #0D98BA;
 }
-#blue-colour{
-    background-color: orange;
+#charcoal{
+    background-color: #314559;
     color: white;
+}
+#lightIndianred{
+    background-color: rgba(205, 92, 92, 0.422);
+    color: white;
+
+}
+#lightGoldenrod{
+    background-color: rgba(218, 165, 32, 0.568);
+    color: white;
+
+}
+#blue-colour{
+    background-color: #0D98BA;
+    color: white;
+
 }
 
 #sort{
@@ -142,8 +157,8 @@ input[type="text"] {
 
   
   .sidebar a:hover:not(.active) {
-    text-decoration: none;
-    color: #8ab9c5;
+    background-color: #bec5c765;
+    color: #0D98BA;
   }
     
   @media screen and (max-width: 700px) {
@@ -421,7 +436,7 @@ input[type="checkbox"] {
 
 .timer button{
   margin-top: 50%;
-  background-color: orange;
+  background-color: #323232;
   color: white;
   margin: auto;
   width: 80%;
@@ -429,24 +444,14 @@ input[type="checkbox"] {
 
 .play button{
   margin-top: 50%;
-  background-color: orange;
+  background-color: #323232;
   color: white;
   margin: auto;
   width: 80%;
 }
-/* Normal state */
-.button {
-    background-color: orange; /* Lighter color */
-}
-
-/* Active state */
-.active {
-  background-color: orange;
-  color: white;
-}
 
 .timer button:hover{
-  background-color: rgb(241, 212, 159);
+  background-color: #474747;
   color: white;
 }
 

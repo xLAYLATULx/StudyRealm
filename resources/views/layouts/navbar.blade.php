@@ -19,7 +19,7 @@
     @auth
     <div class="sidebar w-2 h-100 text-white p-2" id="navbarBg">
         <div class="col-md-3 sidebar-logo">
-            <img class="mt-3" src="{{ asset('assets/images/theLogo.png') }}" alt="Logo">
+            <img class="mt-3" src="{{ asset('assets/images/blueLogo.png') }}" alt="Logo">
             <label>
                 <h5 class="fw-bold pt-3 pl-2 blue-colour">StudyRealm</h5>
             </label>

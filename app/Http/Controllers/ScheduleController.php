@@ -18,7 +18,7 @@ class ScheduleController extends Controller
                 } else if($s->isTask == 1){
                     $colour = "IndianRed";
                 } else {
-                    $colour = "#3788d8";
+                    $colour = "#0D98BA";
                 }
             $events[] = [
                 'id' => $s->id,

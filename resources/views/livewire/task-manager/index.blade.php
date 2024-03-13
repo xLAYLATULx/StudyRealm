@@ -7,7 +7,7 @@
             <div class="categories mt-3">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link" id="blue-colour" href="#" data-bs-toggle="modal"
+                        <a class="nav-link" id="charcoal" href="#" data-bs-toggle="modal"
                             data-bs-target="#addCategoryModal"><i class="fa fa-plus"></i> Add Project</a>
                     </li>
                     @if(!$categories->isEmpty())
@@ -59,7 +59,7 @@
             </div>
             <div class="col-md-4">
                     <div class="sortBy float-end">
-                        <a class="btn mr-5" id="blue-colour" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i
+                        <a class="btn mr-5" id="charcoal" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i
                             class="fa fa-plus"></i> Task</a>
                         <a class="btn" id="sort" wire:click="sortByDateButton">{{$sortByAsc ?
                             'Date Desc ↓' : 'Date Asc ↑'}}</a>
@@ -74,9 +74,9 @@
         </div>
         @else
         @foreach($tasks as $task)
-        <div class="card task shadow mt-4 p-3" id="task">
-            <div class="card-header bg-white">
-                <div class="row">
+        <div class="card task shadow mt-4 p-3" >
+            <div class="card-header" id="lightIndianred">
+                <div class="row" >
                     <div class="col-md-4">
                         @foreach($goals as $goal)
                         @if($task->goalID == $goal->id)
@@ -92,9 +92,9 @@
                         <div class="row align-items-center">
                             <div class="col-md-9">
                                 <div class="progress">
-                                    <div class="progress-bar {{$task->progress == 100.00 ? 'bg-success' : 'IndianRed'}}"
+                                    <div class="progress-bar {{$task->progress == 100.00 ? 'bg-success' : ''}}"
                                         role="progressbar"
-                                        style="width: {{$task->progress}}%; background-color: IndianRed"></div>
+                                        style="width: {{$task->progress}}%; background-color: grey"></div>
                                 </div>
                             </div>
                             <div class="col-md-3">

@@ -27,7 +27,7 @@
         </div>
         <div class="col-md-4">
                 <div class="sortBy float-end">
-                    <a class="btn mr-5" id="blue-colour" data-bs-toggle="modal" data-bs-target="#addGoalModal"><i class="fa fa-plus"></i> Goal</a>
+                    <a class="btn mr-5" id="charcoal" data-bs-toggle="modal" data-bs-target="#addGoalModal"><i class="fa fa-plus"></i> Goal</a>
                     <a class="btn" id="sort" wire:click="sortByAscButton">{{$sortByAsc ?
                         'Sort By Date Desc ↓' : 'Sort By Date Asc ↑'}}</a>
                   </div>
@@ -40,16 +40,16 @@
         @else
         @foreach($goals as $goal)
         <div class="card goal shadow mt-4 p-3" id="goal">
-            <div class="card-header bg-white">
+            <div class="card-header" id="lightGoldenrod">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4 gold">
                         <h5 class="card-title"><i class="fa fa-bullseye"></i> <strong>{{$goal->goalName}}</strong></h5>
                     </div>
                     <div class="col-md-6">
                         <div class="row align-items-center">
                             <div class="col-md-9">
                                 <div class="progress">
-                                    <div class="progress-bar {{ $goal->progress == 100 ? 'bg-success' : '' }}" role="progressbar" style="width: {{ $goal->progress }}%; background-color: IndianRed" aria-valuenow="{{ $goal->overallProgress }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar {{ $goal->progress == 100 ? 'bg-success' : '' }}" role="progressbar" style="width: {{ $goal->progress }}%; background-color: grey" aria-valuenow="{{ $goal->overallProgress }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -71,8 +71,8 @@
               <p class="card-text">{{$goal->description}}</p>
               @if ($goal->tasks->isEmpty())
               @else
-              <details>
-                <summary>Tasks:</summary>
+              <details class="indianRed">
+                <summary>Related Tasks:</summary>
                  @foreach($goal->tasks as $task)
                             <p> <i class="fa fa-check pink-text"></i> {{$task->taskName}}: {{$task->progress}}% Completed</p>
                     @endforeach
