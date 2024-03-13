@@ -221,7 +221,7 @@ class Index extends Component
             $goalList->orderBy('deadline', 'desc');
         }
 
-        $goals = $goalList->paginate(3);
+        $goals = $goalList->paginate(5);
 
         
 

@@ -267,7 +267,7 @@ class Index extends Component
             $taskList->orderBy('dueDate', 'desc')->orderBy('priority', 'desc');
         }
 
-        $tasks = $taskList->paginate(2);
+        $tasks = $taskList->paginate(5);
         $categories = Category::where('userID', auth()->user()->id)->get();
         $goals = Goal::where('userID', auth()->user()->id)->get();
 
