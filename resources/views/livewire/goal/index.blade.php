@@ -49,7 +49,7 @@
                         <div class="row align-items-center">
                             <div class="col-md-9">
                                 <div class="progress">
-                                    <div class="progress-bar {{ $goal->progress == 100 ? 'bg-success' : '' }}" role="progressbar" style="width: {{ $goal->progress }}%; background-color: grey" aria-valuenow="{{ $goal->overallProgress }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar {{ $goal->progress == 100 ? 'bg-success' : '' }}" role="progressbar" style="width: {{ $goal->progress }}%; background-color: #0D98BA" aria-valuenow="{{ $goal->overallProgress }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                             <div class="col-md-3">

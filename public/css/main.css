@@ -15,16 +15,16 @@ body{
     background-color: #314559;
     color: white;
 }
-#lightIndianred{
-    background-color: rgba(205, 92, 92, 0.422);
-    color: white;
+/* #lightIndianred{
+    background-color: rgba(205, 92, 92, 0.292);
+    color: black;
 
 }
 #lightGoldenrod{
-    background-color: rgba(218, 165, 32, 0.568);
-    color: white;
+    background-color: rgba(218, 165, 32, 0.323);
+    color: black;
 
-}
+} */
 #blue-colour{
     background-color: #0D98BA;
     color: white;

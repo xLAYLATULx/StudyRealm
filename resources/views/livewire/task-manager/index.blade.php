@@ -80,12 +80,13 @@
                     <div class="col-md-4">
                         @foreach($goals as $goal)
                         @if($task->goalID == $goal->id)
-                        <h5><i class="fa fa-check pink-text"></i> <strong>{{$task->taskName}} ({{$goal->goalName}})
-                            </strong></h5>
+                        <h5><i class="fa fa-check pink-text"></i> <strong>{{$task->taskName}} ({{$goal->goalName}}) 
+                            </strong> <i class="fa fa-flag" style="@if($task->priority == 'medium') color: orange @elseif($task->priority == 'high') color: red @elseif($task->priority == 'low') color: green @endif"></i>
+                        </h5>
                         @endif
                         @endforeach
                         @if($task->goalID == NULL)
-                        <h5><i class="fa fa-check pink-text"></i> <strong>{{$task->taskName}}</strong></h5>
+                        <h5><i class="fa fa-check pink-text"></i> <strong>{{$task->taskName}} </strong> <i class="fa fa-flag" style="@if($task->priority == 'medium') color: orange @elseif($task->priority == 'high') color: red @elseif($task->priority == 'low') color: green @endif"></i></h5>
                         @endif
                     </div>
                     <div class="col-md-6">
@@ -94,7 +95,7 @@
                                 <div class="progress">
                                     <div class="progress-bar {{$task->progress == 100.00 ? 'bg-success' : ''}}"
                                         role="progressbar"
-                                        style="width: {{$task->progress}}%; background-color: grey"></div>
+                                        style="width: {{$task->progress}}%; background-color: #0D98BA"></div>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -112,14 +113,6 @@
                 </div>
             </div>
             <div class="card-body">
-                <p class="card-subtitle"><i class="fa fa-flag" style="@if($task->priority == 'medium') color: orange @elseif($task->priority == 'high') color: red @elseif($task->priority == 'low') color: green @endif"></i>
-                    @if($task->priority == 'medium')
-                    Medium
-                    @elseif($task->priority == 'high')
-                    High
-                    @elseif($task->priority == 'low')
-                    Low
-                    @endif Priority</p>
                 <p class="card-text">{{$task->description}}</p>
                 <div class="position-absolute bottom-0 end-0 m-3">
                     <a href="text-white" wire:click="editTaskFields({{ $task->id }})" class="edit btn text-white"
