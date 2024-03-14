@@ -254,7 +254,7 @@ $(document).ready(function() {
                         <label for="eventName">Event Name: </label>
                         <input id="eventName" name="eventName" type="text" class="form-control"
                             placeholder="Enter Event Name..." required>
-                        <span id="titleError" class="text-danger"></span>
+                            @error('title') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="mb-3">
                             <label for="eventdescription">Event Description: </label>
@@ -269,10 +269,12 @@ $(document).ready(function() {
                             <div class="col">
                             <label for="eventStart">Start Time:</label>
                             <input type="datetime-local" name="eventStart" id="eventStart" class="form-control" required>
+                            @error('startDate') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="col">
                             <label for="eventEnd">End Time:</label>
                             <input type="datetime-local" name="eventEnd" id="eventEnd" class="form-control" required>
+                            @error('endDate') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         </div>
                     </div>
@@ -302,7 +304,7 @@ $(document).ready(function() {
                     <label for="editEventName">Event Name:</label>
                     <input id="editEventName" name="editEventName" type="text" class="form-control"
                         placeholder="Enter Event Name..." required>
-                    <span id="editTitleError" class="text-danger"></span>
+                        @error('title') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                 <div class="mb-3">
                     <label for="editEventDescription">Event Description:</label>
@@ -310,17 +312,19 @@ $(document).ready(function() {
                         placeholder="Enter Event Description..." required></textarea>
                 </div>
                 <div class="mb-3 mx-3">
-                    <input type="checkbox" name="allDay" id="allDay" value="1" onclick="toggleDateTimeInputs()" checked>
-                    <label for="allDay"> All Day</label>
+                    <input type="checkbox" name="editAllDay" id="editAllDay" value="1" onclick="toggleEditDateTimeInputs()" checked>
+                    <label for="editAllDay"> All Day</label>
                 </div>
-                <div class="row" id="dates">
+                <div class="row" id="editDates">
                     <div class="col">
                     <label for="editEventStart">Start Time:</label>
                     <input type="datetime-local" name="editEventStart" id="editEventStart" class="form-control" required>
+                    @error('startDate') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                 <div class="col">
                     <label for="editEventEnd">End Time:</label>
                     <input type="datetime-local" name="editEventEnd" id="editEventEnd" class="form-control" required>
+                    @error('endDate') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                 </div>
             </div>
@@ -358,6 +362,17 @@ $(document).ready(function() {
         dates.style.display = "flex";
     }
 }
+    </script>
+    <script>
+        function toggleEditDateTimeInputs() {
+            var editAllDay = document.getElementById("editAllDay");
+    var editDates = document.getElementById("editDates");
+    if (editAllDay.checked) {
+        editDates.style.display = "none";
+    } else {
+        editDates.style.display = "flex";
+    }
+        }  
     </script>
 </body>
 

@@ -56,7 +56,20 @@ class ScheduleController extends Controller
 
     public function store(Request $request)
 {
-    $this->validate($request, $this->rules(), $this->messages());
+    $validatedData = $this->validate($request, [
+        'title' => 'required|string|unique:schedule',
+        'description' => 'required|string',
+        'startDate' => 'required|date',
+        'endDate' => 'required|date|after_or_equal:startDate',
+    ], [
+        'title.required' => 'Please enter a title.',
+        'title.unique' => 'This event already exists. Please enter a different title.',
+        'startDate.required' => 'Please enter a start date.',
+        'startDate.date' => 'Please enter a valid date for the start date.',
+        'endDate.required' => 'Please enter an end date.',
+        'endDate.date' => 'Please enter a valid date for the end date.',
+        'endDate.after_or_equal' => 'End date should be after or equal to the start date.',
+    ]);
 
     $schedule = Schedule::create([
         'userID' => auth()->id(),
