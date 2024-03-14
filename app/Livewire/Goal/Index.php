@@ -139,7 +139,6 @@ class Index extends Component
         $deleteEventName = $deleteEvent->goalName;
         Goal::findOrFail($this->goal_id)->delete();
         Schedule::where('title', $deleteEventName)->delete();
-        session()->flash('success', 'Goal Deleted Successfully');
         $this->dispatch('close-modal');
         $this->resetInputs();
     }

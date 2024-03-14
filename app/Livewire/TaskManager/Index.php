@@ -102,13 +102,36 @@ class Index extends Component
     }
 
 
-    public function storeTask(){
-        
+    public function storeTask()
+    {
+        $validatedData = $this->validate([
+            'taskName' => 'required|unique:task',
+            'categoryID' => 'required',
+            'priority' => 'required',
+            'description' => 'required',
+            'progress' => 'required|integer',
+            'startDate' => 'required|date',
+            'dueDate' => 'required|date',
+            'goalID' => 'nullable',
+        ], [
+            'taskName.required' => 'Please enter a task name.',
+            'taskName.unique' => 'This task name already exists. Please enter a different task name.',
+            'categoryID.required' => 'Please select a project.',
+            'priority.required' => 'Please select a priority level.',
+            'description.required' => 'Please enter a task description.',
+            'progress.required' => 'Please select progress for the task.',
+            'progress.integer' => 'Progress should be an integer value.',
+            'startDate.required' => 'Please select a start date.',
+            'startDate.date' => 'Start date should be a valid date.',
+            'dueDate.required' => 'Please select a due date.',
+            'dueDate.date' => 'Due date should be a valid date.',
+        ]);
         if($this->progress >= 100){
             $this->completed = true;
         }else{
             $this->completed = false;
         }
+        
         Task::create([
             'userID' => auth()->user()->id,
             'categoryID' => $this->categoryID,
@@ -121,7 +144,7 @@ class Index extends Component
             'completed' => $this->completed,
             'goalID' => $this->goalID,
         ]);
-        $this->validate();
+        
         Schedule::create([
             'userID' => auth()->user()->id,
             'title' => $this->taskName,
