@@ -59,7 +59,7 @@
             </div>
             <div class="col-md-4">
                     <div class="sortBy float-end">
-                        <a class="btn mr-5" id="charcoal" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i
+                        <a class="btn mr-5" id="purple" data-bs-toggle="modal" data-bs-target="#addTaskModal"><i
                             class="fa fa-plus"></i> Task</a>
                         <a class="btn" id="sort" wire:click="sortByDateButton">{{$sortByAsc ?
                             'Date Desc ↓' : 'Date Asc ↑'}}</a>
@@ -80,13 +80,13 @@
                     <div class="col-md-4">
                         @foreach($goals as $goal)
                         @if($task->goalID == $goal->id)
-                        <h5><i class="fa fa-check pink-text"></i> <strong>{{$task->taskName}} ({{$goal->goalName}}) 
+                        <h6><i class="fa fa-check pink-text"></i> <strong>{{$task->taskName}} ({{$goal->goalName}}) 
                             </strong> <i class="fa fa-flag" style="@if($task->priority == 'medium') color: orange @elseif($task->priority == 'high') color: red @elseif($task->priority == 'low') color: green @endif"></i>
-                        </h5>
+                        </h6>
                         @endif
                         @endforeach
                         @if($task->goalID == NULL)
-                        <h5><i class="fa fa-check pink-text"></i> <strong>{{$task->taskName}} </strong> <i class="fa fa-flag" style="@if($task->priority == 'medium') color: orange @elseif($task->priority == 'high') color: red @elseif($task->priority == 'low') color: green @endif"></i></h5>
+                        <h6><i class="fa fa-check pink-text"></i> <strong>{{$task->taskName}} </strong> <i class="fa fa-flag" style="@if($task->priority == 'medium') color: orange @elseif($task->priority == 'high') color: red @elseif($task->priority == 'low') color: green @endif"></i></h6>
                         @endif
                     </div>
                     <div class="col-md-6">
@@ -107,7 +107,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="text-end mb-3">
-                            <h6 class="card-title">Due: {{$task->dueDate}}</h6>
+                            <p class="card-title">Due: {{$task->dueDate}}</p>
                         </div>
                     </div>
                 </div>

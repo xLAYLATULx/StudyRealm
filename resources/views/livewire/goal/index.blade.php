@@ -27,7 +27,7 @@
         </div>
         <div class="col-md-4">
                 <div class="sortBy float-end">
-                    <a class="btn mr-5" id="charcoal" data-bs-toggle="modal" data-bs-target="#addGoalModal"><i class="fa fa-plus"></i> Goal</a>
+                    <a class="btn mr-5" id="gold" data-bs-toggle="modal" data-bs-target="#addGoalModal"><i class="fa fa-plus"></i> Goal</a>
                     <a class="btn" id="sort" wire:click="sortByAscButton">{{$sortByAsc ?
                         'Sort By Date Desc ↓' : 'Sort By Date Asc ↑'}}</a>
                   </div>
@@ -43,7 +43,7 @@
             <div class="card-header" id="lightGoldenrod">
                 <div class="row">
                     <div class="col-md-4 gold">
-                        <h5 class="card-title"><i class="fa fa-bullseye"></i> <strong>{{$goal->goalName}}</strong></h5>
+                        <h6 class="card-title"><i class="fa fa-bullseye"></i> <strong>{{$goal->goalName}}</strong></h6>
                     </div>
                     <div class="col-md-6">
                         <div class="row align-items-center">
@@ -60,8 +60,8 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <div class="text-end mb-3">
-                        <h6 class="card-title">Due: {{$goal->deadline}}</h6>
+                        <div class="text-end">
+                        <p class="card-title">Due: {{$goal->deadline}}</p>
                     </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
               <p class="card-text">{{$goal->description}}</p>
               @if ($goal->tasks->isEmpty())
               @else
-              <details class="px-2 w-50" id="lightIndianred">
+              <details class="px-1 w-50">
                 <summary>View Tasks:</summary>
                  @foreach($goal->tasks as $task)
                             <p> <i class="fa fa-check"></i> {{$task->taskName}}: {{$task->progress}}% Completed</p>

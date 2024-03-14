@@ -15,6 +15,15 @@ body{
     background-color: #314559;
     color: white;
 }
+#gold{
+  background-color: rgb(216, 150, 28);
+  color: white;
+}
+#purple{
+  background-color: purple;
+  color: white;
+
+}
 #lightIndianred{
     background-color: rgba(128, 0, 128, 0.207);
     color: black;
@@ -209,6 +218,7 @@ input[type="text"] {
   text-decoration: line-through;
 }
 
+
 input[type="checkbox"] {
   line-height: normal;
   width: 20px;
@@ -221,7 +231,6 @@ input[type="checkbox"] {
   padding: 5%;
   background-color: white;
 }
-
 
 .goal p {
   margin: 5px 0;
