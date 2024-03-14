@@ -63,6 +63,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         window.addEventListener('close-modal', event => {
             $('#addGoalModal').modal('hide');
@@ -76,6 +77,7 @@
             $('#deleteCategoryModal').modal('hide');
         });
     </script>
+    
 </body>
 
 </html>

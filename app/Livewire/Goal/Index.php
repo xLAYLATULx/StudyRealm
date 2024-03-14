@@ -20,7 +20,7 @@ class Index extends Component
     public function rules()
     {
         return [
-            'goalName' => 'required',
+            'goalName' => 'required|unique:goal',
             'description' => 'required',
             'progress' => 'required',
             'startDate' => 'required|date',
@@ -32,6 +32,7 @@ class Index extends Component
     {
         return [
             'goalName.required' => 'Please enter a goal name.',
+            'goalName.unique' => 'This goal name already exists. Please enter a different goal name.',
             'description.required' => 'Please enter a description.',
             'progress.required' => 'Please enter a progress.',
             'startDate.required' => 'Please enter a start date.',
@@ -43,7 +44,7 @@ class Index extends Component
 
     public function storeGoal()
     {
-
+        $this->validate();
         if ($this->progress >= 100) {
             $this->completed = true;
         } else {
@@ -74,6 +75,7 @@ class Index extends Component
 
     public function editGoalFields(int $goal_id)
     {
+        $this->validate();
         $this->goal_id = $goal_id;
         $goal = Goal::findOrFail($goal_id);
         $goalTasks = Task::where('goalID', $this->goal_id)->get();
@@ -92,6 +94,7 @@ class Index extends Component
 
     public function editGoal()
     {
+        $this->validate();
         $editEvent = Goal::findOrFail($this->goal_id);
         $editEventName = $editEvent->goalName;
         if ($this->progress >= 100) {

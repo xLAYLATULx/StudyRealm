@@ -86,6 +86,8 @@ $(document).ready(function() {
                     success: function(response) {
                         console.log(response);
                         $('#scheduleModal').modal('hide');
+                        swal("Done!", "Event Created Successfully!", "success");
+                        window.location.reload();
                         $('#calendar').fullCalendar('renderEvent', {
                             'id': response.id,
                             'title': response.title,
@@ -95,6 +97,7 @@ $(document).ready(function() {
                             'isGoal' : response.isGoal,
                             'isTask' : response.isTask,
                         });
+                        
                     },
                     error: function(xhr, status, error) {
                         console.error(xhr.responseText);
@@ -258,7 +261,11 @@ $(document).ready(function() {
                             <textarea type="text" name="eventDescription" id="eventDescription" class="form-control"
                                 placeholder="Enter Event Description..." required></textarea>
                         </div>
-                        <div class="row mb-3">
+                        <div class="mb-3 mx-3">
+                            <input type="checkbox" name="allDay" id="allDay" value="1" onclick="toggleDateTimeInputs()" checked>
+                            <label for="allDay"> All Day</label>
+                        </div>
+                        <div class="row mb-3" id="dates">
                             <div class="col">
                             <label for="eventStart">Start Time:</label>
                             <input type="datetime-local" name="eventStart" id="eventStart" class="form-control" required>
@@ -302,7 +309,11 @@ $(document).ready(function() {
                     <textarea type="text" name="editEventDescription" id="editEventDescription" class="form-control"
                         placeholder="Enter Event Description..." required></textarea>
                 </div>
-                <div class="row">
+                <div class="mb-3 mx-3">
+                    <input type="checkbox" name="allDay" id="allDay" value="1" onclick="toggleDateTimeInputs()" checked>
+                    <label for="allDay"> All Day</label>
+                </div>
+                <div class="row" id="dates">
                     <div class="col">
                     <label for="editEventStart">Start Time:</label>
                     <input type="datetime-local" name="editEventStart" id="editEventStart" class="form-control" required>
@@ -337,6 +348,17 @@ $(document).ready(function() {
     <a href="{{ route('register') }}" class="btn btn-primary">Register</a>
     @endauth
     <script src="{{ asset('js/main.js') }}"></script>
+    <script>
+        function toggleDateTimeInputs() {
+    var allDay = document.getElementById("allDay");
+    var dates = document.getElementById("dates");
+    if (allDay.checked) {
+        dates.style.display = "none";
+    } else {
+        dates.style.display = "flex";
+    }
+}
+    </script>
 </body>
 
 </html>

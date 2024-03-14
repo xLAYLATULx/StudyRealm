@@ -25,7 +25,7 @@ class Index extends Component
 
     public function rules(){
         return [    
-        'taskName' => 'required',
+        'taskName' => 'required|unique:task',
         'categoryID' => 'required',
         'priority' => 'required',
         'description' => 'required',
@@ -40,6 +40,7 @@ class Index extends Component
 {
     return [
         'taskName.required' => 'Please enter a task name.',
+        'taskName.unique' => 'This task name already exists. Please enter a different task name.',
         'categoryID.required' => 'Please select a project.',
         'priority.required' => 'Please select a priority level.',
         'description.required' => 'Please enter a task description.',
@@ -57,6 +58,7 @@ class Index extends Component
     
 
     public function storeCategory(){
+        $this->validate();
         Category::create([
             'userID' => auth()->user()->id,
             'categoryName' => $this->categoryName,
@@ -67,12 +69,14 @@ class Index extends Component
     }
 
     public function editCategoryFields(int $category_id){
+        $this->validate();
         $this->category_id = $category_id;
         $category = Category::findOrFail($category_id);
         $this->categoryName = $category->categoryName;
     }
 
     public function editCategory(){
+        $this->validate();
         Category::findOrFail($this->category_id)->update([
             'userID' => auth()->user()->id,
             'categoryName' => $this->categoryName,
@@ -99,6 +103,7 @@ class Index extends Component
 
 
     public function storeTask(){
+        $this->validate();
         if($this->progress >= 100){
             $this->completed = true;
         }else{
@@ -131,6 +136,7 @@ class Index extends Component
     }
 
     public function editTaskFields(int $task_id){
+        $this->validate();
         $this->task_id = $task_id;
         $task = Task::findOrFail($task_id);
         $this->categoryID = $task->categoryID;
@@ -144,6 +150,7 @@ class Index extends Component
     }
     
     public function editTask(){
+        $this->validate();
         $editEvent = Task::findOrFail($this->task_id);
         $editEventName = $editEvent->taskName;
         if($this->progress >= 100){

@@ -93,3 +93,11 @@
         {{$goals->links()}}
     </div>
 </div>
+
+@if (Session::has('message'))
+<script>
+    swal("Message", "{{ Session::get('message') }}", "error", {
+        button: "OK",
+    });
+</script>
+@endif
