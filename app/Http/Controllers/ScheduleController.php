@@ -56,21 +56,7 @@ class ScheduleController extends Controller
 
     public function store(Request $request)
 {
-    $validatedData = $this->validate($request, [
-        'title' => 'required|string|unique:schedule',
-        'description' => 'required|string',
-        'startDate' => 'required|date',
-        'endDate' => 'required|date|after_or_equal:startDate',
-    ], [
-        'title.required' => 'Please enter a title.',
-        'title.unique' => 'This event already exists. Please enter a different title.',
-        'startDate.required' => 'Please enter a start date.',
-        'startDate.date' => 'Please enter a valid date for the start date.',
-        'endDate.required' => 'Please enter an end date.',
-        'endDate.date' => 'Please enter a valid date for the end date.',
-        'endDate.after_or_equal' => 'End date should be after or equal to the start date.',
-    ]);
-
+    $validatedData = $this->validate($request, $this->rules(), $this->messages());
     $schedule = Schedule::create([
         'userID' => auth()->id(),
         'title' => $request->title,
@@ -106,6 +92,20 @@ public function update(Request $request, $id)
     if(!$schedule){
         return response()->json(['error' => 'Event not found'], 404);
     }
+    $this->validate($request, [
+        'title' => 'required|string|unique:schedule,title,'.$id,
+        'description' => 'required|string',
+        'startDate' => 'required|date',
+        'endDate' => 'required|date|after_or_equal:startDate',
+    ], [
+        'title.required' => 'Please enter a title.',
+        'title.unique' => 'This event already exists. Please enter a different title.',
+        'startDate.required' => 'Please enter a start date.',
+        'startDate.date' => 'Please enter a valid date for the start date.',
+        'endDate.required' => 'Please enter an end date.',
+        'endDate.date' => 'Please enter a valid date for the end date.',
+        'endDate.after_or_equal' => 'End date should be after or equal to the start date.',
+    ]);
     $schedule->update([
         'title' => $request->title,
         'description' => $request->description,
