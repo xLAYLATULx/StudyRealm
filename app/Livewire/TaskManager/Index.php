@@ -103,7 +103,7 @@ class Index extends Component
 
 
     public function storeTask(){
-        $this->validate();
+        
         if($this->progress >= 100){
             $this->completed = true;
         }else{
@@ -121,6 +121,7 @@ class Index extends Component
             'completed' => $this->completed,
             'goalID' => $this->goalID,
         ]);
+        $this->validate();
         Schedule::create([
             'userID' => auth()->user()->id,
             'title' => $this->taskName,
