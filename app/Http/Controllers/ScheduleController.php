@@ -16,7 +16,7 @@ class ScheduleController extends Controller
                 if($s->isGoal == 1){
                     $colour = "GoldenRod";
                 } else if($s->isTask == 1){
-                    $colour = "IndianRed";
+                    $colour = "purple";
                 } else {
                     $colour = "#0D98BA";
                 }

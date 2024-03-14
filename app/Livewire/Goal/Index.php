@@ -93,7 +93,6 @@ class Index extends Component
 
     public function editGoal()
     {
-        $this->validate();
         $editEvent = Goal::findOrFail($this->goal_id);
         $editEventName = $editEvent->goalName;
         if ($this->progress >= 100) {
@@ -224,7 +223,6 @@ class Index extends Component
 
         $goals = $goalList->paginate(5);
 
-        
 
         return view('livewire.goal.index', ['goals' => $goals])->extends('layouts.navbar')->section('content');
     }

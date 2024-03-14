@@ -173,7 +173,6 @@ class Index extends Component
     }
     
     public function editTask(){
-        $this->validate();
         $editEvent = Task::findOrFail($this->task_id);
         $editEventName = $editEvent->taskName;
         if($this->progress >= 100){

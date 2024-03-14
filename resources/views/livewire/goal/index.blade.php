@@ -71,10 +71,10 @@
               <p class="card-text">{{$goal->description}}</p>
               @if ($goal->tasks->isEmpty())
               @else
-              <details class="indianRed">
-                <summary>Related Tasks:</summary>
+              <details class="px-2 w-50" id="lightIndianred">
+                <summary>View Tasks:</summary>
                  @foreach($goal->tasks as $task)
-                            <p> <i class="fa fa-check pink-text"></i> {{$task->taskName}}: {{$task->progress}}% Completed</p>
+                            <p> <i class="fa fa-check"></i> {{$task->taskName}}: {{$task->progress}}% Completed</p>
                     @endforeach
               </details>
                 @endif
