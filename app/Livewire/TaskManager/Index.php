@@ -160,7 +160,6 @@ class Index extends Component
     }
 
     public function editTaskFields(int $task_id){
-        $this->validate();
         $this->task_id = $task_id;
         $task = Task::findOrFail($task_id);
         $this->categoryID = $task->categoryID;

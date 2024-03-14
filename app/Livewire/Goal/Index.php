@@ -75,7 +75,6 @@ class Index extends Component
 
     public function editGoalFields(int $goal_id)
     {
-        $this->validate();
         $this->goal_id = $goal_id;
         $goal = Goal::findOrFail($goal_id);
         $goalTasks = Task::where('goalID', $this->goal_id)->get();
