@@ -90,13 +90,14 @@ class Index extends Component
     }
 
     public function deleteCategory(){
-        $deleteEvent = Task::where('categoryID', $this->category_id);
-        foreach($deleteEvent as $deleteEvent){
-        $deleteEventName = $deleteEvent->taskName;
-        Schedule::where('title', $deleteEventName)->delete();
+        $deleteEvent = Task::where('categoryID', $this->category_id)->get();
+        foreach($deleteEvent as $task){
+            $deleteEventName = $task->taskName;
+            Schedule::where('title', $deleteEventName)->delete();
         }
         Task::where('categoryID', $this->category_id)->delete();
         Category::findOrFail($this->category_id)->delete();
+    
         session()->flash('success', 'Category Deleted Successfully');
         $this->dispatch('close-modal');
         $this->resetCategoryInputs();

@@ -133,6 +133,12 @@ class Index extends Component
 
     public function deleteGoal()
     {
+        $deleteTaskEvent = Task::where('goalID', $this->goal_id)->get();
+        foreach ($deleteTaskEvent as $task) {
+            $deleteTaskEventName = $task->taskName;
+            Task::findOrFail($task->id)->delete();
+            Schedule::where('title', $deleteTaskEventName)->delete();
+        }
         $deleteEvent = Goal::findOrFail($this->goal_id);
         $deleteEventName = $deleteEvent->goalName;
         Goal::findOrFail($this->goal_id)->delete();
