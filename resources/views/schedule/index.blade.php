@@ -356,8 +356,14 @@ $(document).ready(function() {
         function toggleDateTimeInputs() {
     var allDay = document.getElementById("allDay");
     var dates = document.getElementById("dates");
+    var start = document.getElementById('eventStart').value;
+    var end = document.getElementById('eventEnd').value;
     if (allDay.checked) {
         dates.style.display = "none";
+        document.getElementById('eventStart').value = start;
+        end = start.split('T')[0] + 'T23:59';
+        console.log(end);
+        document.getElementById('eventEnd').value = end;
     } else {
         dates.style.display = "flex";
     }
@@ -365,14 +371,23 @@ $(document).ready(function() {
     </script>
     <script>
         function toggleEditDateTimeInputs() {
-            var editAllDay = document.getElementById("editAllDay");
+    var editAllDay = document.getElementById("editAllDay");
     var editDates = document.getElementById("editDates");
+    var start = document.getElementById('editEventStart').value;
+    var end = document.getElementById('editEventEnd').value;
     if (editAllDay.checked) {
         editDates.style.display = "none";
+        var startDate = start.split('T')[0] + 'T00:00';
+        document.getElementById('editEventStart').value = startDate;
+        end = start.split('T')[0] + 'T23:59';
+        console.log(end);
+        document.getElementById('editEventEnd').value = end;
+        editAllDay.checked = true;
     } else {
         editDates.style.display = "flex";
+        editAllDay.checked = false;
     }
-        }  
+}
     </script>
 </body>
 
