@@ -114,7 +114,7 @@ aria-hidden="true">
                         <div class="col">
                         <label>Goal: </label>
                         <select name="goal" id="goal" wire:model.defer="goalID" class="form-select" aria-label="Default select example">
-                            <option value="" selected>Select Goal: </option>
+                            <option value="NULL" selected>Select Goal: </option>
                             @foreach($goals as $goal)
                                 <option value="{{$goal->id}}">{{$goal->goalName}}</option>
                             @endforeach

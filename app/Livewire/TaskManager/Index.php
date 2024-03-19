@@ -58,7 +58,6 @@ class Index extends Component
     
 
     public function storeCategory(){
-        $this->validate();
         Category::create([
             'userID' => auth()->user()->id,
             'categoryName' => $this->categoryName,
@@ -91,6 +90,12 @@ class Index extends Component
     }
 
     public function deleteCategory(){
+        $deleteEvent = Task::where('categoryID', $this->category_id);
+        foreach($deleteEvent as $deleteEvent){
+        $deleteEventName = $deleteEvent->taskName;
+        Schedule::where('title', $deleteEventName)->delete();
+        }
+        Task::where('categoryID', $this->category_id)->delete();
         Category::findOrFail($this->category_id)->delete();
         session()->flash('success', 'Category Deleted Successfully');
         $this->dispatch('close-modal');
@@ -130,6 +135,9 @@ class Index extends Component
             $this->completed = true;
         }else{
             $this->completed = false;
+        }
+        if($this->goalID == "NULL"){
+            $this->goalID = NULL;
         }
         
         Task::create([
@@ -214,10 +222,10 @@ class Index extends Component
     }
 
     public function deleteTask(){
+        $deleteEvent = Task::findOrFail($this->task_id);
+        $deleteEventName = $deleteEvent->taskName;
         Task::findOrFail($this->task_id)->delete();
-        $editEvent = Task::findOrFail($this->task_id);
-        $editEventName = $editEvent->taskName;
-        Schedule::where('title', $editEventName)->delete;
+        Schedule::where('title', $deleteEventName)->delete();
         session()->flash('success', 'Task Deleted Successfully');
         $this->dispatch('close-modal');
         $this->resetTaskInputs();

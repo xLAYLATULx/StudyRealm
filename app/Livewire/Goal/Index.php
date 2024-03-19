@@ -118,7 +118,7 @@ class Index extends Component
             'description' => $this->description,
             'startDate' => $this->startDate,
             'endDate' => $this->deadline,
-            'isGoal' => '0',
+            'isGoal' => '1',
             'isTask' => '0',
         ]);
         session()->flash('success', 'Goal Updated Successfully');

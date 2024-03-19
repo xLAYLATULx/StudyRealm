@@ -143,7 +143,7 @@
             <div wire:loading.remove>
                 <form wire:submit.prevent="deleteGoal">
                     <div class="modal-body">
-                        <p>Are you sure you want to delete this goal?<p>
+                        <p>Are you sure you want to delete this goal? All associating tasks will be deleted. To prevent this, change the goal type of the tasks in the Task Manager!<p>
                     </div>
                     <div class="actions mx-3 my-2">
                         <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
