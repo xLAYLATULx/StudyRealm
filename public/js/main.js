@@ -171,5 +171,3 @@ pause.addEventListener('click', function () {
     pauseTimer();
     startTimer = undefined;
 });
-
-
