@@ -77,30 +77,14 @@ class AuthManager extends Controller
         $user = User::find($id);
         return view('userprofile', compact('user'));
     }
-    
-
-
+       
     public function updateDetails(Request $request, $id)
     {
-        $user = User::find($id);
-    
-        $request->validate([
-            'updateName' => 'required|regex:/^\S+$/',
-            'newEmail' => 'required|email|unique:users,email',
-            'newPassword' => 'required'
-        ], [
-            'updateName.required' => 'Name is required',
-            'updateName.regex' => 'Name is not valid',
-            'newEmail.required' => 'Email is required',
-            'newEmail.email' => 'Email is not valid',
-            'newEmail.unique' => 'Email is already registered',
-            'newPassword.required' => 'Password is required'
-        
-        ]);
+        $user = User::findorFail($id);
         if (!Hash::check($request->input('currentPassword'), $user->password)) {
             return redirect()->back()->with('error', 'Current password is incorrect.');
         }
-    
+
         $user->name = $request->input('updateName');
         $user->email = $request->input('newEmail');
 
@@ -109,7 +93,7 @@ class AuthManager extends Controller
         }
     
         $user->save();
-        return view('profile', compact('user'))->with('success', 'Profile updated successfully');
+        return view('userprofile', compact('user'))->with('success', 'Profile updated successfully');
     }
     
     function logout(){

@@ -26,24 +26,24 @@
             <td><div class="my-3 mx-2">
               <label for="updateName">New Name:</label>
               <input type="text" name="updateName" class="form-control" id="updateName"
-                placeholder="Enter New First Name...">
+                placeholder="Enter New First Name..." required>
             </div>
             <div class="my-3 mx-2">
               <label for="newEmail">New Email:</label>
               <input type="email" name="newEmail" class="form-control" id="newEmail"
-                placeholder="Enter New Email Address...">
+                placeholder="Enter New Email Address..." required>
             </div>
             <div class="my-3 mx-2">
               <label for="currentPassword">Current Password:</label>
               <input type="password" name="currentPassword" class="form-control" id="currentPassword"
-                placeholder="Enter Current Password...">
+                placeholder="Enter Current Password..." required>
             </div>
             <div class="my-3 mx-2">
               <label for="newPassword">New Password:</label>
               <input type="password" name="newPassword" class="form-control" id="newPassword"
-                placeholder="Enter New Password...">
+                placeholder="Enter New Password..." required>
             </div>
-          <button type="submit" class="btn text-white my-3 mx-2" id="blue-colour">Update</button>
+          <button type="submit" class="btn text-white my-3 mx-2" id="blue-colour" >Update</button>
         </td>
           </tr>
         </tbody>
