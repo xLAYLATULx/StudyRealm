@@ -107,7 +107,7 @@ input[type="text"] {
 
 .error-container {
   position: relative;
-  height: 0; /* Height will be determined by the content of .errorMessage */
+  height: 0;
 }
 
 .errorMessage {
@@ -265,9 +265,6 @@ input[type="checkbox"] {
   color: white;
 }
 
-
-
-
 /* Modal Form */
 
 
@@ -374,7 +371,7 @@ input[type="checkbox"] {
   display: none;
 
 }
-
+/* End of Schedule */
 
 /* Start of Pomodoro */
 .sessionTime{
@@ -470,7 +467,6 @@ input[type="checkbox"] {
   color: white;
 }
 
-
 /* End of Pomodoro */
 
 
@@ -481,3 +477,4 @@ table{
   padding: 5%;
   background-color: white;
 }
+/* End of Profile */

@@ -68,11 +68,7 @@
                   <input type="password" name="password" class="form-control" id="password"
                     placeholder="Enter Password...">
                 </div>
-                <div class="mb-3 form-check">
-                  <input type="checkbox" class="form-check-input" id="rememberMe">
-                  <label class="form-check-label" for="rememberMe">Remember Me</label>
-                </div>
-                <button type="submit" class="mt-3 btn pink-colour text-white" id="charcoal">Login</button>
+                <button type="submit" class="mt-5 btn pink-colour text-white" id="charcoal">Login</button>
               </form>
             </div>
 

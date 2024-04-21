@@ -167,7 +167,7 @@
     
     /* Date Picker */
     function todayDate(){
-        var date = new Date(); /* 2024-02-14 */
+        var date = new Date();
     console.log(date);
     var day = date.getDate();
     var month = date.getMonth() + 1;
