@@ -15,7 +15,7 @@ var sSeconds1;
 var bMinutes1;
 var bSeconds1;
 var cycle1;
-ringtone = new Audio('../assets/audio/alarm-ringtone-short.mp4');
+ringtone = new Audio('../assets/audio/alarm-ringtone-short.mp4'); /* Pixabay (2010) Alarm clock short | royalty-free music - pixabay. Available at: https://pixabay.com/sound-effects/alarm-clock-short-6402/ (Accessed: 15 February 2024). */
 
 toggleButtonState('reset', false);
     toggleButtonState('pause', false);
