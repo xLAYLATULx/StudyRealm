@@ -269,12 +269,10 @@ $(document).ready(function() {
                             <div class="col">
                             <label for="eventStart">Start Time:</label>
                             <input type="datetime-local" name="eventStart" id="eventStart" class="form-control" required>
-                            @error('startDate') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="col">
                             <label for="eventEnd">End Time:</label>
                             <input type="datetime-local" name="eventEnd" id="eventEnd" class="form-control" required>
-                            @error('endDate') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         </div>
                     </div>
@@ -304,7 +302,6 @@ $(document).ready(function() {
                     <label for="editEventName">Event Name:</label>
                     <input id="editEventName" name="editEventName" type="text" class="form-control"
                         placeholder="Enter Event Name..." required>
-                        @error('title') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                 <div class="mb-3">
                     <label for="editEventDescription">Event Description:</label>
@@ -319,12 +316,10 @@ $(document).ready(function() {
                     <div class="col">
                     <label for="editEventStart">Start Time:</label>
                     <input type="datetime-local" name="editEventStart" id="editEventStart" class="form-control" required>
-                    @error('startDate') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                 <div class="col">
                     <label for="editEventEnd">End Time:</label>
                     <input type="datetime-local" name="editEventEnd" id="editEventEnd" class="form-control" required>
-                    @error('endDate') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                 </div>
             </div>

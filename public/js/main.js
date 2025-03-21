@@ -17,9 +17,6 @@ var bSeconds1;
 var cycle1;
 ringtone = new Audio('../assets/audio/alarm-ringtone-short.mp4'); /* Pixabay (2010) Alarm clock short | royalty-free music - pixabay. Available at: https://pixabay.com/sound-effects/alarm-clock-short-6402/ (Accessed: 15 February 2024). */
 
-toggleButtonState('reset', false);
-    toggleButtonState('pause', false);
-    toggleButtonState('start', true);
 
 function timer() {
     if (sSeconds.value != 0) {
@@ -94,9 +91,8 @@ function timer() {
     }
 }
 
-function pauseTimer() {
-    clearInterval(startTimer);
-}
+
+// Button Event Listeners for start, pause, reset
 
 start.addEventListener('click', function () {
     
@@ -134,7 +130,17 @@ pause.addEventListener('click', function () {
     startTimer = undefined;
 });
 
+function pauseTimer() {
+    clearInterval(startTimer);
+}
 
+
+
+// Functions for disabling the start, pause, reset buttons
+
+toggleButtonState('reset', false);
+toggleButtonState('pause', false);
+toggleButtonState('start', true);
 
 function toggleButtonState(buttonId, isEnabled) {
     var button = document.getElementById(buttonId);
